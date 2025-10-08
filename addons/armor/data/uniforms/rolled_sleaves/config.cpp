@@ -80,6 +80,29 @@ class CfgVehicles
 		};
 	};
 
+	class Bzn_WI_Soldier_F_Maritime : WI_soldier_F
+	{
+		author="Yandere";
+		_generalMacro="I_soldier_F";
+		scope=2;
+		scopeArsenal=2;
+		scopeCurator=2;
+		model="\Max_WS\WB_GEN_Commander_FG.p3d";
+		editorSubcategory="Women_S";
+		displayName="RifleWoman";
+		uniformAccessories[]={};
+		nakedUniform="max_female_U";
+		uniformClass="Bzn_W_I_CombatUniform";
+		class eventhandlers
+		{
+			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
+		};
+	};
+
 	class Bzn_WI_Soldier_F_Woodland : Bzn_WI_Soldier_F
 	{
 		author="Yandere";
@@ -215,6 +238,14 @@ class CfgVehicles
 		};
 	};
 
+	class Bzn_Field_Uniform_RS_Maritime : Bzn_Field_Uniform_RS_Urban
+	{
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
+		};
+	};
+
 	class Bzn_Field_Uniform_Urban : I_soldier_F
 	{
 		author="Yandere";
@@ -259,6 +290,15 @@ class CfgVehicles
 			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\desert\uniform_desert.paa"
 		};
 	};
+
+	class Bzn_Field_Uniform_Maritime : Bzn_Field_Uniform_Urban
+	{
+		author="Yandere";
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
+		};
+	};
 };
 
 class CfgWeapons
@@ -288,6 +328,31 @@ class CfgWeapons
 		{
 			uniformModel="-";
 			uniformClass="Bzn_WI_Soldier_F";
+			containerClass="Supply40";
+			mass=40;
+		};
+	};
+
+	class Bzn_W_I_CombatUniform_Maritime : WU_I_CombatUniform
+	{
+		author="Yandere";
+		scope=2;
+		displayName="Combat Fatigues Woman [Bzn] (Maritime)";
+		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
+		model="\A3\Characters_F\Common\Suitpacks\suitpack_universal_F.p3d";
+		hiddenSelections[]=
+		{
+			"camo1",
+			"insignia"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa",
+		};
+		class ItemInfo: UniformItem
+		{
+			uniformModel="-";
+			uniformClass="Bzn_WI_Soldier_F_Maritime";
 			containerClass="Supply40";
 			mass=40;
 		};
@@ -519,6 +584,31 @@ class CfgWeapons
 		};
 	};
 
+	class Bzn_Field_Uniform_RS_F_Maritime : Bzn_Field_Uniform_RS_F_Urban
+	{
+		author="Yandere";
+		scope=2;
+		displayName="Field Uniform [Bzn] (Maritime, Rolled Up, Gloves)";
+		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
+		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
+		hiddenSelections[]=
+		{
+			"camo1",
+			"insignia"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
+		};
+		class ItemInfo: UniformItem
+		{
+			uniformClass="Bzn_Field_Uniform_RS_Maritime";
+			mass=40;
+			containerClass="Supply40";
+			uniformModel="-";
+		};
+	};
+
 	class Bzn_Field_Uniform_F_Urban : U_I_CombatUniform
 	{
 		author="Yandere";
@@ -638,6 +728,31 @@ class CfgWeapons
 		class ItemInfo: UniformItem
 		{
 			uniformClass="Bzn_Field_Uniform_Woodland";
+			mass=40;
+			containerClass="Supply40";
+			uniformModel="-";
+		};
+	};
+
+	class Bzn_Field_Uniform_F_Maritime : Bzn_Field_Uniform_RS_F_Urban
+	{
+		author="Yandere";
+		scope=2;
+		displayName="Field Uniform [Bzn] (Maritime)";
+		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
+		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
+		hiddenSelections[]=
+		{
+			"camo1",
+			"insignia"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
+		};
+		class ItemInfo: UniformItem
+		{
+			uniformClass="Bzn_Field_Uniform_Maritime";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
