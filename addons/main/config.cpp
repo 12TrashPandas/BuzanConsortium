@@ -6,7 +6,10 @@ class CfgPatches
 	{
 		name="main";
 		author="Buzan Consortium Mod Team";
-		requiredAddons[]={};
+		requiredAddons[]=
+		{
+			"bzn_armor",
+		};
 		VERSION_CONFIG;
 	};
 };
