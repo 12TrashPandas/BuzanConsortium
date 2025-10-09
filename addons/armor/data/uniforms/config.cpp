@@ -7,5 +7,7 @@ class CfgPatches
 		requiredAddons[]= {
 			"bzn_armor",
 		};
+		units[]={};
+		weapons[]={};
 	};
 };

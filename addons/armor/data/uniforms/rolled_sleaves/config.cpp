@@ -18,16 +18,19 @@ class CfgPatches
 			"Bzn_Field_Uniform_RS_Woodland",
 			"Bzn_Field_Uniform_RS_Jungle",
 			"Bzn_Field_Uniform_RS_Desert",
+			"Bzn_Field_Uniform_RS_Maritime",
 			"Bzn_Field_Uniform_Urban",
 			"Bzn_Field_Uniform_Winter",
 			"Bzn_Field_Uniform_Woodland",
 			"Bzn_Field_Uniform_Jungle",
 			"Bzn_Field_Uniform_Desert",
+			"Bzn_Field_Uniform_Maritime",
 			"Bzn_WI_Soldier_F",
 			"Bzn_WI_Soldier_F_Woodland",
 			"Bzn_WI_Soldier_F_Desert",
 			"Bzn_WI_Soldier_F_Jungle",
-			"Bzn_WI_Soldier_F_Winter"
+			"Bzn_WI_Soldier_F_Winter",
+			"Bzn_WI_Soldier_F_Maritime"
 		};
 		weapons[]=
 		{
@@ -36,16 +39,19 @@ class CfgPatches
 			"Bzn_W_I_CombatUniform_Jungle",
 			"Bzn_W_I_CombatUniform_Winter",
 			"Bzn_W_I_CombatUniform_Desert",
+			"Bzn_W_I_CombatUniform_Maritime",
 			"Bzn_Field_Uniform_RS_F_Urban",
 			"Bzn_Field_Uniform_RS_F_Winter",
 			"Bzn_Field_Uniform_RS_F_Woodland",
 			"Bzn_Field_Uniform_RS_F_Jungle",
 			"Bzn_Field_Uniform_RS_F_Desert",
+			"Bzn_Field_Uniform_RS_F_Maritime",
 			"Bzn_Field_Uniform_F_Urban",
 			"Bzn_Field_Uniform_F_Winter",
 			"Bzn_Field_Uniform_F_Woodland",
 			"Bzn_Field_Uniform_F_Jungle",
-			"Bzn_Field_Uniform_F_Desert"
+			"Bzn_Field_Uniform_F_Desert",
+			"Bzn_Field_Uniform_F_Maritime"
 		};
 	};
 };
