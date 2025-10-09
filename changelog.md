@@ -7,5 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 0.0.2
+- Hotfix (Added missing Unit arrays to the pbos)
+
 ## 0.0.1
 - 3 uniform types, 6 camo varieties.

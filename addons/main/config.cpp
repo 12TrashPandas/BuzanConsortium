@@ -10,6 +10,7 @@ class CfgPatches
 		{
 			"bzn_armor",
 		};
+		units[]={};
 		VERSION_CONFIG;
 	};
 };

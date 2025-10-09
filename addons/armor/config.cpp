@@ -7,6 +7,7 @@ class CfgPatches
 		{
 			"PUP_CA_U", //CAF 2035
 		};
+		units[]={};
 	};
 };
 
