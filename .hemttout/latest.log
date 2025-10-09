@@ -1,158 +1,157 @@
-2025-10-07T17:07:03.464311Z TRACE ThreadId(01) version: 1.17.2
-2025-10-07T17:07:03.464592Z TRACE ThreadId(03) (ThreadId(3)) start runtime::block_on
-2025-10-07T17:07:03.464589Z TRACE ThreadId(02) (ThreadId(2)) park without timeout
-2025-10-07T17:07:03.464773Z TRACE ThreadId(01) platform: windows
-2025-10-07T17:07:03.464814Z TRACE ThreadId(01) args: [
+2025-10-09T14:01:32.661505Z TRACE ThreadId(01) version: 1.17.2
+2025-10-09T14:01:32.661825Z TRACE ThreadId(01) platform: windows
+2025-10-09T14:01:32.661838Z TRACE ThreadId(01) args: [
     "C:\\Users\\naomi\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BrettMayson.HEMTT_Microsoft.Winget.Source_8wekyb3d8bbwe\\hemtt.exe",
     "build",
 ]
-2025-10-07T17:07:03.467911Z TRACE ThreadId(02) wait at most 30s
-2025-10-07T17:07:03.467931Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.999997s
-2025-10-07T17:07:03.469008Z TRACE ThreadId(03) checkout waiting for idle connection: ("https", api.github.com)
-2025-10-07T17:07:03.469046Z DEBUG ThreadId(03) starting new connection: https://api.github.com/
-2025-10-07T17:07:03.469223Z TRACE ThreadId(03) Http::connect; scheme=Some("https"), host=Some("api.github.com"), port=None
-2025-10-07T17:07:03.475191Z TRACE ThreadId(01) using temporary folder: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium"
-2025-10-07T17:07:03.475206Z TRACE ThreadId(01) using project folder: "D:\\Github\\BuzanConsortium"
-2025-10-07T17:07:03.475282Z TRACE ThreadId(01) using out folder: "D:\\Github\\BuzanConsortium\\.hemttout"
-2025-10-07T17:07:03.475491Z TRACE ThreadId(01) using build folder: "D:\\Github\\BuzanConsortium\\.hemttout\\build"
-2025-10-07T17:07:03.481679Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2025-10-07T17:07:03.481857Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/armor/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2025-10-07T17:07:03.488419Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2025-10-07T17:07:03.489181Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/rolled_sleaves/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2025-10-07T17:07:03.490457Z DEBUG ThreadId(03) connecting to 140.82.113.6:443
-2025-10-07T17:07:03.492982Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/main/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2025-10-07T17:07:03.498145Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/main/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2025-10-07T17:07:03.498354Z TRACE ThreadId(01) checking for version macro in VfsPath { path: "/addons/main/script_version.hpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2025-10-07T17:07:03.502757Z DEBUG ThreadId(03) connected to 140.82.113.6:443
-2025-10-07T17:07:03.521579Z  INFO ThreadId(01) Config loaded for Buzan Consortium 0.0.0-98cbdbe2
-2025-10-07T17:07:03.521758Z TRACE ThreadId(01) Scanning D:\Github\BuzanConsortium\addons for addons
-2025-10-07T17:07:03.524211Z DEBUG ThreadId(01) using global config directory: "C:\\Users\\naomi\\AppData\\Roaming\\hemtt"
-2025-10-07T17:07:03.524341Z  INFO ThreadId(01) Creating `build` version
-2025-10-07T17:07:03.524812Z TRACE ThreadId(01) phase: init (BOM Check) (start)
-2025-10-07T17:07:03.524831Z TRACE ThreadId(01) phase: init (BOM Check) (done)
-2025-10-07T17:07:03.524835Z TRACE ThreadId(01) phase: init (Final New Line Check) (start)
-2025-10-07T17:07:03.524837Z TRACE ThreadId(01) phase: init (Final New Line Check) (done)
-2025-10-07T17:07:03.524842Z TRACE ThreadId(01) phase: init (Hooks) (start)
-2025-10-07T17:07:03.524945Z TRACE ThreadId(01) no hooks folder
-2025-10-07T17:07:03.524952Z TRACE ThreadId(01) phase: init (Hooks) (done)
-2025-10-07T17:07:03.524955Z TRACE ThreadId(01) phase: init (Binarize) (start)
-2025-10-07T17:07:03.524966Z TRACE ThreadId(01) Using Binarize path from registry
-2025-10-07T17:07:03.525983Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\armor" => "D:\\Github\\BuzanConsortium\\addons\\armor"
-2025-10-07T17:07:03.547922Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\main" => "D:\\Github\\BuzanConsortium\\addons\\main"
-2025-10-07T17:07:03.561089Z TRACE ThreadId(01) phase: init (Binarize) (done)
-2025-10-07T17:07:03.561107Z TRACE ThreadId(01) phase: init (Files) (start)
-2025-10-07T17:07:03.561111Z TRACE ThreadId(01) phase: init (Files) (done)
-2025-10-07T17:07:03.561114Z TRACE ThreadId(01) phase: init (summary) (start)
-2025-10-07T17:07:03.561117Z TRACE ThreadId(01) phase: init (summary) (done)
-2025-10-07T17:07:03.561120Z TRACE ThreadId(01) phase: init (Rapifier) (start)
-2025-10-07T17:07:03.561122Z TRACE ThreadId(01) phase: init (Rapifier) (done)
-2025-10-07T17:07:03.561125Z TRACE ThreadId(01) phase: init (SQF) (start)
-2025-10-07T17:07:03.563268Z TRACE ThreadId(03) http1 handshake complete, spawning background dispatcher task
-2025-10-07T17:07:03.563293Z TRACE ThreadId(03) waiting for connection to be ready
-2025-10-07T17:07:03.563599Z TRACE ThreadId(03) connection is ready
-2025-10-07T17:07:03.563614Z TRACE ThreadId(03) checkout dropped for ("https", api.github.com)
-2025-10-07T17:07:03.644951Z TRACE ThreadId(03) shouldn't retry!
-2025-10-07T17:07:03.645014Z TRACE ThreadId(02) wait at most 30s
-2025-10-07T17:07:03.645040Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9999877s
-2025-10-07T17:07:03.645066Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.999959s
-2025-10-07T17:07:03.645089Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9999357s
-2025-10-07T17:07:03.645116Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9999103s
-2025-10-07T17:07:03.645151Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9998747s
-2025-10-07T17:07:03.645260Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9997657s
-2025-10-07T17:07:03.645276Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9997487s
-2025-10-07T17:07:03.645300Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9997248s
-2025-10-07T17:07:03.645319Z TRACE ThreadId(03) put; add idle connection for ("https", api.github.com)
-2025-10-07T17:07:03.645333Z DEBUG ThreadId(03) pooling idle connection for ("https", api.github.com)
-2025-10-07T17:07:03.645666Z TRACE ThreadId(02) closing runtime thread (ThreadId(3))
-2025-10-07T17:07:03.645682Z TRACE ThreadId(02) signaled close for runtime thread (ThreadId(3))
-2025-10-07T17:07:03.645689Z TRACE ThreadId(03) (ThreadId(3)) Receiver is shutdown
-2025-10-07T17:07:03.645717Z TRACE ThreadId(03) (ThreadId(3)) end runtime::block_on
-2025-10-07T17:07:03.646021Z TRACE ThreadId(03) (ThreadId(3)) finished
-2025-10-07T17:07:03.646094Z TRACE ThreadId(02) closed runtime thread (ThreadId(3))
-2025-10-07T17:07:19.058023Z TRACE ThreadId(01) phase: init (SQF) (done)
-2025-10-07T17:07:19.058041Z TRACE ThreadId(01) phase: init (Stringtables) (start)
-2025-10-07T17:07:19.058046Z TRACE ThreadId(01) phase: init (Stringtables) (done)
-2025-10-07T17:07:19.058049Z TRACE ThreadId(01) phase: check (BOM Check) (start)
-2025-10-07T17:07:19.078327Z TRACE ThreadId(01) phase: check (BOM Check) (done)
-2025-10-07T17:07:19.078345Z TRACE ThreadId(01) phase: check (Final New Line Check) (start)
-2025-10-07T17:07:19.079619Z TRACE ThreadId(01) phase: check (Final New Line Check) (done)
-2025-10-07T17:07:19.079628Z TRACE ThreadId(01) phase: check (Hooks) (start)
-2025-10-07T17:07:19.079631Z TRACE ThreadId(01) phase: check (Hooks) (done)
-2025-10-07T17:07:19.079634Z TRACE ThreadId(01) phase: check (Binarize) (start)
-2025-10-07T17:07:19.089219Z  INFO ThreadId(01) Validated 0 files for binarization
-2025-10-07T17:07:19.089234Z TRACE ThreadId(01) phase: check (Binarize) (done)
-2025-10-07T17:07:19.089238Z TRACE ThreadId(01) phase: check (Files) (start)
-2025-10-07T17:07:19.089240Z TRACE ThreadId(01) phase: check (Files) (done)
-2025-10-07T17:07:19.089243Z TRACE ThreadId(01) phase: check (summary) (start)
-2025-10-07T17:07:19.089245Z TRACE ThreadId(01) phase: check (summary) (done)
-2025-10-07T17:07:19.089248Z TRACE ThreadId(01) phase: check (Rapifier) (start)
-2025-10-07T17:07:19.089300Z TRACE ThreadId(01) phase: check (Rapifier) (done)
-2025-10-07T17:07:19.089304Z TRACE ThreadId(01) phase: check (SQF) (start)
-2025-10-07T17:07:19.089347Z TRACE ThreadId(01) phase: check (SQF) (done)
-2025-10-07T17:07:19.089351Z TRACE ThreadId(01) phase: check (Stringtables) (start)
-2025-10-07T17:07:19.089368Z TRACE ThreadId(01) phase: check (Stringtables) (done)
-2025-10-07T17:07:19.089374Z TRACE ThreadId(01) phase: pre_build (BOM Check) (start)
-2025-10-07T17:07:19.089376Z TRACE ThreadId(01) phase: pre_build (BOM Check) (done)
-2025-10-07T17:07:19.089379Z TRACE ThreadId(01) phase: pre_build (Final New Line Check) (start)
-2025-10-07T17:07:19.089381Z TRACE ThreadId(01) phase: pre_build (Final New Line Check) (done)
-2025-10-07T17:07:19.089383Z TRACE ThreadId(01) phase: pre_build (Hooks) (start)
-2025-10-07T17:07:19.089386Z TRACE ThreadId(01) phase: pre_build (Hooks) (done)
-2025-10-07T17:07:19.089388Z TRACE ThreadId(01) phase: pre_build (Binarize) (start)
-2025-10-07T17:07:19.090338Z  INFO ThreadId(01) Binarized 0 files
-2025-10-07T17:07:19.090367Z TRACE ThreadId(01) phase: pre_build (Binarize) (done)
-2025-10-07T17:07:19.090372Z TRACE ThreadId(01) phase: pre_build (Files) (start)
-2025-10-07T17:07:19.090375Z TRACE ThreadId(01) phase: pre_build (Files) (done)
-2025-10-07T17:07:19.090378Z TRACE ThreadId(01) phase: pre_build (summary) (start)
-2025-10-07T17:07:19.090380Z TRACE ThreadId(01) phase: pre_build (summary) (done)
-2025-10-07T17:07:19.090383Z TRACE ThreadId(01) phase: pre_build (Rapifier) (start)
-2025-10-07T17:07:19.114550Z  INFO ThreadId(01) Rapified 4 addon configs
-2025-10-07T17:07:19.114599Z TRACE ThreadId(01) phase: pre_build (Rapifier) (done)
-2025-10-07T17:07:19.114605Z TRACE ThreadId(01) phase: pre_build (SQF) (start)
-2025-10-07T17:07:19.125816Z  INFO ThreadId(01) Compiled 0 sqf files
-2025-10-07T17:07:19.125885Z TRACE ThreadId(01) phase: pre_build (SQF) (done)
-2025-10-07T17:07:19.125890Z TRACE ThreadId(01) phase: pre_build (Stringtables) (start)
-2025-10-07T17:07:19.132942Z  INFO ThreadId(01) Checked 0 stringtables
-2025-10-07T17:07:19.132974Z TRACE ThreadId(01) phase: pre_build (Stringtables) (done)
-2025-10-07T17:07:19.132982Z TRACE ThreadId(01) phase: build (start)
-2025-10-07T17:07:19.135811Z DEBUG ThreadId(01) creating "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons"
-2025-10-07T17:07:19.135966Z DEBUG ThreadId(01) building "addons/armor" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_armor.pbo"
-2025-10-07T17:07:19.141461Z TRACE ThreadId(01) adding file "config.bin"
-2025-10-07T17:07:19.141631Z TRACE ThreadId(01) adding file "data\\BuzanPatch.paa"
-2025-10-07T17:07:19.149063Z TRACE ThreadId(01) adding file "data\\uniforms\\config.bin"
-2025-10-07T17:07:19.149502Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\config.bin"
-2025-10-07T17:07:19.150508Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\urban\\uniform_urban.paa"
-2025-10-07T17:07:19.150834Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\winter\\uniform_winter.paa"
-2025-10-07T17:07:19.151149Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\desert\\uniform_desert.paa"
-2025-10-07T17:07:19.158502Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\woodland\\uniform_woodland.paa"
-2025-10-07T17:07:19.158856Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\maritime\\uniform_maritime.paa"
-2025-10-07T17:07:19.166513Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\jungle\\uniform_jungle.paa"
-2025-10-07T17:07:19.199581Z DEBUG ThreadId(01) "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons" already exists
-2025-10-07T17:07:19.199606Z DEBUG ThreadId(01) building "addons/main" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_main.pbo"
-2025-10-07T17:07:19.200665Z TRACE ThreadId(01) adding file "script_version.hpp"
-2025-10-07T17:07:19.201289Z TRACE ThreadId(01) adding file "config.bin"
-2025-10-07T17:07:19.201966Z  INFO ThreadId(01) Built 2 PBOs
-2025-10-07T17:07:19.201987Z TRACE ThreadId(01) phase: build (done)
-2025-10-07T17:07:19.201993Z TRACE ThreadId(01) phase: post_build (BOM Check) (start)
-2025-10-07T17:07:19.201997Z TRACE ThreadId(01) phase: post_build (BOM Check) (done)
-2025-10-07T17:07:19.201999Z TRACE ThreadId(01) phase: post_build (Final New Line Check) (start)
-2025-10-07T17:07:19.202033Z TRACE ThreadId(01) phase: post_build (Final New Line Check) (done)
-2025-10-07T17:07:19.202038Z TRACE ThreadId(01) phase: post_build (Hooks) (start)
-2025-10-07T17:07:19.202042Z TRACE ThreadId(01) phase: post_build (Hooks) (done)
-2025-10-07T17:07:19.202044Z TRACE ThreadId(01) phase: post_build (Binarize) (start)
-2025-10-07T17:07:19.202047Z TRACE ThreadId(01) phase: post_build (Binarize) (done)
-2025-10-07T17:07:19.202049Z TRACE ThreadId(01) phase: post_build (Files) (start)
-2025-10-07T17:07:19.377362Z DEBUG ThreadId(01) copying "/changelog.md" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\changelog.md"
-2025-10-07T17:07:19.386881Z DEBUG ThreadId(01) copying "/mod.cpp" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\mod.cpp"
-2025-10-07T17:07:19.394832Z DEBUG ThreadId(01) copying "/Buzan.paa" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\Buzan.paa"
-2025-10-07T17:07:19.405392Z  INFO ThreadId(01) Copied 3 files
-2025-10-07T17:07:19.405436Z TRACE ThreadId(01) phase: post_build (Files) (done)
-2025-10-07T17:07:19.405442Z TRACE ThreadId(01) phase: post_build (summary) (start)
-2025-10-07T17:07:19.406958Z TRACE ThreadId(01) phase: post_build (summary) (done)
-2025-10-07T17:07:19.406966Z TRACE ThreadId(01) phase: post_build (Rapifier) (start)
-2025-10-07T17:07:19.406970Z TRACE ThreadId(01) phase: post_build (Rapifier) (done)
-2025-10-07T17:07:19.406973Z TRACE ThreadId(01) phase: post_build (SQF) (start)
-2025-10-07T17:07:19.406978Z TRACE ThreadId(01) phase: post_build (SQF) (done)
-2025-10-07T17:07:19.406980Z TRACE ThreadId(01) phase: post_build (Stringtables) (start)
-2025-10-07T17:07:19.406983Z TRACE ThreadId(01) phase: post_build (Stringtables) (done)
-2025-10-07T17:07:19.411824Z TRACE ThreadId(01) writing ci annotations to .hemttout/ci_annotations.txt
-2025-10-07T17:07:19.411956Z TRACE ThreadId(01) wrote 0 ci annotations to .hemttout/ci_annotations.txt
+2025-10-09T14:01:32.662316Z TRACE ThreadId(03) (ThreadId(3)) start runtime::block_on
+2025-10-09T14:01:32.662315Z TRACE ThreadId(02) (ThreadId(2)) park without timeout
+2025-10-09T14:01:32.665426Z TRACE ThreadId(02) wait at most 30s
+2025-10-09T14:01:32.665443Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9999977s
+2025-10-09T14:01:32.666459Z TRACE ThreadId(03) checkout waiting for idle connection: ("https", api.github.com)
+2025-10-09T14:01:32.666497Z DEBUG ThreadId(03) starting new connection: https://api.github.com/
+2025-10-09T14:01:32.666681Z TRACE ThreadId(03) Http::connect; scheme=Some("https"), host=Some("api.github.com"), port=None
+2025-10-09T14:01:32.672373Z TRACE ThreadId(01) using temporary folder: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium"
+2025-10-09T14:01:32.672387Z TRACE ThreadId(01) using project folder: "D:\\Github\\BuzanConsortium"
+2025-10-09T14:01:32.672463Z TRACE ThreadId(01) using out folder: "D:\\Github\\BuzanConsortium\\.hemttout"
+2025-10-09T14:01:32.672644Z TRACE ThreadId(01) using build folder: "D:\\Github\\BuzanConsortium\\.hemttout\\build"
+2025-10-09T14:01:32.678583Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/main/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2025-10-09T14:01:32.679149Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/main/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2025-10-09T14:01:32.684717Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/armor/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2025-10-09T14:01:32.685201Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2025-10-09T14:01:32.686360Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2025-10-09T14:01:32.687256Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/rolled_sleaves/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2025-10-09T14:01:32.688447Z DEBUG ThreadId(03) connecting to 140.82.114.5:443
+2025-10-09T14:01:32.690445Z TRACE ThreadId(01) checking for version macro in VfsPath { path: "/addons/main/script_version.hpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2025-10-09T14:01:32.701604Z DEBUG ThreadId(03) connected to 140.82.114.5:443
+2025-10-09T14:01:32.704091Z  INFO ThreadId(01) Config loaded for Buzan Consortium 0.0.0-396e50e5
+2025-10-09T14:01:32.704195Z TRACE ThreadId(01) Scanning D:\Github\BuzanConsortium\addons for addons
+2025-10-09T14:01:32.706235Z DEBUG ThreadId(01) using global config directory: "C:\\Users\\naomi\\AppData\\Roaming\\hemtt"
+2025-10-09T14:01:32.706363Z  INFO ThreadId(01) Creating `build` version
+2025-10-09T14:01:32.706816Z TRACE ThreadId(01) phase: init (BOM Check) (start)
+2025-10-09T14:01:32.706836Z TRACE ThreadId(01) phase: init (BOM Check) (done)
+2025-10-09T14:01:32.706840Z TRACE ThreadId(01) phase: init (Final New Line Check) (start)
+2025-10-09T14:01:32.706843Z TRACE ThreadId(01) phase: init (Final New Line Check) (done)
+2025-10-09T14:01:32.706848Z TRACE ThreadId(01) phase: init (Hooks) (start)
+2025-10-09T14:01:32.706919Z TRACE ThreadId(01) no hooks folder
+2025-10-09T14:01:32.706925Z TRACE ThreadId(01) phase: init (Hooks) (done)
+2025-10-09T14:01:32.706928Z TRACE ThreadId(01) phase: init (Binarize) (start)
+2025-10-09T14:01:32.706938Z TRACE ThreadId(01) Using Binarize path from registry
+2025-10-09T14:01:32.708599Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\armor" => "D:\\Github\\BuzanConsortium\\addons\\armor"
+2025-10-09T14:01:32.730402Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\main" => "D:\\Github\\BuzanConsortium\\addons\\main"
+2025-10-09T14:01:32.744677Z TRACE ThreadId(01) phase: init (Binarize) (done)
+2025-10-09T14:01:32.744697Z TRACE ThreadId(01) phase: init (Files) (start)
+2025-10-09T14:01:32.744701Z TRACE ThreadId(01) phase: init (Files) (done)
+2025-10-09T14:01:32.744704Z TRACE ThreadId(01) phase: init (summary) (start)
+2025-10-09T14:01:32.744706Z TRACE ThreadId(01) phase: init (summary) (done)
+2025-10-09T14:01:32.744709Z TRACE ThreadId(01) phase: init (Rapifier) (start)
+2025-10-09T14:01:32.744711Z TRACE ThreadId(01) phase: init (Rapifier) (done)
+2025-10-09T14:01:32.744714Z TRACE ThreadId(01) phase: init (SQF) (start)
+2025-10-09T14:01:32.761416Z TRACE ThreadId(03) http1 handshake complete, spawning background dispatcher task
+2025-10-09T14:01:32.761442Z TRACE ThreadId(03) waiting for connection to be ready
+2025-10-09T14:01:32.761749Z TRACE ThreadId(03) connection is ready
+2025-10-09T14:01:32.761766Z TRACE ThreadId(03) checkout dropped for ("https", api.github.com)
+2025-10-09T14:01:32.831896Z TRACE ThreadId(03) shouldn't retry!
+2025-10-09T14:01:32.831971Z TRACE ThreadId(02) wait at most 30s
+2025-10-09T14:01:32.831996Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9999879s
+2025-10-09T14:01:32.832034Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9999474s
+2025-10-09T14:01:32.832067Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9999155s
+2025-10-09T14:01:32.832145Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9998375s
+2025-10-09T14:01:32.832180Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9998015s
+2025-10-09T14:01:32.832189Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9997927s
+2025-10-09T14:01:32.832262Z TRACE ThreadId(02) (ThreadId(2)) park timeout 29.9997196s
+2025-10-09T14:01:32.832348Z TRACE ThreadId(03) put; add idle connection for ("https", api.github.com)
+2025-10-09T14:01:32.832367Z DEBUG ThreadId(03) pooling idle connection for ("https", api.github.com)
+2025-10-09T14:01:32.832782Z TRACE ThreadId(02) closing runtime thread (ThreadId(3))
+2025-10-09T14:01:32.832812Z TRACE ThreadId(02) signaled close for runtime thread (ThreadId(3))
+2025-10-09T14:01:32.832825Z TRACE ThreadId(03) (ThreadId(3)) Receiver is shutdown
+2025-10-09T14:01:32.832862Z TRACE ThreadId(03) (ThreadId(3)) end runtime::block_on
+2025-10-09T14:01:32.833190Z TRACE ThreadId(03) (ThreadId(3)) finished
+2025-10-09T14:01:32.833270Z TRACE ThreadId(02) closed runtime thread (ThreadId(3))
+2025-10-09T14:01:47.683855Z TRACE ThreadId(01) phase: init (SQF) (done)
+2025-10-09T14:01:47.683878Z TRACE ThreadId(01) phase: init (Stringtables) (start)
+2025-10-09T14:01:47.683883Z TRACE ThreadId(01) phase: init (Stringtables) (done)
+2025-10-09T14:01:47.683886Z TRACE ThreadId(01) phase: check (BOM Check) (start)
+2025-10-09T14:01:47.685352Z TRACE ThreadId(01) phase: check (BOM Check) (done)
+2025-10-09T14:01:47.685360Z TRACE ThreadId(01) phase: check (Final New Line Check) (start)
+2025-10-09T14:01:47.686771Z TRACE ThreadId(01) phase: check (Final New Line Check) (done)
+2025-10-09T14:01:47.686780Z TRACE ThreadId(01) phase: check (Hooks) (start)
+2025-10-09T14:01:47.686783Z TRACE ThreadId(01) phase: check (Hooks) (done)
+2025-10-09T14:01:47.686786Z TRACE ThreadId(01) phase: check (Binarize) (start)
+2025-10-09T14:01:47.696912Z  INFO ThreadId(01) Validated 0 files for binarization
+2025-10-09T14:01:47.696928Z TRACE ThreadId(01) phase: check (Binarize) (done)
+2025-10-09T14:01:47.696935Z TRACE ThreadId(01) phase: check (Files) (start)
+2025-10-09T14:01:47.696940Z TRACE ThreadId(01) phase: check (Files) (done)
+2025-10-09T14:01:47.696943Z TRACE ThreadId(01) phase: check (summary) (start)
+2025-10-09T14:01:47.696946Z TRACE ThreadId(01) phase: check (summary) (done)
+2025-10-09T14:01:47.696949Z TRACE ThreadId(01) phase: check (Rapifier) (start)
+2025-10-09T14:01:47.697017Z TRACE ThreadId(01) phase: check (Rapifier) (done)
+2025-10-09T14:01:47.697022Z TRACE ThreadId(01) phase: check (SQF) (start)
+2025-10-09T14:01:47.697081Z TRACE ThreadId(01) phase: check (SQF) (done)
+2025-10-09T14:01:47.697087Z TRACE ThreadId(01) phase: check (Stringtables) (start)
+2025-10-09T14:01:47.697104Z TRACE ThreadId(01) phase: check (Stringtables) (done)
+2025-10-09T14:01:47.697111Z TRACE ThreadId(01) phase: pre_build (BOM Check) (start)
+2025-10-09T14:01:47.697116Z TRACE ThreadId(01) phase: pre_build (BOM Check) (done)
+2025-10-09T14:01:47.697119Z TRACE ThreadId(01) phase: pre_build (Final New Line Check) (start)
+2025-10-09T14:01:47.697122Z TRACE ThreadId(01) phase: pre_build (Final New Line Check) (done)
+2025-10-09T14:01:47.697125Z TRACE ThreadId(01) phase: pre_build (Hooks) (start)
+2025-10-09T14:01:47.697128Z TRACE ThreadId(01) phase: pre_build (Hooks) (done)
+2025-10-09T14:01:47.697132Z TRACE ThreadId(01) phase: pre_build (Binarize) (start)
+2025-10-09T14:01:47.698540Z  INFO ThreadId(01) Binarized 0 files
+2025-10-09T14:01:47.698555Z TRACE ThreadId(01) phase: pre_build (Binarize) (done)
+2025-10-09T14:01:47.698560Z TRACE ThreadId(01) phase: pre_build (Files) (start)
+2025-10-09T14:01:47.698565Z TRACE ThreadId(01) phase: pre_build (Files) (done)
+2025-10-09T14:01:47.698569Z TRACE ThreadId(01) phase: pre_build (summary) (start)
+2025-10-09T14:01:47.698573Z TRACE ThreadId(01) phase: pre_build (summary) (done)
+2025-10-09T14:01:47.698577Z TRACE ThreadId(01) phase: pre_build (Rapifier) (start)
+2025-10-09T14:01:47.726910Z  INFO ThreadId(01) Rapified 4 addon configs
+2025-10-09T14:01:47.726974Z TRACE ThreadId(01) phase: pre_build (Rapifier) (done)
+2025-10-09T14:01:47.726981Z TRACE ThreadId(01) phase: pre_build (SQF) (start)
+2025-10-09T14:01:47.739349Z  INFO ThreadId(01) Compiled 0 sqf files
+2025-10-09T14:01:47.739425Z TRACE ThreadId(01) phase: pre_build (SQF) (done)
+2025-10-09T14:01:47.739436Z TRACE ThreadId(01) phase: pre_build (Stringtables) (start)
+2025-10-09T14:01:47.747098Z  INFO ThreadId(01) Checked 0 stringtables
+2025-10-09T14:01:47.747115Z TRACE ThreadId(01) phase: pre_build (Stringtables) (done)
+2025-10-09T14:01:47.747122Z TRACE ThreadId(01) phase: build (start)
+2025-10-09T14:01:47.749815Z DEBUG ThreadId(01) creating "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons"
+2025-10-09T14:01:47.749979Z DEBUG ThreadId(01) building "addons/armor" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_armor.pbo"
+2025-10-09T14:01:47.756530Z TRACE ThreadId(01) adding file "config.bin"
+2025-10-09T14:01:47.756730Z TRACE ThreadId(01) adding file "data\\BuzanPatch.paa"
+2025-10-09T14:01:47.757012Z TRACE ThreadId(01) adding file "data\\uniforms\\config.bin"
+2025-10-09T14:01:47.758119Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\config.bin"
+2025-10-09T14:01:47.758600Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\urban\\uniform_urban.paa"
+2025-10-09T14:01:47.759007Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\maritime\\uniform_maritime.paa"
+2025-10-09T14:01:47.759317Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\woodland\\uniform_woodland.paa"
+2025-10-09T14:01:47.759733Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\desert\\uniform_desert.paa"
+2025-10-09T14:01:47.760092Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\winter\\uniform_winter.paa"
+2025-10-09T14:01:47.760405Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\jungle\\uniform_jungle.paa"
+2025-10-09T14:01:47.771969Z DEBUG ThreadId(01) "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons" already exists
+2025-10-09T14:01:47.771992Z DEBUG ThreadId(01) building "addons/main" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_main.pbo"
+2025-10-09T14:01:47.773167Z TRACE ThreadId(01) adding file "script_version.hpp"
+2025-10-09T14:01:47.773405Z TRACE ThreadId(01) adding file "config.bin"
+2025-10-09T14:01:47.774813Z  INFO ThreadId(01) Built 2 PBOs
+2025-10-09T14:01:47.774833Z TRACE ThreadId(01) phase: build (done)
+2025-10-09T14:01:47.774840Z TRACE ThreadId(01) phase: post_build (BOM Check) (start)
+2025-10-09T14:01:47.774845Z TRACE ThreadId(01) phase: post_build (BOM Check) (done)
+2025-10-09T14:01:47.774849Z TRACE ThreadId(01) phase: post_build (Final New Line Check) (start)
+2025-10-09T14:01:47.774853Z TRACE ThreadId(01) phase: post_build (Final New Line Check) (done)
+2025-10-09T14:01:47.774890Z TRACE ThreadId(01) phase: post_build (Hooks) (start)
+2025-10-09T14:01:47.774899Z TRACE ThreadId(01) phase: post_build (Hooks) (done)
+2025-10-09T14:01:47.774904Z TRACE ThreadId(01) phase: post_build (Binarize) (start)
+2025-10-09T14:01:47.774907Z TRACE ThreadId(01) phase: post_build (Binarize) (done)
+2025-10-09T14:01:47.774911Z TRACE ThreadId(01) phase: post_build (Files) (start)
+2025-10-09T14:01:48.047956Z DEBUG ThreadId(01) copying "/Buzan.paa" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\Buzan.paa"
+2025-10-09T14:01:48.057676Z DEBUG ThreadId(01) copying "/mod.cpp" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\mod.cpp"
+2025-10-09T14:01:48.063896Z DEBUG ThreadId(01) copying "/changelog.md" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\changelog.md"
+2025-10-09T14:01:48.064849Z  INFO ThreadId(01) Copied 3 files
+2025-10-09T14:01:48.064868Z TRACE ThreadId(01) phase: post_build (Files) (done)
+2025-10-09T14:01:48.064873Z TRACE ThreadId(01) phase: post_build (summary) (start)
+2025-10-09T14:01:48.066441Z TRACE ThreadId(01) phase: post_build (summary) (done)
+2025-10-09T14:01:48.066449Z TRACE ThreadId(01) phase: post_build (Rapifier) (start)
+2025-10-09T14:01:48.066453Z TRACE ThreadId(01) phase: post_build (Rapifier) (done)
+2025-10-09T14:01:48.066455Z TRACE ThreadId(01) phase: post_build (SQF) (start)
+2025-10-09T14:01:48.066460Z TRACE ThreadId(01) phase: post_build (SQF) (done)
+2025-10-09T14:01:48.066462Z TRACE ThreadId(01) phase: post_build (Stringtables) (start)
+2025-10-09T14:01:48.066464Z TRACE ThreadId(01) phase: post_build (Stringtables) (done)
+2025-10-09T14:01:48.071896Z TRACE ThreadId(01) writing ci annotations to .hemttout/ci_annotations.txt
+2025-10-09T14:01:48.072031Z TRACE ThreadId(01) wrote 0 ci annotations to .hemttout/ci_annotations.txt
