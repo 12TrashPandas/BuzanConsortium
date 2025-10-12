@@ -5,6 +5,7 @@ class CfgPatches
 		author="Bzn Mod Dev Team, Yandere";
 		requiredAddons[]=
 		{
+			"PUP_CA_U", //CAF 2035
 		};
 		units[]={};
 	};
