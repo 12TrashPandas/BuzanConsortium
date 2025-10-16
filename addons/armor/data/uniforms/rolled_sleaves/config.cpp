@@ -76,10 +76,6 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform";
-		class eventhandlers
-		{
-			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
-		};
 		hiddenSelectionsTextures[]=
 		{
 			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\urban\uniform_urban.paa"
@@ -99,10 +95,6 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform";
-		class eventhandlers
-		{
-			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
-		};
 		hiddenSelectionsTextures[]=
 		{
 			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
@@ -122,10 +114,6 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Woodland";
-		class eventhandlers
-		{
-			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
-		};
 		hiddenSelectionsTextures[]=
 		{
 			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\woodland\uniform_woodland.paa"
@@ -145,10 +133,6 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Desert";
-		class eventhandlers
-		{
-			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
-		};
 		hiddenSelectionsTextures[]=
 		{
 			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\desert\uniform_desert.paa"
@@ -168,10 +152,6 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Jungle";
-		class eventhandlers
-		{
-			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
-		};
 		hiddenSelectionsTextures[]=
 		{
 			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\jungle\uniform_jungle.paa"
@@ -191,10 +171,6 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Winter";
-		class eventhandlers
-		{
-			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
-		};
 		hiddenSelectionsTextures[]=
 		{
 			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\winter\uniform_winter.paa"

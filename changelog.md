@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 - Added Knight and Queen versions of our uniform
+- Ace Arsenal Extended Support
 
 ## 0.0.2
 - Hotfix (Added missing Unit arrays to the pbos)

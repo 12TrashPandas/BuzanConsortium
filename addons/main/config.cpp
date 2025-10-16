@@ -9,6 +9,7 @@ class CfgPatches
 		requiredAddons[]=
 		{
 			"bzn_armor",
+			"bzn_aax",
 		};
 		units[]={};
 		VERSION_CONFIG;

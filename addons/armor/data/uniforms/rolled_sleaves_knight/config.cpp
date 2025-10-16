@@ -332,6 +332,12 @@ class CfgWeapons
 			containerClass="Supply40";
 			mass=40;
 		};
+		class XtdGearInfos
+		{
+			model="Bzn_W_I_CombatUniform";
+			element="Knight";
+			camo="Urban";
+		};
 	};
 
 	class Bzn_W_I_CombatUniform_Maritime_Knight : Bzn_W_I_CombatUniform_Knight
@@ -448,7 +454,7 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_knight\jungle\uniform_winter.paa",
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_knight\winter\uniform_winter_k.paa",
 		};
 		class ItemInfo: UniformItem
 		{
@@ -726,7 +732,7 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_night\woodland\uniform_woodland_k.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_knight\woodland\uniform_woodland_k.paa"
 		};
 		class ItemInfo: UniformItem
 		{
@@ -751,7 +757,7 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_q\maritime\uniform_maritime_k.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_knight\maritime\uniform_maritime_k.paa"
 		};
 		class ItemInfo: UniformItem
 		{

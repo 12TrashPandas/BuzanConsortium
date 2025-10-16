@@ -448,7 +448,7 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\jungle\uniform_winter.paa",
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\winter\uniform_winter_q.paa",
 		};
 		class ItemInfo: UniformItem
 		{
@@ -751,7 +751,7 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_q\maritime\uniform_maritime_q.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\maritime\uniform_maritime_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
