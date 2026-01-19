@@ -44,12 +44,12 @@ class CfgPatches
 			"Bzn_Field_Uniform_RS_F_Jungle_Knight",
 			"Bzn_Field_Uniform_RS_F_Desert_Knight",
 			"Bzn_Field_Uniform_RS_F_Maritime_Knight",
-			"Bzn_Field_Uniform_F_K_Urban",
-			"Bzn_Field_Uniform_F_K_Winter",
-			"Bzn_Field_Uniform_F_K_Woodland",
-			"Bzn_Field_Uniform_F_K_Jungle",
-			"Bzn_Field_Uniform_F_K_Desert",
-			"Bzn_Field_Uniform_F_K_Maritime"
+			"Bzn_Field_Uniform_F_Urban_Knight",
+			"Bzn_Field_Uniform_F_Winter_Knight",
+			"Bzn_Field_Uniform_F_Desert_Knight",
+			"Bzn_Field_Uniform_F_Jungle_Knight",
+			"Bzn_Field_Uniform_F_Woodland_Knight",
+			"Bzn_Field_Uniform_F_Maritime_Knight"
 		};
 	};
 };
