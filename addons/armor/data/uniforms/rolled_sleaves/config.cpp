@@ -51,7 +51,8 @@ class CfgPatches
 			"Bzn_Field_Uniform_F_Woodland",
 			"Bzn_Field_Uniform_F_Jungle",
 			"Bzn_Field_Uniform_F_Desert",
-			"Bzn_Field_Uniform_F_Maritime"
+			"Bzn_Field_Uniform_F_Maritime",
+			"Bzn_Field_Uniform_RS_F_Urban2"
 		};
 	};
 };
@@ -186,6 +187,14 @@ class CfgVehicles
 		};
 	};
 
+	class Bzn_Field_Uniform_RS_Urban2 : Bzn_Field_Uniform_RS_Urban
+	{
+		author="Yandere";
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\urban\uniform_urban2.paa"
+		};
+	};
 
 	class Bzn_Field_Uniform_RS_Winter : Bzn_Field_Uniform_RS_Urban
 	{
@@ -465,6 +474,30 @@ class CfgWeapons
 		};
 	};
 
+	class Bzn_Field_Uniform_RS_F_Urban2 : Bzn_Field_Uniform_RS_F_Urban
+	{
+		author="Yandere";
+		scope=2;
+		displayName="Field Uniform 2 [Bzn] (Urban, Rolled Up, Gloves)";
+		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
+		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
+		hiddenSelections[]=
+		{
+			"camo1",
+			"insignia"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\urban\uniform_urban2.paa"
+		};
+		class ItemInfo: UniformItem
+		{
+			uniformClass="Bzn_Field_Uniform_RS_Urban2";
+			mass=40;
+			containerClass="Supply40";
+			uniformModel="-";
+		};
+	};
 
 	class Bzn_Field_Uniform_RS_F_Winter : Bzn_Field_Uniform_RS_F_Urban
 	{
