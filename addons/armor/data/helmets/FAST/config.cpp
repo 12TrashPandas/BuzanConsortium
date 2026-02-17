@@ -63,6 +63,15 @@ class CfgWeapons
 		};
 	};
 
+	class Bzn_helmet_fastmt_white : Bzn_helmet_fastmt_urban
+	{
+		displayName="[Bzn] FASTMT White";
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\helmets\FAST\data\H_HelmetFASTMT_white_CO.paa"
+		};
+	};
+
 	class Bzn_helmet_fastmt_cover_urban : Aegis_H_Helmet_FASTMT_Cover_tan_F
 	{
 		displayName="[Bzn] FASTMT Urban (Cover)";
@@ -126,6 +135,17 @@ class CfgWeapons
 			"\z\bzn\addons\armor\data\helmets\FAST\data\H_HelmetFASTMT_black_CO.paa",
 			"\z\bzn\addons\armor\data\helmets\FAST\data\H_HelmetFASTMT_Cover_maritime_CO.paa",
 			"\A3_Aegis\Characters_F_Aegis\Headgear\Data\H_HeadsetWest_blk_CO.paa"
+		};
+	};
+
+		class Bzn_helmet_fastmt_cover_winter : Bzn_helmet_fastmt_cover_urban_tan
+	{
+		displayName="[Bzn] FASTMT Winter (Cover)";
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\helmets\FAST\data\H_HelmetFASTMT_white_CO.paa",
+			"\z\bzn\addons\armor\data\helmets\FAST\data\H_HelmetFASTMT_Cover_winter_CO.paa",
+			"\z\bzn\addons\armor\data\helmets\FAST\data\H_HeadsetWest_wht_CO.paa"
 		};
 	};
 };
