@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 0.0.3
+- Added Knight and Queen versions of our uniform
+- Ace Arsenal Extended Support
+- V2 of Uniform
+- New Helmet Varieties
+- Random bobs to test custom gear options
+
 ## 0.0.2
 - Hotfix (Added missing Unit arrays to the pbos)
 

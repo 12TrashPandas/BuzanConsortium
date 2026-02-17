@@ -1,69 +1,65 @@
 //The code for the uniforms is probably not the minimum it could be, feel free to experiment with removing stuff and see if it still works.
 class CfgPatches
 {
-	class bzn_rs
+	class bzn_rs_queen
 	{
 		author="Bzn Mod Dev Team, Yandere";
 		addonRootClass="bzn_uniforms";
 		requiredAddons[]=
 		{
-			"bzn_uniforms",
-			"A3_Characters_F",
-			"Max_WS"
+			"bzn_rs",
 		};
 		units[]=
 		{
-			"Bzn_Field_Uniform_RS_Urban",
-			"Bzn_Field_Uniform_RS_Winter",
-			"Bzn_Field_Uniform_RS_Woodland",
-			"Bzn_Field_Uniform_RS_Jungle",
-			"Bzn_Field_Uniform_RS_Desert",
-			"Bzn_Field_Uniform_RS_Maritime",
-			"Bzn_Field_Uniform_Urban",
-			"Bzn_Field_Uniform_Winter",
-			"Bzn_Field_Uniform_Woodland",
-			"Bzn_Field_Uniform_Jungle",
-			"Bzn_Field_Uniform_Desert",
-			"Bzn_Field_Uniform_Maritime",
-			"Bzn_WI_Soldier_F",
-			"Bzn_WI_Soldier_F_Woodland",
-			"Bzn_WI_Soldier_F_Desert",
-			"Bzn_WI_Soldier_F_Jungle",
-			"Bzn_WI_Soldier_F_Winter",
-			"Bzn_WI_Soldier_F_Maritime"
+			"Bzn_Field_Uniform_RS_Urban_Queen",
+			"Bzn_Field_Uniform_RS_Winter_Queen",
+			"Bzn_Field_Uniform_RS_Woodland_Queen",
+			"Bzn_Field_Uniform_RS_Jungle_Queen",
+			"Bzn_Field_Uniform_RS_Desert_Queen",
+			"Bzn_Field_Uniform_RS_Maritime_Queen",
+			"Bzn_Field_Uniform_Urban_Queen",
+			"Bzn_Field_Uniform_Winter_Queen",
+			"Bzn_Field_Uniform_Woodland_Queen",
+			"Bzn_Field_Uniform_Jungle_Queen",
+			"Bzn_Field_Uniform_Desert_Queen",
+			"Bzn_Field_Uniform_Maritime_Queen",
+			"Bzn_WI_Soldier_F_Q",
+			"Bzn_WI_Soldier_F_Q_Woodland",
+			"Bzn_WI_Soldier_F_Q_Desert",
+			"Bzn_WI_Soldier_F_Q_Jungle",
+			"Bzn_WI_Soldier_F_Q_Winter",
+			"Bzn_WI_Soldier_F_Q_Maritime"
 		};
 		weapons[]=
 		{
-			"Bzn_W_I_CombatUniform",
-			"Bzn_W_I_CombatUniform_Woodland",
-			"Bzn_W_I_CombatUniform_Jungle",
-			"Bzn_W_I_CombatUniform_Winter",
-			"Bzn_W_I_CombatUniform_Desert",
-			"Bzn_W_I_CombatUniform_Maritime",
-			"Bzn_Field_Uniform_RS_F_Urban",
-			"Bzn_Field_Uniform_RS_F_Winter",
-			"Bzn_Field_Uniform_RS_F_Woodland",
-			"Bzn_Field_Uniform_RS_F_Jungle",
-			"Bzn_Field_Uniform_RS_F_Desert",
-			"Bzn_Field_Uniform_RS_F_Maritime",
-			"Bzn_Field_Uniform_F_Urban",
-			"Bzn_Field_Uniform_F_Winter",
-			"Bzn_Field_Uniform_F_Woodland",
-			"Bzn_Field_Uniform_F_Jungle",
-			"Bzn_Field_Uniform_F_Desert",
-			"Bzn_Field_Uniform_F_Maritime",
+			"Bzn_W_I_CombatUniform_Queen",
+			"Bzn_W_I_CombatUniform_Woodland_Queen",
+			"Bzn_W_I_CombatUniform_Jungle_Queen",
+			"Bzn_W_I_CombatUniform_Winter_Queen",
+			"Bzn_W_I_CombatUniform_Desert_Queen",
+			"Bzn_W_I_CombatUniform_Maritime_Queen",
+			"Bzn_Field_Uniform_RS_F_Urban_Queen",
+			"Bzn_Field_Uniform_RS_F_Winter_Queen",
+			"Bzn_Field_Uniform_RS_F_Woodland_Queen",
+			"Bzn_Field_Uniform_RS_F_Jungle_Queen",
+			"Bzn_Field_Uniform_RS_F_Desert_Queen",
+			"Bzn_Field_Uniform_RS_F_Maritime_Queen",
+			"Bzn_Field_Uniform_F_Urban_Queen",
+			"Bzn_Field_Uniform_F_Winter_Queen",
+			"Bzn_Field_Uniform_F_Desert_Queen",
+			"Bzn_Field_Uniform_F_Jungle_Queen",
+			"Bzn_Field_Uniform_F_Woodland_Queen",
+			"Bzn_Field_Uniform_F_Maritime_Queen",
 		};
 	};
 };
 
 class CfgVehicles
 {
-	class I_soldier_F;
-	class I_Soldier_lite_F;
+	class Bzn_WI_Soldier_F;
 
 	//Female AAF Conversion
-	class WI_soldier_F;
-	class Bzn_WI_Soldier_F : WI_soldier_F
+	class Bzn_WI_Soldier_F_Q : Bzn_WI_Soldier_F
 	{
 		author="Yandere";
 		_generalMacro="I_soldier_F";
@@ -76,13 +72,17 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform";
+		class eventhandlers
+		{
+			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
+		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\urban\uniform_urban.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\urban\uniform_urban_q.paa"
 		};
 	};
 
-	class Bzn_WI_Soldier_F_Maritime : WI_soldier_F
+	class Bzn_WI_Soldier_F_Q_Maritime : Bzn_WI_Soldier_F_Q
 	{
 		author="Yandere";
 		_generalMacro="I_soldier_F";
@@ -95,13 +95,17 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform";
+		class eventhandlers
+		{
+			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
+		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\maritime\uniform_maritime_q.paa"
 		};
 	};
 
-	class Bzn_WI_Soldier_F_Woodland : Bzn_WI_Soldier_F
+	class Bzn_WI_Soldier_F_Q_Woodland : Bzn_WI_Soldier_F_Q
 	{
 		author="Yandere";
 		_generalMacro="I_soldier_F";
@@ -114,13 +118,17 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Woodland";
+		class eventhandlers
+		{
+			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
+		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\woodland\uniform_woodland.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\woodland\uniform_woodland_q.paa"
 		};
 	};
 
-	class Bzn_WI_Soldier_F_Desert : Bzn_WI_Soldier_F
+	class Bzn_WI_Soldier_F_Q_Desert : Bzn_WI_Soldier_F_Q
 	{
 		author="Yandere";
 		_generalMacro="I_soldier_F";
@@ -133,13 +141,17 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Desert";
+		class eventhandlers
+		{
+			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
+		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\desert\uniform_desert.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\desert\uniform_desert_q.paa"
 		};
 	};
 
-	class Bzn_WI_Soldier_F_Jungle : Bzn_WI_Soldier_F
+	class Bzn_WI_Soldier_F_Q_Jungle : Bzn_WI_Soldier_F_Q
 	{
 		author="Yandere";
 		_generalMacro="I_soldier_F";
@@ -152,13 +164,17 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Jungle";
+		class eventhandlers
+		{
+			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
+		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\jungle\uniform_jungle.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\jungle\uniform_jungle_q.paa"
 		};
 	};
 
-	class Bzn_WI_Soldier_F_Winter : Bzn_WI_Soldier_F
+	class Bzn_WI_Soldier_F_Q_Winter : Bzn_WI_Soldier_F_Q
 	{
 		author="Yandere";
 		_generalMacro="I_soldier_F";
@@ -171,129 +187,133 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Winter";
+		class eventhandlers
+		{
+			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
+		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\winter\uniform_winter.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\winter\uniform_winter_q.paa"
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_Urban : I_Soldier_lite_F
+	class Bzn_Field_Uniform_RS_Urban;
+	class Bzn_Field_Uniform_RS_Urban_Queen : Bzn_Field_Uniform_RS_Urban
 	{
 		author="Yandere";
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\urban\uniform_urban.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\urban\uniform_urban_q.paa"
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_Winter : Bzn_Field_Uniform_RS_Urban
+
+	class Bzn_Field_Uniform_RS_Winter_Queen : Bzn_Field_Uniform_RS_Urban_Queen
 	{
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\winter\uniform_winter.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\winter\uniform_winter_q.paa"
 		};
 
 	};
 
-	class Bzn_Field_Uniform_RS_Desert : Bzn_Field_Uniform_RS_Urban
+	class Bzn_Field_Uniform_RS_Desert_Queen : Bzn_Field_Uniform_RS_Urban_Queen
 	{
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\desert\uniform_desert.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\desert\uniform_desert_q.paa"
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_Jungle : Bzn_Field_Uniform_RS_Urban
+	class Bzn_Field_Uniform_RS_Jungle_Queen : Bzn_Field_Uniform_RS_Urban_Queen
 	{
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\jungle\uniform_jungle.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\jungle\uniform_jungle_q.paa"
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_Woodland : Bzn_Field_Uniform_RS_Urban
+	class Bzn_Field_Uniform_RS_Woodland_Queen : Bzn_Field_Uniform_RS_Urban_Queen
 	{
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\woodland\uniform_woodland.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\woodland\uniform_woodland_q.paa"
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_Maritime : Bzn_Field_Uniform_RS_Urban
+	class Bzn_Field_Uniform_RS_Maritime_Queen : Bzn_Field_Uniform_RS_Urban_Queen
 	{
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\maritime\uniform_maritime_q.paa"
 		};
 	};
 
-	class Bzn_Field_Uniform_Urban : I_soldier_F
-	{
-		author="Yandere";
-		hiddenSelectionsTextures[]=
-		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\urban\uniform_urban.paa"
-		};
-	};
-
-	class Bzn_Field_Uniform_Winter : Bzn_Field_Uniform_Urban
+	class Bzn_Field_Uniform_Urban;
+	class Bzn_Field_Uniform_Urban_Queen : Bzn_Field_Uniform_Urban
 	{
 		author="Yandere";
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\winter\uniform_winter.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\urban\uniform_urban_q.paa"
 		};
 	};
 
-	class Bzn_Field_Uniform_Woodland : Bzn_Field_Uniform_Urban
+	class Bzn_Field_Uniform_Winter_Queen : Bzn_Field_Uniform_Urban_Queen
 	{
 		author="Yandere";
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\woodland\uniform_woodland.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\winter\uniform_winter_q.paa"
 		};
 	};
 
-	class Bzn_Field_Uniform_Jungle : Bzn_Field_Uniform_Urban
+	class Bzn_Field_Uniform_Woodland_Queen : Bzn_Field_Uniform_Urban_Queen
 	{
 		author="Yandere";
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\jungle\uniform_jungle.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\woodland\uniform_woodland_q.paa"
 		};
 	};
 
-	class Bzn_Field_Uniform_Desert : Bzn_Field_Uniform_Urban
+	class Bzn_Field_Uniform_Jungle_Queen : Bzn_Field_Uniform_Urban_Queen
 	{
 		author="Yandere";
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\desert\uniform_desert.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\jungle\uniform_jungle_q.paa"
 		};
 	};
 
-	class Bzn_Field_Uniform_Maritime : Bzn_Field_Uniform_Urban
+	class Bzn_Field_Uniform_Desert_Queen : Bzn_Field_Uniform_Urban_Queen
 	{
 		author="Yandere";
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\desert\uniform_desert_q.paa"
+		};
+	};
+
+	class Bzn_Field_Uniform_Maritime_Queen : Bzn_Field_Uniform_Urban_Queen
+	{
+		author="Yandere";
+		hiddenSelectionsTextures[]=
+		{
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\maritime\uniform_maritime_q.paa"
 		};
 	};
 };
 
 class CfgWeapons
 {
-	class U_I_CombatUniform;
+	class Bzn_W_I_CombatUniform;
 	class UniformItem;
-	class U_I_CombatUniform_shortsleeve;
-	class WU_I_CombatUniform;
-
-	class Bzn_W_I_CombatUniform : WU_I_CombatUniform
+	class Bzn_W_I_CombatUniform_Queen : Bzn_W_I_CombatUniform
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Combat Fatigues Woman [Bzn] (Urban)";
+		displayName="Combat Fatigues Woman [Bzn] (Urban, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_universal_F.p3d";
 		hiddenSelections[]=
@@ -303,22 +323,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\urban\uniform_urban.paa",
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\urban\uniform_urban_q.paa",
 		};
 		class ItemInfo: UniformItem
 		{
 			uniformModel="-";
-			uniformClass="Bzn_WI_Soldier_F";
+			uniformClass="Bzn_WI_Soldier_F_Q";
 			containerClass="Supply40";
 			mass=40;
 		};
 	};
 
-	class Bzn_W_I_CombatUniform_Maritime : WU_I_CombatUniform
+	class Bzn_W_I_CombatUniform_Maritime_Queen : Bzn_W_I_CombatUniform_Queen
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Combat Fatigues Woman [Bzn] (Maritime)";
+		displayName="Combat Fatigues Woman [Bzn] (Maritime, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_universal_F.p3d";
 		hiddenSelections[]=
@@ -328,22 +348,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa",
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\maritime\uniform_maritime_q.paa",
 		};
 		class ItemInfo: UniformItem
 		{
 			uniformModel="-";
-			uniformClass="Bzn_WI_Soldier_F_Maritime";
+			uniformClass="Bzn_WI_Soldier_F_Q_Maritime";
 			containerClass="Supply40";
 			mass=40;
 		};
 	};
 
-	class Bzn_W_I_CombatUniform_Woodland : WU_I_CombatUniform
+	class Bzn_W_I_CombatUniform_Woodland_Queen : Bzn_W_I_CombatUniform_Queen
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Combat Fatigues Woman [Bzn] (Woodland)";
+		displayName="Combat Fatigues Woman [Bzn] (Woodland, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_universal_F.p3d";
 		hiddenSelections[]=
@@ -353,22 +373,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\woodland\uniform_woodland.paa",
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\woodland\uniform_woodland_q.paa",
 		};
 		class ItemInfo: UniformItem
 		{
 			uniformModel="-";
-			uniformClass="Bzn_WI_Soldier_F_Woodland";
+			uniformClass="Bzn_WI_Soldier_F_Q_Woodland";
 			containerClass="Supply40";
 			mass=40;
 		};
 	};
 
-	class Bzn_W_I_CombatUniform_Desert : WU_I_CombatUniform
+	class Bzn_W_I_CombatUniform_Desert_Queen : Bzn_W_I_CombatUniform_Queen
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Combat Fatigues Woman [Bzn] (Desert)";
+		displayName="Combat Fatigues Woman [Bzn] (Desert, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_universal_F.p3d";
 		hiddenSelections[]=
@@ -378,22 +398,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\desert\uniform_desert.paa",
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\desert\uniform_desert_q.paa",
 		};
 		class ItemInfo: UniformItem
 		{
 			uniformModel="-";
-			uniformClass="Bzn_WI_Soldier_F_Desert";
+			uniformClass="Bzn_WI_Soldier_F_Q_Desert";
 			containerClass="Supply40";
 			mass=40;
 		};
 	};
 
-	class Bzn_W_I_CombatUniform_Jungle : WU_I_CombatUniform
+	class Bzn_W_I_CombatUniform_Jungle_Queen : Bzn_W_I_CombatUniform_Queen
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Combat Fatigues Woman [Bzn] (Jungle)";
+		displayName="Combat Fatigues Woman [Bzn] (Jungle, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_universal_F.p3d";
 		hiddenSelections[]=
@@ -403,22 +423,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\jungle\uniform_jungle.paa",
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\jungle\uniform_jungle_q.paa",
 		};
 		class ItemInfo: UniformItem
 		{
 			uniformModel="-";
-			uniformClass="Bzn_WI_Soldier_F_Jungle";
+			uniformClass="Bzn_WI_Soldier_F_Q_Jungle";
 			containerClass="Supply40";
 			mass=40;
 		};
 	};
 
-	class Bzn_W_I_CombatUniform_Winter : WU_I_CombatUniform
+	class Bzn_W_I_CombatUniform_Winter_Queen : Bzn_W_I_CombatUniform_Queen
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Combat Fatigues Woman [Bzn] (Winter)";
+		displayName="Combat Fatigues Woman [Bzn] (Winter, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_universal_F.p3d";
 		hiddenSelections[]=
@@ -428,22 +448,23 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\jungle\uniform_jungle.paa",
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\winter\uniform_winter_q.paa",
 		};
 		class ItemInfo: UniformItem
 		{
 			uniformModel="-";
-			uniformClass="Bzn_WI_Soldier_F_Winter";
+			uniformClass="Bzn_WI_Soldier_F_Q_Winter";
 			containerClass="Supply40";
 			mass=40;
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_F_Urban : U_I_CombatUniform_shortsleeve
+	class Bzn_Field_Uniform_RS_F_Urban;
+	class Bzn_Field_Uniform_RS_F_Urban_Queen : Bzn_Field_Uniform_RS_F_Urban
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Urban, Rolled Up, Gloves)";
+		displayName="Field Uniform [Bzn] (Urban, Rolled Up, Gloves, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -453,22 +474,23 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\urban\uniform_urban.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\urban\uniform_urban_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_RS_Urban";
+			uniformClass="Bzn_Field_Uniform_RS_Urban_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_F_Winter : Bzn_Field_Uniform_RS_F_Urban
+
+	class Bzn_Field_Uniform_RS_F_Winter_Queen : Bzn_Field_Uniform_RS_F_Urban_Queen
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Winter, Rolled Up, Gloves)";
+		displayName="Field Uniform [Bzn] (Winter, Rolled Up, Gloves, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -478,22 +500,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\winter\uniform_winter.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\winter\uniform_winter_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_RS_Winter";
+			uniformClass="Bzn_Field_Uniform_RS_Winter_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_F_Desert : Bzn_Field_Uniform_RS_F_Urban
+	class Bzn_Field_Uniform_RS_F_Desert_Queen : Bzn_Field_Uniform_RS_F_Urban_Queen
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Desert, Rolled Up, Gloves)";
+		displayName="Field Uniform [Bzn] (Desert, Rolled Up, Gloves, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -503,22 +525,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\desert\uniform_desert.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\desert\uniform_desert_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_RS_Desert";
+			uniformClass="Bzn_Field_Uniform_RS_Desert_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_F_Jungle : Bzn_Field_Uniform_RS_F_Urban
+	class Bzn_Field_Uniform_RS_F_Jungle_Queen : Bzn_Field_Uniform_RS_F_Urban_Queen
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Jungle, Rolled Up, Gloves)";
+		displayName="Field Uniform [Bzn] (Jungle, Rolled Up, Gloves, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -528,22 +550,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\jungle\uniform_jungle.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\jungle\uniform_jungle_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_RS_Jungle";
+			uniformClass="Bzn_Field_Uniform_RS_Jungle_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_F_Woodland : Bzn_Field_Uniform_RS_F_Urban
+	class Bzn_Field_Uniform_RS_F_Woodland_Queen : Bzn_Field_Uniform_RS_F_Urban_Queen
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Woodland, Rolled Up, Gloves)";
+		displayName="Field Uniform [Bzn] (Woodland, Rolled Up, Gloves, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -553,22 +575,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\woodland\uniform_woodland.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\woodland\uniform_woodland_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_RS_Woodland";
+			uniformClass="Bzn_Field_Uniform_RS_Woodland_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_RS_F_Maritime : Bzn_Field_Uniform_RS_F_Urban
+	class Bzn_Field_Uniform_RS_F_Maritime_Queen : Bzn_Field_Uniform_RS_F_Urban_Queen
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Maritime, Rolled Up, Gloves)";
+		displayName="Field Uniform [Bzn] (Maritime, Rolled Up, Gloves, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -578,22 +600,23 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\maritime\uniform_maritime_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_RS_Maritime";
+			uniformClass="Bzn_Field_Uniform_RS_Maritime_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_F_Urban : U_I_CombatUniform
+	class Bzn_Field_Uniform_F_Urban;
+	class Bzn_Field_Uniform_F_Urban_Queen : Bzn_Field_Uniform_F_Urban
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Urban)";
+		displayName="Field Uniform [Bzn] (Urban, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -603,22 +626,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\urban\uniform_urban.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\urban\uniform_urban_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_Urban";
+			uniformClass="Bzn_Field_Uniform_Urban_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_F_Winter : Bzn_Field_Uniform_RS_F_Urban
+	class Bzn_Field_Uniform_F_Winter_Queen : Bzn_Field_Uniform_RS_F_Urban
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Winter)";
+		displayName="Field Uniform [Bzn] (Winter, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -628,22 +651,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\winter\uniform_winter.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\winter\uniform_winter_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_Winter";
+			uniformClass="Bzn_Field_Uniform_Winter_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_F_Desert : Bzn_Field_Uniform_RS_F_Urban
+	class Bzn_Field_Uniform_F_Desert_Queen : Bzn_Field_Uniform_RS_F_Urban
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Desert)";
+		displayName="Field Uniform [Bzn] (Desert, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -653,22 +676,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\desert\uniform_desert.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\desert\uniform_desert_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_Desert";
+			uniformClass="Bzn_Field_Uniform_Desert_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_F_Jungle : Bzn_Field_Uniform_RS_F_Urban
+	class Bzn_Field_Uniform_F_Jungle_Queen : Bzn_Field_Uniform_RS_F_Urban
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Jungle)";
+		displayName="Field Uniform [Bzn] (Jungle, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -678,22 +701,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\jungle\uniform_jungle.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\jungle\uniform_jungle_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_Jungle";
+			uniformClass="Bzn_Field_Uniform_Jungle_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_F_Woodland : Bzn_Field_Uniform_RS_F_Urban
+	class Bzn_Field_Uniform_F_Woodland_Queen : Bzn_Field_Uniform_RS_F_Urban
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Woodland)";
+		displayName="Field Uniform [Bzn] (Woodland, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -703,22 +726,22 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\woodland\uniform_woodland.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\woodland\uniform_woodland_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_Woodland";
+			uniformClass="Bzn_Field_Uniform_Woodland_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";
 		};
 	};
 
-	class Bzn_Field_Uniform_F_Maritime : Bzn_Field_Uniform_RS_F_Urban
+	class Bzn_Field_Uniform_F_Maritime_Queen : Bzn_Field_Uniform_RS_F_Urban
 	{
 		author="Yandere";
 		scope=2;
-		displayName="Field Uniform [Bzn] (Maritime)";
+		displayName="Field Uniform [Bzn] (Maritime, Queen)";
 		picture="\A3\characters_f_beta\data\ui\icon_U_IR_CrewUniform_rucamo_ca.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
 		hiddenSelections[]=
@@ -728,11 +751,11 @@ class CfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\maritime\uniform_maritime.paa"
+			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves_queen\maritime\uniform_maritime_q.paa"
 		};
 		class ItemInfo: UniformItem
 		{
-			uniformClass="Bzn_Field_Uniform_Maritime";
+			uniformClass="Bzn_Field_Uniform_Maritime_Queen";
 			mass=40;
 			containerClass="Supply40";
 			uniformModel="-";

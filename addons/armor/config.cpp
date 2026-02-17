@@ -5,7 +5,6 @@ class CfgPatches
 		author="Bzn Mod Dev Team, Yandere";
 		requiredAddons[]=
 		{
-			"PUP_CA_U", //CAF 2035
 		};
 		units[]={};
 	};
@@ -19,5 +18,21 @@ class CfgUnitInsignia
 		author="Yandere";
 		texture="\z\bzn\addons\armor\data\BuzanPatch.paa";
 		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+	};
+
+	class Bzn_IrishRepublicanSymbol
+	{
+		displayName="Iirsh Republican Socialists";
+		author="Yandere";
+		texture="\z\bzn\addons\armor\data\IRSocialist.paa";
+		material = "\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+	};
+
+	class Bzn_Witch
+	{
+		displayName="Witch (Custom)";
+		author="Yandere";
+		texture="\z\bzn\addons\armor\data\Witch.paa";
+		material="\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
 	};
 };
