@@ -44,12 +44,12 @@ class CfgPatches
 			"Bzn_Field_Uniform_RS_F_Jungle_Queen",
 			"Bzn_Field_Uniform_RS_F_Desert_Queen",
 			"Bzn_Field_Uniform_RS_F_Maritime_Queen",
-			"Bzn_Field_Uniform_F_Q_Urban",
-			"Bzn_Field_Uniform_F_Q_Winter",
-			"Bzn_Field_Uniform_F_Q_Woodland",
-			"Bzn_Field_Uniform_F_Q_Jungle",
-			"Bzn_Field_Uniform_F_Q_Desert",
-			"Bzn_Field_Uniform_F_Q_Maritime"
+			"Bzn_Field_Uniform_F_Urban_Queen",
+			"Bzn_Field_Uniform_F_Winter_Queen",
+			"Bzn_Field_Uniform_F_Desert_Queen",
+			"Bzn_Field_Uniform_F_Jungle_Queen",
+			"Bzn_Field_Uniform_F_Woodland_Queen",
+			"Bzn_Field_Uniform_F_Maritime_Queen",
 		};
 	};
 };

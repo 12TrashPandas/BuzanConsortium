@@ -51,7 +51,7 @@ class CfgPatches
 			"Bzn_Field_Uniform_F_Woodland",
 			"Bzn_Field_Uniform_F_Jungle",
 			"Bzn_Field_Uniform_F_Desert",
-			"Bzn_Field_Uniform_F_Maritime"
+			"Bzn_Field_Uniform_F_Maritime",
 		};
 	};
 };
@@ -185,7 +185,6 @@ class CfgVehicles
 			"\z\bzn\addons\armor\data\uniforms\rolled_sleaves\urban\uniform_urban.paa"
 		};
 	};
-
 
 	class Bzn_Field_Uniform_RS_Winter : Bzn_Field_Uniform_RS_Urban
 	{
@@ -464,7 +463,6 @@ class CfgWeapons
 			uniformModel="-";
 		};
 	};
-
 
 	class Bzn_Field_Uniform_RS_F_Winter : Bzn_Field_Uniform_RS_F_Urban
 	{
