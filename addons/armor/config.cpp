@@ -36,7 +36,7 @@ class CfgUnitInsignia
 		material="\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
 	};
 
-	class Bzn_Witch
+	class Bzn_Lumberjack
 	{
 		displayName="Lumberjack (Custom)";
 		author="Yandere";
