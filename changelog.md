@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 - Patch commemerating the loss of a historical relic
 - Updated Buzan Patch
+- Adds hood up recon cloaks in our standard patterns
 
 ## 0.0.3
 - Added Knight and Queen versions of our uniform
