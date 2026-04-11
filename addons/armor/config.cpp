@@ -35,4 +35,12 @@ class CfgUnitInsignia
 		texture="\z\bzn\addons\armor\data\Witch.paa";
 		material="\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
 	};
+
+	class Bzn_Lumberjack
+	{
+		displayName="Lumberjack (Custom)";
+		author="Yandere";
+		texture="\z\bzn\addons\armor\data\Lumberjack.paa";
+		material="\A3\Ui_f\data\GUI\Cfg\UnitInsignia\default_insignia.rvmat";
+	};
 };
