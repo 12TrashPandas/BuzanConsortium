@@ -11,3 +11,5 @@ releases/
 build-config.json
 build/
 meta/tools/hemtt/
+*.log
+/.hemttout
