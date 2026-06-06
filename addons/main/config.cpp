@@ -10,6 +10,8 @@ class CfgPatches
 		{
 			"bzn_armor",
 			"bzn_aax",
+			"bzn_scripts",
+			"bzn_tacvis",
 		};
 		units[]={};
 		VERSION_CONFIG;
