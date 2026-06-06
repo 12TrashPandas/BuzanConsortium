@@ -31,21 +31,16 @@ if (!_los) exitWith {
     cutText ["No line of sight", "PLAIN DOWN", 0.5, false];
 };
 
-// Build spot entry
-private _expiryTime  = time + 60;
-private _markerName  = format ["BZN_spot_%1", netId _target];
-private _pos         = getPos _target;
+// The 3D world tag is persistent (shown until the target dies or leaves display
+// range); only the team map marker fades, after 10 s.
+private _markerExpiry = time + 10;
+private _markerName    = format ["BZN_spot_%1", netId _target];
+private _pos           = getPos _target;
 
-// Update existing spot or add new one
-private _idx = BZN_tacvis_spotted findIf { (_x select 0) == _target };
-if (_idx >= 0) then {
-    BZN_tacvis_spotted set [_idx, [_target, _expiryTime, _markerName]];
-} else {
-    BZN_tacvis_spotted pushBack [_target, _expiryTime, _markerName];
-};
-
-// Broadcast spot marker to all machines so it appears on every teammate's map
-[_markerName, _pos, _expiryTime] remoteExec ["BZN_fnc_tacvisSpotMarker", 0];
+// Share with everyone (coop): persistent 3D tag (the unit is added to
+// BZN_tacvis_spotted on every client) + a 10 s team map marker. 0 includes self.
+[_target] remoteExec ["BZN_fnc_tacvisAddSpot", 0];
+[_markerName, _pos, _markerExpiry] remoteExec ["BZN_fnc_tacvisSpotMarker", 0];
 
 playSound "vto_tacvis_sound_beep";
 cutText ["Target Spotted", "PLAIN DOWN", 1, false];

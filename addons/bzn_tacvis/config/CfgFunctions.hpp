@@ -10,6 +10,10 @@ class CfgFunctions {
             class tacvisAlwaysOn {};
             class tacvisSpot {};
             class tacvisSpotMarker {};
+            class tacvisAddSpot {};
+            class tacvisRadar {};
+            class tacvisAddRadar {};
+            class tacvisThreatWatch {};
             class tacvisRenderEngine {};
         };
     };

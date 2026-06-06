@@ -2,19 +2,37 @@ if (isDedicated) exitWith {};
 
 BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
 
-    // Combine both pools; pushBackUnique avoids double-rendering a unit
-    // that is simultaneously friendly and CQC-detected (e.g. player's own side).
-    private _pool = [];
-    { _pool pushBackUnique _x } forEach (BZN_tacvis_pool_friendly + BZN_tacvis_pool_CQC);
+    // Live shared contacts (expiry-filtered). Player spots and radar contacts are
+    // both shared across clients; rendering is still range-limited by the alpha
+    // fade below, so teammates only see contacts within their own range.
+    private _spottedObjs = BZN_tacvis_spotted select { !isNull _x and { alive _x } };
+    private _radarObjs   = (BZN_tacvis_radar   select { (time <= (_x select 1)) and { !isNull (_x select 0) } }) apply { _x select 0 };
+    // Local hostile-civilian alarm markers (short range, not shared).
+    private _threatObjs  = (BZN_tacvis_threat  select { (time <= (_x select 1)) and { !isNull (_x select 0) } and { alive (_x select 0) } }) apply { _x select 0 };
 
-    // Don't tag idle neutral/civilian vehicles — only show a vehicle if it is
-    // infantry, has its engine running, or is clearly hostile/friendly.
+    // Combine all pools; pushBackUnique avoids double-rendering. Spotted enemies
+    // arrive via pool_friendly (always-on); radar contacts via _radarObjs.
+    private _pool = [];
+    { _pool pushBackUnique _x } forEach (BZN_tacvis_pool_friendly + BZN_tacvis_pool_CQC + _radarObjs + _threatObjs);
+
+    // Vehicles are only tagged if spotted, on radar, or a crewed allied vehicle.
+    // Empty/unmanned vehicles report side civilian (which reads as friendly), so
+    // the friendly branch requires real crew and a non-civilian side. Infantry kept.
     _pool = _pool select {
         (_x isKindOf "CAManbase")
-        or { isEngineOn _x }
-        or { (side _x) getFriend (side player) <= 0.3 }
-        or { (side _x) getFriend (side player) >= 0.8 }
+        or { _x in _spottedObjs }
+        or { _x in _radarObjs }
+        or {
+            ((side _x) getFriend (side player) >= 0.8)
+            and { side _x != civilian }
+            and { ({alive _x} count crew _x) > 0 }
+        }
     };
+
+    // Observer airborne? Ground units then display out to the longer air-observer
+    // range instead of 1 km (computed once per frame).
+    private _obsVeh = objectParent player;
+    private _inAir  = (!isNull _obsVeh) and { _obsVeh isKindOf "Air" };
 
     {
         private _unit = _x;
@@ -101,7 +119,10 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         private _HexPosition = _unit modelToWorldVisual [0, 0, _textOffsetZ];
 
         // ---- Colours ------------------------------------------------------
-        private _alpha          = 0.95 - (player distance _unit) / 1000;
+        // Flying targets fade over the air range; ground targets fade over 1 km
+        // normally, or the longer ground-from-air range when the observer is airborne.
+        private _fadeRange      = [[1000, BZN_tacvis_ground_air_range] select _inAir, BZN_tacvis_air_range] select (_unit isKindOf "Air");
+        private _alpha          = 0.95 - (player distance _unit) / _fadeRange;
         private _colorGREEN     = [0, 0.75, 0, _alpha];
         private _colorGREENdark = [0, 0.55, 0, _alpha];
         private _colorRED       = [0.75, 0, 0, _alpha];
@@ -192,9 +213,19 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         private _messageUP     = format ["%1 m", round (player distance _unit)];
 
         private _messageDOWN = mapGridPosition _unit;
-        if (BZN_tacvis_spotted findIf { (_x select 0) == _unit } >= 0) then {
-            _color3 = _colorRED;
-            _messageDOWN = format ["SPOTTED | %1", _messageDOWN];
+        switch (true) do {
+            case (_unit in _threatObjs) : {
+                _messageCENTER = "!! THREAT !!_";
+                _color3 = _colorRED;
+                _messageDOWN = format [">> HOSTILE REVEAL | %1", _messageDOWN];
+            };
+            case (_unit in _spottedObjs) : {
+                _color3 = _colorRED;
+                _messageDOWN = format ["SPOTTED | %1", _messageDOWN];
+            };
+            case (_unit in _radarObjs) : {
+                _messageDOWN = format ["RADAR | %1", _messageDOWN];
+            };
         };
 
         private _messageDOWN2 = "";
