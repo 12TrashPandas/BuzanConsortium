@@ -20,6 +20,10 @@ no menu to turn it "on":
   display, the Spot Target action/keybind, and hostile-civilian threat alerts.
 - **CQC device**: a smaller subset of devices (Addon Options → "CQC devices")
   additionally grants the "Toggle CQC" scroll-wheel option.
+- **JTAC device**: a separate, independent whitelist (Addon Options → "JTAC
+  devices") grants the always-on JTAC SITREP overlay (see below) — typically
+  reserved for whoever's running the team's intel picture, rather than handed
+  to everyone with a personal device.
 - **Approved vehicle**: certain vehicles (Addon Options → "Approved vehicles")
   grant the always-on display and Spot Target to anyone mounted, regardless of
   headgear. If the vehicle also has an active radar sensor, its crew additionally
@@ -34,9 +38,10 @@ or out of a vehicle, or close your inventory — no need to reconnect or restart
 |---|---|---|
 | **Toggle TacVis Display** | `Alt+F8` | Turns the entire 3D overlay on/off. |
 | **Toggle Friendly Markers** | `Alt+F9` | Hides/shows tags for friendly-side units only (hostile/spotted tags stay visible). |
+| **Toggle Detail View** | *unbound — bind it yourself* | Overrides "looked at" tag gating (see below) — while active, every infantry tag always shows in full, not just whichever one's under your crosshair. |
 | **Spot Target** | *unbound — bind it yourself* | Marks the hostile under your reticle/optic/feed for your whole team (see "Spotting" below). Works on foot, in vehicle turrets, and while remotely piloting a UAV — the only reliable trigger while piloting, since the scroll-wheel menu can be unreachable there. |
 
-Both toggles show a brief on-screen confirmation (e.g. "TacVis display: ON/OFF").
+All three toggles show a brief on-screen confirmation (e.g. "TacVis display: ON/OFF").
 
 ## Scroll-wheel (self-interaction) actions
 
@@ -102,13 +107,47 @@ A short-range threat-detection mode for close-quarters work:
 - After stopping, the action goes on a **randomized 60–180 second cooldown**
   before you can use it again.
 
+## JTAC SITREP overlay
+
+Whenever you're wearing a JTAC-whitelisted helmet/headset/goggle (Addon
+Options → "JTAC devices" — its own separate, independent whitelist, NOT the
+same list that grants the always-on display/Spot Target; see "Getting
+equipped" above), a persistent top-right overlay headed **"TACVIS JTAC"**
+gives you a running,
+grid-by-grid breakdown of every contact your team currently has eyes on —
+team-spotted hostiles and shared radar contacts alike, refreshed about every
+2 seconds:
+
+- **"GRID 045123 — INF x4 (1x LAUNCHER) | GND x2 | AIR x1"** — one line per
+  occupied grid square, nearest to you first: how many infantry are in that
+  square (and how many of *those* are carrying a launcher — the same
+  priority-threat callout the individual 3D tags highlight), split into
+  **GND** (cars/armour), **AIR** (aircraft/helicopters/drones), and **WTR**
+  (ships/boats) so armour-in-the-open and an inbound chopper read as
+  distinctly different calls — only the categories actually present in a
+  square are listed.
+- Squares with nothing reported show **"No contacts reported"** instead of an
+  empty list.
+- Hostile-civilian threat-watch alerts (see below) are deliberately excluded —
+  those are personal proximity warnings about armed civilians nearby, not the
+  kind of organised, location-based picture a JTAC report aggregates.
+
+Like the drone-uplink notice below, this re-asserts itself continuously while
+your device is active, so it can get momentarily bumped by other hints (CQC's
+countdown, the uplink notice, vanilla system hints) — it simply reclaims the
+slot on its next refresh a moment later.
+
 ## Always-on friendly/hostile display
 
 Whenever TacVis is active (device, CQC gear, or approved vehicle), you
 automatically see 3D tags over:
 
 - **Friendly-side units** — IFF identification, toggleable via the "Toggle
-  Friendly Markers" keybind.
+  Friendly Markers" keybind. Only **player-controlled** friendlies (and any
+  side's **VIP**-flagged units — see below) get tagged this way; rank-and-file
+  friendly-side and civilian-side AI are background noise and stay untagged,
+  so the display reflects who actually matters tactically rather than every
+  bot teammate or bystander on the map.
 - **Team-spotted hostiles** — see "Spotting" above; shown to everyone
   regardless of who originally marked them.
 - **Radar contacts** — if you're crewing a vehicle with an active radar sensor,
@@ -120,6 +159,78 @@ automatically see 3D tags over:
 Tags show unit status where relevant (e.g. armed/unarmed, engine on/off,
 deceased/destroyed) alongside the grid reference, plus an **"OP: ..."** line
 naming who's running the platform:
+
+- **Launcher carriers** — infantry packing an AT/AA launcher always get a
+  distinct, individual tag instead of being folded into the rifleman crowd
+  (or a squad summary). Hostiles read **"ARMED | LAUNCHER"** highlighted red
+  like a HOSTILE tag — that's your priority-threat callout. Friendly launcher
+  gunners read a plain white **"LAUNCHER"** instead — no need for a threat
+  colour, just enough to tell who on your team is carrying the AT/AA.
+- **HVTs** — a unit the mission has flagged as a priority kill target
+  (mission-side, e.g. in its init field: `this setVariable
+  ["BZN_tacvis_HVT", true, true];` — the trailing `true` is the public-
+  broadcast flag, required so every client sees the flag, not just the
+  machine the unit is local to) gets a distinct violet **"HVT"** tag in
+  place of the usual type label, so it never gets lost among ordinary
+  contacts. (Distinct from VIP below — HVT doesn't carry any "keep them
+  alive" connotation either way.)
+- **VIPs** — a unit the mission has flagged as someone who must stay on the
+  board (mission-side: `this setVariable ["BZN_tacvis_VIP", true, true];`
+  — same public-broadcast requirement as HVT above) gets a
+  distinct sky-blue **"VIP - PROTECT"** tag (or **"VIP - TAKE ALIVE"** if
+  they're on a side hostile to you — i.e. capture, don't kill) in place of
+  the usual type label, so you always know at a glance who not to put down.
+  Like launcher carriers, HVTs and VIPs are never folded into a squad summary
+  tag and always render with full detail regardless of whether you're looking
+  at them.
+
+When several same-side **infantry** are bunched close together *and* far
+enough away from you, their tags collapse into a single summary —
+**"INFANTRY x5 | SPOTTED | grid | Xs | ARMED | HOSTILE"** — instead of
+overlapping individually. (Vehicles, aircraft, ships, and drones are never
+grouped this way — there are rarely enough of them in one spot to overlap,
+and their per-unit operator/crew/status detail is exactly what you want to
+keep visible. Launcher carriers are excluded too — see above.) How far away
+"far enough" is is your call: see **"Tag clustering range"** in Addon Options
+below (set it low to declutter sooner, or max it out to always see every
+contact's full tag). Looking down from a plane/heli or a connected drone feed
+bunches infantry together on screen at much greater distances than on the
+ground, so a separate **"Tag clustering range, air/drone"** slider (default
+2 km) is used automatically whenever you're aircrew or slaved to a UAV/UGV.
+Smaller bunches that don't meet the grouping threshold, or anything closer
+than the active clustering range, still render individually — just nudged
+apart vertically so overlapping pairs/trios stay readable.
+
+Clustering helps at range, but a close-quarters firefight can still stack
+full tags on every nearby rifleman. So up close, ordinary infantry render
+**reduced** — hex and a single status word (**ARMED**/**UNARMED**/
+**LAUNCHER** for hostiles and neutrals, or simply their **name** for
+friendlies — knowing whether a teammate is "armed" isn't useful, knowing who
+they are is), and, for spotted hostiles, the same small drop-off countdown
+described above so a mark about to fade doesn't catch you off guard even at
+this reduced level. Distance, grid reference, and the fuller SPOTTED/RADAR/
+THREAT line are still dropped here — that's clutter you don't need until
+you're looking right at someone, where the full tactical/hover view brings
+it all back. Only the *one* tag you're directly looking at —
+within a few degrees of your sightline, working through ironsights, scopes,
+turrets, and UAV feeds alike — expands to show everything (type, grid/status
+line, HOSTILE/INJURED detail, and — for spotted hostiles — a small standalone
+countdown under the ARMED/HOSTILE line so you can tell at a glance when a
+mark is about to fade). Look away and it collapses back down; look at someone
+else and that one expands instead — only one tag is ever expanded at a time.
+
+**Hostile/neutral launcher carriers, HVT-flagged units** (mission-side:
+`this setVariable ["BZN_tacvis_HVT", true, true];`), **VIPs** (see "HVT"/"VIP -
+PROTECT/TAKE ALIVE" above), **and all vehicles, aircraft, ships, and drones**
+are exempt from this — they always show in full, since hiding a priority
+individual or a platform's crew/operator detail would defeat the point.
+Friendly launcher carriers aren't a threat that needs constant tracking
+though, so they gate down like any other teammate — their reduced tag still
+reads **"LAUNCHER"** so you don't lose track of who's carrying the team's
+AT/AA. The exempt categories above are also never folded into a clustered
+squad summary, for the same reason. If you'd rather see everything in full
+all the time, bind and use **Toggle Detail View** (see Keybinds above) to
+permanently override the gating.
 
 - **Friendly drones** show **"OP: <name>"** for whoever is remotely flying it
   through a terminal — the tag clears within a couple seconds of them
@@ -136,8 +247,11 @@ naming who's running the platform:
 |---|---|---|
 | Devices (always-on + spot) | Mission/server (forced) | Which helmet/goggle classnames grant the personal TacVis device. |
 | CQC devices | Mission/server (forced) | Which classnames additionally grant the CQC scroll-wheel toggle. |
+| JTAC devices | Mission/server (forced) | Which classnames grant the always-on JTAC SITREP overlay — its own independent whitelist, separate from the main device list above (leave empty to restrict it to nobody). |
 | Approved vehicles | Mission/server (forced) | Which vehicle classnames grant TacVis to anyone mounted, regardless of headgear. |
 | Show 'Spot Target' in scroll menu | **You** (personal, per-player) | Whether the scroll-wheel Spot Target entry appears alongside the keybind for *you* (the keybind always works either way). Set it in your own Addon Options — the server can't override this one. |
+| Tag clustering range (m) | **You** (personal, per-player) | How far away a bunch of same-side infantry needs to be before *your* display collapses them into one summary tag while on foot/in ground vehicles (default 100m; 0–500m slider). Vehicles/air/sea/drones and launcher carriers are never collapsed this way. Purely a personal declutter preference — doesn't change what anyone else sees or any gameplay balance. |
+| Tag clustering range, air/drone (m) | **You** (personal, per-player) | Same idea, but used instead whenever you're aircrew or slaved to a UAV/UGV feed — looking down from altitude bunches infantry together at much greater distances, hence the much higher default (2 km; 0–5 km slider). |
 
 The whitelist settings (devices/CQC devices/vehicles) are forced server-wide so
 everyone plays by the same equipment rules — explains why TacVis may behave

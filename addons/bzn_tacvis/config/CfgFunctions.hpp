@@ -16,6 +16,7 @@ class CfgFunctions {
             class tacvisRadar {};
             class tacvisAddRadar {};
             class tacvisThreatWatch {};
+            class tacvisJTAC {};
             class tacvisRenderEngine {};
         };
     };

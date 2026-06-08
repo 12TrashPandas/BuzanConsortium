@@ -10,8 +10,11 @@ BZN_tacvis_debug = true;
 // -------------------------------------------------------------------------
 if (isNil "BZN_tacvis_devices")          then { BZN_tacvis_devices = []; };
 if (isNil "BZN_tacvis_devices_cqc")      then { BZN_tacvis_devices_cqc = []; };
+if (isNil "BZN_tacvis_devices_jtac")     then { BZN_tacvis_devices_jtac = []; };
 if (isNil "BZN_tacvis_vehicles")         then { BZN_tacvis_vehicles = []; };
 if (isNil "BZN_tacvis_spot_showAction")  then { BZN_tacvis_spot_showAction = true; };
+if (isNil "BZN_tacvis_cluster_minDistance")     then { BZN_tacvis_cluster_minDistance = 100; };
+if (isNil "BZN_tacvis_cluster_minDistance_air") then { BZN_tacvis_cluster_minDistance_air = 2000; };
 
 // User-facing display toggles (bound to keybinds below; persist across refreshes
 // since they're independent of equipment-based activation).
@@ -26,11 +29,19 @@ BZN_tacvis_spot_cooldown   = false;
 BZN_tacvis_marker_cooldown = false;
 BZN_tacvis_radar_active    = false;
 BZN_tacvis_threat_active   = false;
+BZN_tacvis_jtac_active     = false;  // drives the persistent grid-by-grid SITREP hint
 BZN_tacvis_uplink_active   = false;  // drives the persistent "slaved to drone" hint while connected
 BZN_tacvis_radar_range     = 6000;   // metres; radar contact scan radius
 BZN_tacvis_air_range       = 5000;   // metres; display/IFF range for flying vehicles
 BZN_tacvis_ground_air_range = 1500;  // metres; ground-unit display range when the observer is airborne
 BZN_tacvis_spot_duration   = 35;     // seconds; how long a "SPOTTED" tag persists without refresh
+BZN_tacvis_cluster_radius      = 12;   // metres; max spacing to group same-side/type contacts into one tag
+BZN_tacvis_cluster_threshold   = 3;    // minimum group size before collapsing to a single summary tag
+BZN_tacvis_stagger_offset      = 0.35; // metres; vertical separation applied to small ungrouped clusters
+BZN_tacvis_lookAt_radius       = 5.5;  // metres; constant linear "you're looking at them" tolerance around the target's centre-mass — derived into a per-target angle (radius / distance) so the trigger zone stays roughly the same physical size at 40m and at 400m, rather than ballooning outward at range like a fixed-angle cone would
+BZN_tacvis_detailView_active   = false; // runtime: "Toggle Detail View" keybind — forces every tag to render in full
+// BZN_tacvis_cluster_minDistance(_air) are CBA sliders (see XEH_preInit.sqf) —
+// the isNil defaults above cover the case where CBA settings are unavailable.
 
 // Render pools
 BZN_tacvis_pool_friendly = [];   // friendlies + spotted enemies (always-on)
@@ -105,6 +116,10 @@ BZN_fnc_tacvis_hasCQCDevice = {
     headgear player in BZN_tacvis_devices_cqc or goggles player in BZN_tacvis_devices_cqc
 };
 
+BZN_fnc_tacvis_hasJTACDevice = {
+    headgear player in BZN_tacvis_devices_jtac or goggles player in BZN_tacvis_devices_jtac
+};
+
 BZN_fnc_tacvis_removeActions = {
     {
         if ((player actionParams _x) select 0 in ["Spot Target", "Toggle CQC"]) then {
@@ -128,6 +143,7 @@ BZN_fnc_tacvis_stopAll = {
     BZN_tacvis_CQC_active      = false;
     BZN_tacvis_radar_active    = false;
     BZN_tacvis_threat_active   = false;
+    BZN_tacvis_jtac_active     = false;
     BZN_tacvis_pool_friendly   = [];
     BZN_tacvis_pool_CQC        = [];
     BZN_tacvis_threat          = [];
@@ -145,11 +161,12 @@ BZN_fnc_tacvis_refresh = {
 
     private _hasDev   = call BZN_fnc_tacvis_hasDevice;
     private _hasCQC   = call BZN_fnc_tacvis_hasCQCDevice;
+    private _hasJTAC  = call BZN_fnc_tacvis_hasJTACDevice;
     private _veh      = objectParent player;
     private _hasRadar = (!isNull _veh) and { (typeOf _veh) in BZN_tacvis_vehicles } and { [_veh] call BZN_fnc_tacvis_vehicleHasRadar };
 
     // Nothing applies — tear everything down and bail.
-    if (!_hasDev and !_hasCQC and !_hasRadar) exitWith { call BZN_fnc_tacvis_stopAll };
+    if (!_hasDev and !_hasCQC and !_hasJTAC and !_hasRadar) exitWith { call BZN_fnc_tacvis_stopAll };
 
     // Any capability needs the 3D overlay running.
     call BZN_fnc_tacvis_startRender;
@@ -199,6 +216,21 @@ BZN_fnc_tacvis_refresh = {
         };
     } else {
         BZN_tacvis_threat_active = false;
+    };
+
+    // JTAC SITREP overlay — persistent grid-by-grid breakdown of every
+    // spotted/radar contact (see fn_tacvisJTAC.sqf). Gated on its own
+    // whitelist (BZN_tacvis_devices_jtac, "JTAC devices" in Addon Options) —
+    // a separate, smaller subset of gear from the general always-on device
+    // list, mirroring how CQC devices work as their own independent grant
+    // rather than piggybacking on _hasDev.
+    if (_hasJTAC) then {
+        if (!BZN_tacvis_jtac_active) then {
+            BZN_tacvis_jtac_active = true;
+            [] spawn BZN_fnc_tacvisJTAC;
+        };
+    } else {
+        BZN_tacvis_jtac_active = false;
     };
 
     // CQC scroll-wheel toggle.
@@ -329,6 +361,16 @@ player addEventHandler ["GetOutMan",       { call BZN_fnc_tacvis_refresh }];
     },
     { false },
     [66, [false, true, false]] // ALT+F8
+] call CBA_fnc_addKeybind;
+
+["BZN TacVis", "BZN_tacvis_toggleDetailView",
+    ["Toggle Detail View", "Overrides the close-range 'looked at' tag gating — while active, every infantry tag always renders in full (distance, type, status, ARMED/HOSTILE/INJURED), not just whichever one you're looking at."],
+    {
+        BZN_tacvis_detailView_active = !BZN_tacvis_detailView_active;
+        cutText [format ["TacVis detail view: %1", ["OFF", "ON"] select BZN_tacvis_detailView_active], "PLAIN DOWN", 0.5, false];
+        true
+    },
+    { false }
 ] call CBA_fnc_addKeybind;
 
 ["BZN TacVis", "BZN_tacvis_toggleFriendlyMarkers",
