@@ -8,15 +8,22 @@ BZN_tacvis_debug = true;
 // postInit runs. The defensive defaults below keep the addon inert (rather
 // than erroring) if CBA is ever unavailable.
 // -------------------------------------------------------------------------
-if (isNil "BZN_tacvis_devices")     then { BZN_tacvis_devices = []; };
-if (isNil "BZN_tacvis_devices_cqc") then { BZN_tacvis_devices_cqc = []; };
-if (isNil "BZN_tacvis_vehicles")    then { BZN_tacvis_vehicles = []; };
+if (isNil "BZN_tacvis_devices")          then { BZN_tacvis_devices = []; };
+if (isNil "BZN_tacvis_devices_cqc")      then { BZN_tacvis_devices_cqc = []; };
+if (isNil "BZN_tacvis_vehicles")         then { BZN_tacvis_vehicles = []; };
+if (isNil "BZN_tacvis_spot_showAction")  then { BZN_tacvis_spot_showAction = true; };
+
+// User-facing display toggles (bound to keybinds below; persist across refreshes
+// since they're independent of equipment-based activation).
+BZN_tacvis_userEnabled         = true;   // master overlay on/off
+BZN_tacvis_hideFriendlyMarkers = false;  // hide tags for friendly-side units
 
 // Runtime flags
 BZN_tacvis_friendly_active = false;
 BZN_tacvis_CQC_active      = false;
 BZN_tacvis_CQC_cooldown    = false;
 BZN_tacvis_spot_cooldown   = false;
+BZN_tacvis_marker_cooldown = false;
 BZN_tacvis_radar_active    = false;
 BZN_tacvis_threat_active   = false;
 BZN_tacvis_radar_range     = 6000;   // metres; radar contact scan radius
@@ -68,6 +75,26 @@ BZN_fnc_tacvis_hasDevice = {
     headgear player in BZN_tacvis_devices
     or goggles player in BZN_tacvis_devices
     or (call BZN_fnc_tacvis_inApprovedVehicle)
+};
+
+// True only while the player is ACTIVELY looking through an aim reference —
+// scope/binos on foot, a vehicle turret sight, or a UAV terminal feed.
+// cameraView == "GUNNER" is specifically documented (BIS forums) to mean
+// "actively zoomed/aiming through optics (RMB)" and to cover BOTH on-foot and
+// in-vehicle cases — i.e. it already flips true exactly when a turret occupant
+// or UAV operator brings their sight/feed up, and stays false while they're
+// merely seated/connected without looking through it.
+//
+// Earlier revisions OR'd in raw turret-occupancy (allTurrets/turretUnit) and
+// raw UAV-connection (getConnectedUAV) checks to fix "no Spot Target option in
+// vehicles/UAVs" — but those fire as soon as you're SEATED or CONNECTED,
+// regardless of whether you're actually looking through the sight/feed, which
+// let spotting work while just sitting in the seat in normal view (reported as
+// "able to spot... but not in gunner sight" / "able to spot right after
+// connecting to the UAV"). Falling back to the single documented cameraView
+// signal is both simpler and correct for all three contexts.
+BZN_fnc_tacvis_canSpot = {
+    cameraView == "GUNNER"
 };
 
 BZN_fnc_tacvis_hasCQCDevice = {
@@ -137,13 +164,20 @@ BZN_fnc_tacvis_refresh = {
     };
 
     // Spot action + hostile-civilian threat watch for TacVis device users.
+    // The scroll-menu entry is opt-out (BZN_tacvis_spot_showAction CBA checkbox)
+    // — it's unreachable while piloting a UAV through a terminal (self-action
+    // menus can't render against a redirected camera/controls), so the universal
+    // BZN_tacvis_spotTarget keybind below exists as the always-reachable path;
+    // some users may prefer to hide the redundant menu entry entirely.
     if (_hasDev) then {
-        BZN_tacvis_spot_action = player addAction [
-            "Spot Target",
-            { [] spawn BZN_fnc_tacvisSpot },
-            [], 1.5, false, true, "",
-            "!BZN_tacvis_spot_cooldown && (cameraView == 'GUNNER')"
-        ];
+        if (BZN_tacvis_spot_showAction) then {
+            BZN_tacvis_spot_action = player addAction [
+                "Spot Target",
+                { [] spawn BZN_fnc_tacvisSpot },
+                [], 1.5, false, true, "",
+                "!BZN_tacvis_spot_cooldown && (call BZN_fnc_tacvis_canSpot)"
+            ];
+        };
         if (!BZN_tacvis_threat_active) then {
             BZN_tacvis_threat_active = true;
             [] spawn BZN_fnc_tacvisThreatWatch;
@@ -175,6 +209,57 @@ BZN_fnc_tacvis_refresh = {
 };
 
 // -------------------------------------------------------------------------
+// TEMPORARY diagnostic — logs a one-line summary of every relevant state signal
+// (what the player is in, which camera/entity is active, whether the device and
+// canSpot/aim-reference checks pass) every time ANY of it changes — not spammy,
+// but gives a clean timeline to confirm exactly which combination ("in a vic",
+// "ADSing as infantry", "in a drone window", etc.) the player is in at each
+// step, and whether the action SHOULD be registered/visible at that moment.
+// Remove once Spot Target / canSpot / hasDevice are all confirmed correct
+// across foot, vehicle, and UAV contexts.
+[] spawn {
+    private _last = "";
+    while { true } do {
+        if (!isNil "BZN_tacvis_debug" and { BZN_tacvis_debug }) then {
+            private _uav     = getConnectedUAV player;
+            private _veh     = vehicle player;
+            private _context = if (!isNull _uav) then {
+                format ["piloting-UAV:%1", typeOf _uav]
+            } else {
+                if (_veh != player) then { format ["in-vehicle:%1", typeOf _veh] } else { "on-foot" }
+            };
+            private _line = format [
+                "context=%1 cam=%2 cameraOn=%3 hasDevice=%4 canSpot=%5",
+                _context, cameraView, typeOf (cameraOn), call BZN_fnc_tacvis_hasDevice, call BZN_fnc_tacvis_canSpot
+            ];
+            if (_line != _last) then {
+                _last = _line;
+                diag_log format ["[BZN TacVis DEBUG] state change: %1", _line];
+            };
+        };
+        sleep 0.5;
+    };
+};
+
+// UAV terminal connect/disconnect doesn't fire ANY of the event handlers below
+// (Put/Take/InventoryClosed/GetInMan/GetOutMan all stay silent across that
+// transition — confirmed: hasDevice was satisfied on the ground beforehand, yet
+// "Spot Target" never appeared while piloting). The action registry can go
+// stale across that transition with nothing to re-evaluate it. Poll the
+// connection and force a refresh exactly when it changes.
+[] spawn {
+    private _lastUAV = objNull;
+    while { true } do {
+        private _uav = getConnectedUAV player;
+        if (_uav != _lastUAV) then {
+            _lastUAV = _uav;
+            call BZN_fnc_tacvis_refresh;
+        };
+        sleep 1;
+    };
+};
+
+// -------------------------------------------------------------------------
 // Initial check + event handlers (everything routes through refresh)
 // -------------------------------------------------------------------------
 call BZN_fnc_tacvis_refresh;
@@ -192,5 +277,51 @@ player addEventHandler ["Take", {
 player addEventHandler ["InventoryClosed", { call BZN_fnc_tacvis_refresh }];
 player addEventHandler ["GetInMan",        { call BZN_fnc_tacvis_refresh }];
 player addEventHandler ["GetOutMan",       { call BZN_fnc_tacvis_refresh }];
+
+// -------------------------------------------------------------------------
+// Keybinds — user-facing display toggles. CBA_fnc_addKeybind both registers
+// and updates, so re-running this on every mission start (postInit) is safe.
+// DIK codes given as raw scan-code numbers (defineDIKCodes.inc is a game-VFS
+// path HEMTT's static checker can't resolve): F8 = 0x42 (66), F9 = 0x43 (67).
+// -------------------------------------------------------------------------
+["BZN TacVis", "BZN_tacvis_toggleDisplay",
+    ["Toggle TacVis Display", "Turns the entire BZN TacVis 3D overlay on/off"],
+    {
+        BZN_tacvis_userEnabled = !BZN_tacvis_userEnabled;
+        cutText [format ["TacVis display: %1", ["OFF", "ON"] select BZN_tacvis_userEnabled], "PLAIN DOWN", 0.5, false];
+        true
+    },
+    { false },
+    [66, [false, true, false]] // ALT+F8
+] call CBA_fnc_addKeybind;
+
+["BZN TacVis", "BZN_tacvis_toggleFriendlyMarkers",
+    ["Toggle Friendly Markers", "Hides/shows BZN TacVis tags for friendly-side units only"],
+    {
+        BZN_tacvis_hideFriendlyMarkers = !BZN_tacvis_hideFriendlyMarkers;
+        cutText [format ["TacVis friendly markers: %1", ["SHOWN", "HIDDEN"] select BZN_tacvis_hideFriendlyMarkers], "PLAIN DOWN", 0.5, false];
+        true
+    },
+    { false },
+    [67, [false, true, false]] // ALT+F9
+] call CBA_fnc_addKeybind;
+
+// Universal spot trigger — fires BZN_fnc_tacvisSpot directly, bypassing the
+// scroll-wheel self-action menu entirely. The menu entry has proven unreachable
+// while remotely piloting a UAV through a terminal (camera/controls redirected
+// away from the player's own character), so this is the only path that reliably
+// works there; it doubles as a faster trigger on foot/in vehicles too. No
+// default key — both ALT+F8/F9 are taken by the toggles above and a
+// combat-usable spot key shouldn't be guessed; bind it via Controls > Addons.
+["BZN TacVis", "BZN_tacvis_spotTarget",
+    ["Spot Target", "Marks the hostile under your reticle/feed for your team. Works on foot, in vehicle turrets, and while piloting UAVs — anywhere the scroll-wheel menu option might not be reachable."],
+    {
+        if (BZN_tacvis_spot_cooldown) exitWith { false };
+        if !(call BZN_fnc_tacvis_hasDevice) exitWith { false };
+        [] spawn BZN_fnc_tacvisSpot;
+        true
+    },
+    { false }
+] call CBA_fnc_addKeybind;
 
 if (BZN_tacvis_debug) then { systemChat "BZN TacVis - Initialized" };

@@ -10,7 +10,10 @@ if (isDedicated or !local player) exitWith {};
 while { BZN_tacvis_radar_active } do {
     private _veh = objectParent player;
 
-    if (alive player and !isNull _veh and { [_veh] call BZN_fnc_tacvis_vehicleHasRadar }) then {
+    // isVehicleRadarOn reflects the crew's actual radar power switch (Ctrl+R) —
+    // having radar-capable equipment isn't enough; contacts should only be
+    // gathered/shared while the set is actually switched on.
+    if (alive player and !isNull _veh and { [_veh] call BZN_fnc_tacvis_vehicleHasRadar } and { isVehicleRadarOn _veh }) then {
         private _expiry   = time + 3;   // rolling expiry, refreshed each scan
         private _contacts = [];
         {
@@ -31,7 +34,7 @@ while { BZN_tacvis_radar_active } do {
 
         // Share this operator's contacts with everyone (0 includes self).
         if (_contacts isNotEqualTo []) then {
-            _contacts remoteExec ["BZN_fnc_tacvisAddRadar", 0];
+            [_contacts] remoteExec ["BZN_fnc_tacvisAddRadar", 0];
         };
     };
 

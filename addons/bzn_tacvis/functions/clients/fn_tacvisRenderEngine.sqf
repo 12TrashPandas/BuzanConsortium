@@ -2,6 +2,8 @@ if (isDedicated) exitWith {};
 
 BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
 
+    if (!BZN_tacvis_userEnabled) exitWith {};
+
     // Live shared contacts (expiry-filtered). Player spots and radar contacts are
     // both shared across clients; rendering is still range-limited by the alpha
     // fade below, so teammates only see contacts within their own range.
@@ -19,14 +21,24 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
     // Empty/unmanned vehicles report side civilian (which reads as friendly), so
     // the friendly branch requires real crew and a non-civilian side. Infantry kept.
     _pool = _pool select {
-        (_x isKindOf "CAManbase")
-        or { _x in _spottedObjs }
-        or { _x in _radarObjs }
-        or {
-            ((side _x) getFriend (side player) >= 0.8)
-            and { side _x != civilian }
-            and { ({alive _x} count crew _x) > 0 }
-        }
+        // Exclude Zeus/curator placeholder bodies (VirtualCurator_F and other
+        // invisible Game Master entities all derive from VirtualMan_F) — these
+        // can otherwise slip into scans and render as stray "UNKNOWN" tags.
+        !(_x isKindOf "VirtualMan_F")
+        and (
+            (_x isKindOf "CAManbase")
+            or { _x in _spottedObjs }
+            or { _x in _radarObjs }
+            or {
+                ((side _x) getFriend (side player) >= 0.8)
+                and { side _x != civilian }
+                and { ({alive _x} count crew _x) > 0 }
+            }
+        )
+        // "Friendly markers" toggle hides only units that read as friendly to
+        // the player — spotted/radar/threat contacts (always hostile/neutral
+        // by definition) are unaffected.
+        and { !BZN_tacvis_hideFriendlyMarkers or { ((side _x) getFriend (side player) < 0.8) } }
     };
 
     // Observer airborne? Ground units then display out to the longer air-observer
@@ -171,35 +183,51 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
                     };
                     if (name _unit != "" and side _unit == side player) then { _nameUnit = name _unit };
                 };
-                if (_unit isKindOf "Car" or _unit isKindOf "Tank") then {
-                    _nameUnit = "VEHICLE";
+                // Drones (UAV/UGV/UUV) get their own category regardless of chassis —
+                // unitIsUAV checks the actual config trait rather than inheritance, so
+                // it correctly catches ground/air/sea drones alike before the
+                // chassis-based branches below would otherwise label them VEHICLE/
+                // AIRCRAFT/SHIP.
+                if (unitIsUAV _unit) then {
+                    _nameUnit = format ["DRONE - %1", getText (configOf _unit >> "displayName")];
                     switch (side _unit) do {
-                        case sideAmbientLife : { _nameUnit = "WILDLIFE";        _color2 = _colorWHITEdark; _Hex = _HexWHITE };
-                        case sideUnknown         : { _nameUnit = "UNKNOWN VEHICLE"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                        case sideAmbientLife : { _nameUnit = "WILDLIFE";      _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                        case sideUnknown         : { _nameUnit = "UNKNOWN DRONE"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
                         case civilian            : { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
-                        case sideEmpty           : { _nameUnit = "UNKNOWN VEHICLE"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                        case sideEmpty           : { _nameUnit = "UNKNOWN DRONE"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
                     };
                     if ({alive _x} count crew _unit == 0) then { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
-                };
-                if (_unit isKindOf "Air") then {
-                    _nameUnit = "AIRCRAFT";
-                    switch (side _unit) do {
-                        case sideAmbientLife : { _nameUnit = "WILDLIFE";         _color2 = _colorWHITEdark; _Hex = _HexWHITE };
-                        case sideUnknown         : { _nameUnit = "UNKNOWN AIRCRAFT"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
-                        case civilian            : { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
-                        case sideEmpty           : { _nameUnit = "UNKNOWN AIRCRAFT"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                } else {
+                    if (_unit isKindOf "Car" or _unit isKindOf "Tank") then {
+                        _nameUnit = format ["GROUND - %1", getText (configOf _unit >> "displayName")];
+                        switch (side _unit) do {
+                            case sideAmbientLife : { _nameUnit = "WILDLIFE";        _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                            case sideUnknown         : { _nameUnit = "UNKNOWN VEHICLE"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                            case civilian            : { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                            case sideEmpty           : { _nameUnit = "UNKNOWN VEHICLE"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                        };
+                        if ({alive _x} count crew _unit == 0) then { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
                     };
-                    if ({alive _x} count crew _unit == 0) then { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
-                };
-                if (_unit isKindOf "Ship") then {
-                    _nameUnit = "SHIP";
-                    switch (side _unit) do {
-                        case sideAmbientLife : { _nameUnit = "WILDLIFE";    _color2 = _colorWHITEdark; _Hex = _HexWHITE };
-                        case sideUnknown         : { _nameUnit = "UNKNOWN SHIP"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
-                        case civilian            : { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
-                        case sideEmpty           : { _nameUnit = "UNKNOWN SHIP"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                    if (_unit isKindOf "Air") then {
+                        _nameUnit = format ["AIR - %1", getText (configOf _unit >> "displayName")];
+                        switch (side _unit) do {
+                            case sideAmbientLife : { _nameUnit = "WILDLIFE";         _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                            case sideUnknown         : { _nameUnit = "UNKNOWN AIRCRAFT"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                            case civilian            : { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                            case sideEmpty           : { _nameUnit = "UNKNOWN AIRCRAFT"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                        };
+                        if ({alive _x} count crew _unit == 0) then { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
                     };
-                    if ({alive _x} count crew _unit == 0) then { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                    if (_unit isKindOf "Ship") then {
+                        _nameUnit = format ["SEA - %1", getText (configOf _unit >> "displayName")];
+                        switch (side _unit) do {
+                            case sideAmbientLife : { _nameUnit = "WILDLIFE";    _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                            case sideUnknown         : { _nameUnit = "UNKNOWN SHIP"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                            case civilian            : { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                            case sideEmpty           : { _nameUnit = "UNKNOWN SHIP"; _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                        };
+                        if ({alive _x} count crew _unit == 0) then { _color2 = _colorWHITEdark; _Hex = _HexWHITE };
+                    };
                 };
             };
             case false : {

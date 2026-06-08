@@ -6,6 +6,11 @@ params ["_target"];
 // and is dropped only when the unit dies. No time expiry — the map marker, which
 // fades after 10 s, is handled separately in fn_tacvisSpot/fn_tacvisSpotMarker.
 if (!hasInterface) exitWith {};                  // skip dedicated server / HC
+
+if (!isNil "BZN_tacvis_debug" and { BZN_tacvis_debug }) then {
+    diag_log format ["[BZN TacVis DEBUG] AddSpot received on %1 for target %2", name player, _target];
+};
+
 if (isNil "BZN_tacvis_spotted") then { BZN_tacvis_spotted = []; };
 
 // Drop dead/null entries, then add this target (deduped).
