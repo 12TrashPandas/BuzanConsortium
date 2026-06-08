@@ -11,6 +11,8 @@ class CfgFunctions {
             class tacvisSpot {};
             class tacvisSpotMarker {};
             class tacvisAddSpot {};
+            class tacvisRefreshSpot {};
+            class tacvisRefreshUAVOperator {};
             class tacvisRadar {};
             class tacvisAddRadar {};
             class tacvisThreatWatch {};

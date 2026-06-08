@@ -11,6 +11,7 @@ class CfgPatches
 			"bzn_armor",
 			"bzn_aax",
 			"bzn_tacvis",
+			"bzn_uav_terminal",
 		};
 		units[]={};
 		VERSION_CONFIG;

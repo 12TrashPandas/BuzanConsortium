@@ -7,10 +7,17 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
     // Live shared contacts (expiry-filtered). Player spots and radar contacts are
     // both shared across clients; rendering is still range-limited by the alpha
     // fade below, so teammates only see contacts within their own range.
-    private _spottedObjs = BZN_tacvis_spotted select { !isNull _x and { alive _x } };
+    private _spottedTuples = BZN_tacvis_spotted select { (time <= (_x select 1)) and { !isNull (_x select 0) } and { alive (_x select 0) } };
+    private _spottedObjs   = _spottedTuples apply { _x select 0 };
     private _radarObjs   = (BZN_tacvis_radar   select { (time <= (_x select 1)) and { !isNull (_x select 0) } }) apply { _x select 0 };
     // Local hostile-civilian alarm markers (short range, not shared).
     private _threatObjs  = (BZN_tacvis_threat  select { (time <= (_x select 1)) and { !isNull (_x select 0) } and { alive (_x select 0) } }) apply { _x select 0 };
+    // Friendly drones' remote operators — self-announced (see the UAV-uplink
+    // loop in fn_TACVISpostInit.sqf); kept tuple-shaped [uav, name, expiry] so
+    // a dropped connection ages out on its own within a couple seconds.
+    private _uavOperatorTuples = if (isNil "BZN_tacvis_uavOperators") then { [] } else {
+        BZN_tacvis_uavOperators select { (time <= (_x select 2)) and { !isNull (_x select 0) } }
+    };
 
     // Combine all pools; pushBackUnique avoids double-rendering. Spotted enemies
     // arrive via pool_friendly (always-on); radar contacts via _radarObjs.
@@ -249,7 +256,13 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
             };
             case (_unit in _spottedObjs) : {
                 _color3 = _colorRED;
-                _messageDOWN = format ["SPOTTED | %1", _messageDOWN];
+                // Countdown to fade-out — refreshed by fn_tacvisAlwaysOn for as
+                // long as anyone on the team keeps LOS, so this ticks back up
+                // toward BZN_tacvis_spot_duration while the mark is being watched
+                // and only counts down to zero once everyone loses sight.
+                private _idx = _spottedTuples findIf { (_x select 0) == _unit };
+                private _remain = if (_idx >= 0) then { ceil ((_spottedTuples select _idx select 1) - time) } else { 0 };
+                _messageDOWN = format ["SPOTTED | %1 | %2s", _messageDOWN, _remain];
             };
             case (_unit in _radarObjs) : {
                 _messageDOWN = format ["RADAR | %1", _messageDOWN];
@@ -298,6 +311,49 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
             if (speed _unit > 0.1) then { _d2b = " | MOVING" };
             if (rating _unit < 0 or (_unit targetKnowledge player) select 3 > 0) then {
                 _d2a = " | HOSTILE"; _color4 = _colorRED;
+            };
+
+            if (unitIsUAV _unit) then {
+                // Friendly drones: show who's remotely flying it, if anyone —
+                // see _uavOperatorTuples above (self-announced; no native
+                // reverse query for "who is connected to this UAV" exists).
+                // The AI driver/gunner seats aren't meaningful here — the
+                // remote operator IS the relevant "who's running this."
+                private _opIdx = _uavOperatorTuples findIf { (_x select 0) == _unit };
+                if (_opIdx >= 0) then {
+                    _d2c = format [" | OP: %1", (_uavOperatorTuples select _opIdx) select 1];
+                };
+            } else {
+                // Crewed vehicles: name the key seats (Driver/Gunner/Commander)
+                // individually — passengers are summarized as a headcount only
+                // (a bus full of named tags would be unreadable noise).
+                // Dedupe by occupant: small vehicles often have the same
+                // person filling multiple roles (e.g. driver == gunner).
+                private _crew = [];
+                {
+                    _x params ["_role", "_occupant"];
+                    if (!isNull _occupant and { alive _occupant }) then {
+                        private _idx = _crew findIf { (_x select 0) == _occupant };
+                        if (_idx >= 0) then {
+                            _crew set [_idx, [_occupant, ((_crew select _idx) select 1) + "/" + _role]];
+                        } else {
+                            _crew pushBack [_occupant, _role];
+                        };
+                    };
+                } forEach [["D", driver _unit], ["G", gunner _unit], ["C", commander _unit]];
+
+                if (count _crew > 0) then {
+                    private _names = _crew apply { format ["%1 (%2)", name (_x select 0), _x select 1] };
+                    _d2c = format [" | OP: %1", _names joinString ", "];
+                };
+
+                // `crew` returns every alive occupant (key seats + turrets +
+                // cargo); subtracting the deduped D/G/C set leaves a clean
+                // "everyone else" headcount.
+                private _passengerCount = ({ alive _x } count crew _unit) - (count _crew);
+                if (_passengerCount > 0) then {
+                    _d2c = _d2c + format [" | P: %1", _passengerCount];
+                };
             };
         };
 

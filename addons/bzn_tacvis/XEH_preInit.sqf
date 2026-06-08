@@ -42,6 +42,6 @@ private _defaultVehicles = [];
     ["Show 'Spot Target' in scroll menu", "Adds a scroll-wheel 'Spot Target' entry alongside the keybind. Disable if you'd rather rely solely on the keybind (e.g. the menu entry isn't reachable while piloting a UAV through a terminal — the keybind always works)."],
     "BZN TacVis",
     true,
-    1,
+    0, // personal UI preference, not a balance/whitelist concern — left as a per-player local choice (unlike the device/vehicle whitelists above, which are forced)
     { params ["_value"]; BZN_tacvis_spot_showAction = _value; if (!isNil "BZN_fnc_tacvis_refresh") then { call BZN_fnc_tacvis_refresh }; }
 ] call CBA_settings_fnc_init;

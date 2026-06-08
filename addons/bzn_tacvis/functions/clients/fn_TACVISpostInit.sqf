@@ -26,15 +26,18 @@ BZN_tacvis_spot_cooldown   = false;
 BZN_tacvis_marker_cooldown = false;
 BZN_tacvis_radar_active    = false;
 BZN_tacvis_threat_active   = false;
+BZN_tacvis_uplink_active   = false;  // drives the persistent "slaved to drone" hint while connected
 BZN_tacvis_radar_range     = 6000;   // metres; radar contact scan radius
 BZN_tacvis_air_range       = 5000;   // metres; display/IFF range for flying vehicles
 BZN_tacvis_ground_air_range = 1500;  // metres; ground-unit display range when the observer is airborne
+BZN_tacvis_spot_duration   = 35;     // seconds; how long a "SPOTTED" tag persists without refresh
 
 // Render pools
 BZN_tacvis_pool_friendly = [];   // friendlies + spotted enemies (always-on)
 BZN_tacvis_pool_CQC      = [];   // nearby enemies (CQC mode only)
 BZN_tacvis_radar         = [];   // shared [unit, expiry] radar contacts (from any operator)
 BZN_tacvis_threat        = [];   // local [unit, expiry] hostile-civilian alarm markers
+BZN_tacvis_uavOperators  = [];   // shared [uav, operatorName, expiry] — who's remotely connected to a friendly drone
 
 // Spotted enemies — persistent 3D tags; plain list of units, pruned on death.
 BZN_tacvis_spotted = [];
@@ -77,23 +80,24 @@ BZN_fnc_tacvis_hasDevice = {
     or (call BZN_fnc_tacvis_inApprovedVehicle)
 };
 
-// True only while the player is ACTIVELY looking through an aim reference —
-// scope/binos on foot, a vehicle turret sight, or a UAV terminal feed.
-// cameraView == "GUNNER" is specifically documented (BIS forums) to mean
-// "actively zoomed/aiming through optics (RMB)" and to cover BOTH on-foot and
-// in-vehicle cases — i.e. it already flips true exactly when a turret occupant
-// or UAV operator brings their sight/feed up, and stays false while they're
-// merely seated/connected without looking through it.
+// True while the player has a valid aim reference to actually spot through —
+// an optic/binos on foot, a turret/gunner seat, or a connected UAV feed.
+// cameraView == "GUNNER" is the documented BIS signal for "actively
+// zoomed/aiming through optics (RMB)" and covers foot + turret seats alike;
+// drones get an unconditional pass since the feed IS the operator's viewpoint
+// the instant they connect (no separate "raise the sight" state to check).
 //
-// Earlier revisions OR'd in raw turret-occupancy (allTurrets/turretUnit) and
-// raw UAV-connection (getConnectedUAV) checks to fix "no Spot Target option in
-// vehicles/UAVs" — but those fire as soon as you're SEATED or CONNECTED,
-// regardless of whether you're actually looking through the sight/feed, which
-// let spotting work while just sitting in the seat in normal view (reported as
-// "able to spot... but not in gunner sight" / "able to spot right after
-// connecting to the UAV"). Falling back to the single documented cameraView
-// signal is both simpler and correct for all three contexts.
+// This is ONLY consulted by fn_tacvisSpot.sqf at the moment of use — NOT used
+// to gate the scroll-menu entry's visibility (that stays always-on, cooldown/
+// showAction permitting). cameraView genuinely oscillates GUNNER<->INTERNAL
+// for ~0.5-0.8s mid-aim in certain turret sights; a per-frame addAction
+// condition built on it flickered the entry on/off in lockstep, and there's no
+// debounce window that fixes an oscillating signal without trading flicker for
+// sluggishness. A one-shot check at execution time has no such problem — it
+// either reads true or false for that single button-press, and a stray false
+// reading just produces the "Aim through optics to spot" feedback once.
 BZN_fnc_tacvis_canSpot = {
+    if (!isNull (getConnectedUAV player)) exitWith { true };
     cameraView == "GUNNER"
 };
 
@@ -169,13 +173,24 @@ BZN_fnc_tacvis_refresh = {
     // menus can't render against a redirected camera/controls), so the universal
     // BZN_tacvis_spotTarget keybind below exists as the always-reachable path;
     // some users may prefer to hide the redundant menu entry entirely.
+    //
+    // Visibility is gated on cooldown ONLY — deliberately NOT on canSpot
+    // (the "are you aiming?" check). cameraView == "GUNNER" genuinely
+    // oscillates GUNNER<->INTERNAL for ~0.5-0.8s mid-aim in certain turret
+    // sights, and a per-frame addAction condition built on it flickered the
+    // entry on/off in lockstep — no debounce window "fixes" an oscillating
+    // signal without trading flicker for sluggishness. The aim requirement is
+    // still fully enforced — fn_tacvisSpot.sqf checks canSpot at the moment of
+    // use and shows "Aim through optics to spot" if you're not actually
+    // sighted in — it's just a one-shot check there, not a per-frame gate, so
+    // a stray oscillation can't cause visible flicker.
     if (_hasDev) then {
         if (BZN_tacvis_spot_showAction) then {
             BZN_tacvis_spot_action = player addAction [
                 "Spot Target",
                 { [] spawn BZN_fnc_tacvisSpot },
                 [], 1.5, false, true, "",
-                "!BZN_tacvis_spot_cooldown && (call BZN_fnc_tacvis_canSpot)"
+                "!BZN_tacvis_spot_cooldown"
             ];
         };
         if (!BZN_tacvis_threat_active) then {
@@ -208,39 +223,6 @@ BZN_fnc_tacvis_refresh = {
     };
 };
 
-// -------------------------------------------------------------------------
-// TEMPORARY diagnostic — logs a one-line summary of every relevant state signal
-// (what the player is in, which camera/entity is active, whether the device and
-// canSpot/aim-reference checks pass) every time ANY of it changes — not spammy,
-// but gives a clean timeline to confirm exactly which combination ("in a vic",
-// "ADSing as infantry", "in a drone window", etc.) the player is in at each
-// step, and whether the action SHOULD be registered/visible at that moment.
-// Remove once Spot Target / canSpot / hasDevice are all confirmed correct
-// across foot, vehicle, and UAV contexts.
-[] spawn {
-    private _last = "";
-    while { true } do {
-        if (!isNil "BZN_tacvis_debug" and { BZN_tacvis_debug }) then {
-            private _uav     = getConnectedUAV player;
-            private _veh     = vehicle player;
-            private _context = if (!isNull _uav) then {
-                format ["piloting-UAV:%1", typeOf _uav]
-            } else {
-                if (_veh != player) then { format ["in-vehicle:%1", typeOf _veh] } else { "on-foot" }
-            };
-            private _line = format [
-                "context=%1 cam=%2 cameraOn=%3 hasDevice=%4 canSpot=%5",
-                _context, cameraView, typeOf (cameraOn), call BZN_fnc_tacvis_hasDevice, call BZN_fnc_tacvis_canSpot
-            ];
-            if (_line != _last) then {
-                _last = _line;
-                diag_log format ["[BZN TacVis DEBUG] state change: %1", _line];
-            };
-        };
-        sleep 0.5;
-    };
-};
-
 // UAV terminal connect/disconnect doesn't fire ANY of the event handlers below
 // (Put/Take/InventoryClosed/GetInMan/GetOutMan all stay silent across that
 // transition — confirmed: hasDevice was satisfied on the ground beforehand, yet
@@ -248,11 +230,65 @@ BZN_fnc_tacvis_refresh = {
 // stale across that transition with nothing to re-evaluate it. Poll the
 // connection and force a refresh exactly when it changes.
 [] spawn {
-    private _lastUAV = objNull;
+    // Track CONNECTION STATE (isNull), not the object reference itself —
+    // getConnectedUAV apparently hands back a fresh "invalid" object handle
+    // on every call while disconnected. All such handles report isNull true
+    // and print as <NULL-object>, but they are NOT guaranteed to compare ==
+    // equal to each other (deleted/invalid object handles retain distinct
+    // identities). Comparing _uav != _lastUAV directly therefore evaluated
+    // "changed" on nearly every single poll even though the player never
+    // connected to anything — silently forcing BZN_fnc_tacvis_refresh (and
+    // its remove/re-add of the Spot Target action) roughly once a second,
+    // which is what was actually causing the persistent menu-entry flicker
+    // (confirmed via RPT: refresh firing in lockstep with this loop's 1 s
+    // cadence, action ID incrementing every time, regardless of cameraView).
+    private _wasConnected = false;
     while { true } do {
         private _uav = getConnectedUAV player;
-        if (_uav != _lastUAV) then {
-            _lastUAV = _uav;
+        private _isConnected = !isNull _uav;
+        if (_isConnected != _wasConnected) then {
+            // Spotting/tracking is derived from wherever the camera/sensor
+            // actually is (see fn_tacvisSpot / fn_tacvisAlwaysOn's _originPos
+            // derivation) — while connected to a drone, that's the DRONE's
+            // feed, not the operator's body sitting at the terminal. Surface
+            // that clearly (top-right hint, matching fn_tacvisCQC's styling/
+            // placement) so players don't wonder why looking around with their
+            // own eyes isn't refreshing/generating spots while piloting.
+            if (_isConnected) then {
+                // hintSilent is a shared display slot — a single call gets
+                // clobbered by the next unrelated hint (CQC's per-second
+                // countdown, vanilla system hints, etc.). Keep this notice
+                // genuinely "always on" for the whole connection by re-asserting
+                // it once a second for as long as the player stays connected.
+                BZN_tacvis_uplink_active = true;
+                [] spawn {
+                    while { BZN_tacvis_uplink_active } do {
+                        private _uavNow = getConnectedUAV player;
+                        if (isNull _uavNow) exitWith {};
+
+                        hintSilent parseText
+                            "<t size='1.3' color='#30a0ff'>TACVIS UPLINK</t><br/><t size='1.1'>Slaved to drone feed — tracking now follows the drone's view, not your own</t>";
+
+                        // No native "who is connected to this UAV" query exists
+                        // (getConnectedUAV only works operator -> drone), so the
+                        // operator announces themselves to the team once a
+                        // second; fn_tacvisRenderEngine displays it on the
+                        // drone's friendly tag. Short expiry (vs. the 1 s
+                        // cadence) means a disconnect clears it on its own
+                        // within a couple seconds — no explicit teardown needed.
+                        [_uavNow, name player, time + 3] remoteExec ["BZN_fnc_tacvisRefreshUAVOperator", 0];
+
+                        sleep 1;
+                    };
+                };
+            } else {
+                BZN_tacvis_uplink_active = false;
+                hintSilent parseText
+                    "<t size='1.3' color='#30ff30'>TACVIS UPLINK</t><br/><t size='1.1'>Restored to personal view</t>";
+                [] spawn { sleep 5; hintSilent "" };
+            };
+
+            _wasConnected = _isConnected;
             call BZN_fnc_tacvis_refresh;
         };
         sleep 1;

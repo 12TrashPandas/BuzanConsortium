@@ -2,9 +2,10 @@ if (isDedicated or !local player) exitWith {};
 if (BZN_tacvis_spot_cooldown) exitWith {};
 
 // Requires a TacVis device AND a valid aim reference — optics on foot, a
-// vehicle turret seat, or a connected UAV feed (see BZN_fnc_tacvis_canSpot).
-// Safety net — the scroll action's condition already enforces this, but state
-// can change between opening the menu and selecting the entry.
+// vehicle turret/gunner seat, or a connected UAV feed (see
+// BZN_fnc_tacvis_canSpot). The scroll-menu entry is deliberately always visible
+// (cooldown/showAction-gated only — see fn_TACVISpostInit) so this is the
+// actual enforcement point, not just a safety net for menu/state races.
 if !(call BZN_fnc_tacvis_hasDevice) exitWith {};
 if !(call BZN_fnc_tacvis_canSpot) exitWith {
     cutText ["Aim through optics to spot", "PLAIN DOWN", 0.5, false];
