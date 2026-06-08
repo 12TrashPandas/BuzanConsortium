@@ -545,13 +545,15 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         // HVT override — same idea as the VIP override directly below, but for
         // a "priority kill target" callout: a unit the mission has flagged as
         // worth singling out (mission-side: `_unit setVariable
-        // ["BZN_tacvis_HVT", true]`) gets a plain "HVT" label in a distinct
-        // violet, replacing the usual type name. Deliberately a separate
-        // colour/word from VIP/PROTECT — that one means "keep alive," this one
-        // doesn't carry that connotation either way.
+        // ["BZN_tacvis_HVT", true]`) gets a "HVT - ELIMINATE" label in a
+        // distinct violet, replacing the usual type name — unlike VIP, the
+        // call here never varies with side, since "priority kill target"
+        // means the same thing whether they're hostile or (rarely) your own.
+        // Deliberately a separate colour/word from VIP/PROTECT — that one
+        // means "keep alive," this one doesn't carry that connotation either way.
         private _isHVT = _unit getVariable ["BZN_tacvis_HVT", false];
         if (_isHVT) then {
-            _messageCENTER = "HVT_";
+            _messageCENTER = "HVT - ELIMINATE_";
             _color2 = _colorHVT;
         };
 

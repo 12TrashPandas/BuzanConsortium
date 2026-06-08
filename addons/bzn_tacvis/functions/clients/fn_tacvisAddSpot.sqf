@@ -1,9 +1,14 @@
-params ["_target"];
+params ["_target", "_expiry"];
 
 // Runs on every client (remoteExec to 0) to register/refresh a spotted enemy's
 // 3D tag. BZN_tacvis_spotted holds [unit, expiry] entries — the same shared,
-// time-stamped shape as BZN_tacvis_radar/BZN_tacvis_threat (mission time is
-// synced, so the spotter-computed expiry is valid everywhere). The tag shows
+// time-stamped shape as BZN_tacvis_radar/BZN_tacvis_threat. The expiry is
+// computed ONCE by the spotter (fn_tacvisSpot) and broadcast as-is — mirroring
+// fn_tacvisRefreshSpot's pattern — rather than each receiving client
+// recomputing `time + BZN_tacvis_spot_duration` locally: `time` drifts
+// slightly between clients under latency/packet loss, so a per-receiver
+// recompute was producing a visibly different countdown on different machines
+// for what should be the same spot ("desync in timer"). The tag shows
 // (per client) while the unit is alive, within display range, and unexpired;
 // BZN_tacvis_spot_duration controls how long it persists without a refresh
 // (see fn_tacvisAlwaysOn, which re-broadcasts the expiry via fn_tacvisRefreshSpot
@@ -16,8 +21,6 @@ if (!isNil "BZN_tacvis_debug" and { BZN_tacvis_debug }) then {
 };
 
 if (isNil "BZN_tacvis_spotted") then { BZN_tacvis_spotted = []; };
-
-private _expiry = time + BZN_tacvis_spot_duration;
 
 // Drop expired/dead entries, then add or refresh this target (mirrors
 // fn_tacvisAddRadar's idempotent merge).

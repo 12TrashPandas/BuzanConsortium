@@ -108,6 +108,14 @@ if (!_los) exitWith {
 
 // The 3D world tag is persistent (shown until the target dies or leaves display
 // range); only the team map marker fades, after 10 s.
+//
+// _spotExpiry is computed ONCE here and broadcast as-is — mirroring
+// fn_tacvisRefreshSpot's pattern — rather than letting fn_tacvisAddSpot
+// recompute `time + BZN_tacvis_spot_duration` independently on each receiving
+// client. `time` drifts slightly between clients under latency/packet loss, so
+// recomputing it per-receiver was producing a visibly different countdown for
+// the same spot on different machines ("desync in timer").
+private _spotExpiry   = time + BZN_tacvis_spot_duration;
 private _markerExpiry = time + 10;
 private _markerName    = format ["BZN_spot_%1", netId _target];
 private _pos           = getPos _target;
@@ -126,8 +134,8 @@ if (!isNil "BZN_tacvis_debug" and { BZN_tacvis_debug }) then {
     ];
 };
 
-[_target] call BZN_fnc_tacvisAddSpot;
-[_target] remoteExec ["BZN_fnc_tacvisAddSpot", 0];
+[_target, _spotExpiry] call BZN_fnc_tacvisAddSpot;
+[_target, _spotExpiry] remoteExec ["BZN_fnc_tacvisAddSpot", 0];
 
 // Map marker has its own 30 s cooldown, separate from the spot action's
 // cooldown — placing the persistent 3D tag is unaffected, only the marker drop.

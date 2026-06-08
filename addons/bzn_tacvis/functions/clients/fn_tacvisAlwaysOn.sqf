@@ -65,7 +65,19 @@ while { BZN_tacvis_friendly_active } do {
                     (_originPos distance _u <= 500)
                     and { (lineIntersectsSurfaces [_originPos, eyePos _u, _losFrom, _u]) isEqualTo [] }
                 ) then {
-                    [_u, time + BZN_tacvis_spot_duration] remoteExec ["BZN_fnc_tacvisRefreshSpot", 0];
+                    // Compute once, apply locally AND broadcast — mirrors
+                    // fn_tacvisSpot.sqf's documented workaround: remoteExec
+                    // target 0 does not reliably loop back to the calling
+                    // machine on non-host clients, so a refresh-only-broadcast
+                    // here meant the refreshing player's OWN copy of
+                    // BZN_tacvis_spotted never got the extension — their
+                    // personal countdown kept ticking down even while their
+                    // gaze was the thing keeping the spot alive for everyone
+                    // else. Calling locally guarantees their own state matches
+                    // what they just told the team.
+                    private _refreshExpiry = time + BZN_tacvis_spot_duration;
+                    [_u, _refreshExpiry] call BZN_fnc_tacvisRefreshSpot;
+                    [_u, _refreshExpiry] remoteExec ["BZN_fnc_tacvisRefreshSpot", 0];
                 };
             } forEach BZN_tacvis_spotted;
         };

@@ -35,8 +35,12 @@ while {
     BZN_tacvis_pool_CQC = _near;
     playSound "vto_tacvis_sound_beep";
 
+    // Orange (vs. CQC's own red for cooldown / JTAC's similar amber) — a
+    // distinct "this view is yours alone" signal, plus an explicit reminder
+    // that what CQC tags up is a personal scan, not shared team intel like
+    // Spot Target/SITREP (BZN_tacvis_pool_CQC never leaves this machine).
     hintSilent parseText format [
-        "<t size='1.3' color='#ff3030'>TACVIS CQC</t><br/><t size='1.1'>Active: %1s</t>",
+        "<t size='1.3' color='#ff8c00'>TACVIS CQC</t><br/><t size='1.1'>Active: %1s</t><br/><t size='0.85' color='#c0c0c0'>Personal scan — not shared with your team</t>",
         ceil (_startTime + _maxTime - time)
     ];
 

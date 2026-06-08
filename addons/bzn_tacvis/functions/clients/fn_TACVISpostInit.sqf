@@ -308,7 +308,16 @@ BZN_fnc_tacvis_refresh = {
                         // drone's friendly tag. Short expiry (vs. the 1 s
                         // cadence) means a disconnect clears it on its own
                         // within a couple seconds — no explicit teardown needed.
-                        [_uavNow, name player, time + 3] remoteExec ["BZN_fnc_tacvisRefreshUAVOperator", 0];
+                        //
+                        // remoteExec target 0 does not reliably loop back to
+                        // the calling machine on non-host clients (see
+                        // fn_tacvisSpot.sqf's documented workaround) — call
+                        // locally too so the operator's own view of who's
+                        // flying stays consistent with what they just told
+                        // the team, same as everyone else's.
+                        private _uavOpExpiry = time + 3;
+                        [_uavNow, name player, _uavOpExpiry] call BZN_fnc_tacvisRefreshUAVOperator;
+                        [_uavNow, name player, _uavOpExpiry] remoteExec ["BZN_fnc_tacvisRefreshUAVOperator", 0];
 
                         sleep 1;
                     };

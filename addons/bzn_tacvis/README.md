@@ -99,9 +99,14 @@ exactly the same, just from the drone's perspective while you're connected.
 A short-range threat-detection mode for close-quarters work:
 
 - Scans roughly a 50 m bubble around you for up to 10 of the nearest
-  living units (any side) and tags them.
-- Runs for **30 seconds**, with a beep each second and a countdown shown
-  top-right (**"TACVIS CQC — Active: Xs"**).
+  living units (any side) and tags them — **for your eyes only**: unlike
+  Spot Target/JTAC, CQC contacts are never shared with your team, so a
+  "<t color='#ff8c00'>TACVIS CQC</t>" hint reading **"Personal scan — not
+  shared with your team"** rides along under the countdown as a reminder.
+- Runs for **30 seconds**, with a beep each second and an orange countdown
+  shown top-right (**"TACVIS CQC — Active: Xs"**) — orange specifically to
+  set it apart from JTAC's amber SITREP and CQC's own red cooldown/ready
+  hints, reinforcing that this is *your* personal view, not shared intel.
 - Stops automatically when the timer runs out, when you toggle it off again, or
   if you remove your CQC device mid-scan.
 - After stopping, the action goes on a **randomized 60–180 second cooldown**
@@ -170,7 +175,7 @@ naming who's running the platform:
   (mission-side, e.g. in its init field: `this setVariable
   ["BZN_tacvis_HVT", true, true];` — the trailing `true` is the public-
   broadcast flag, required so every client sees the flag, not just the
-  machine the unit is local to) gets a distinct violet **"HVT"** tag in
+  machine the unit is local to) gets a distinct violet **"HVT - ELIMINATE"** tag in
   place of the usual type label, so it never gets lost among ordinary
   contacts. (Distinct from VIP below — HVT doesn't carry any "keep them
   alive" connotation either way.)

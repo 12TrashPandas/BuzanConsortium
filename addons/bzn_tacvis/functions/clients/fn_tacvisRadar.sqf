@@ -32,8 +32,15 @@ while { BZN_tacvis_radar_active } do {
             };
         } forEach (player nearTargets BZN_tacvis_radar_range);
 
-        // Share this operator's contacts with everyone (0 includes self).
+        // Share this operator's contacts with the team. remoteExec target 0
+        // does NOT reliably loop back to the calling machine on non-host
+        // clients (see fn_tacvisSpot.sqf's documented workaround) — a
+        // broadcast-only call here meant the radar operator themselves could
+        // end up never seeing the very contacts their own scope picked up.
+        // Calling locally guarantees the operator's own pool always matches
+        // what they just shared with everyone else.
         if (_contacts isNotEqualTo []) then {
+            [_contacts] call BZN_fnc_tacvisAddRadar;
             [_contacts] remoteExec ["BZN_fnc_tacvisAddRadar", 0];
         };
     };
