@@ -1,30 +1,29 @@
 if (isDedicated) exitWith {};
 
-BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
+BZN_visor_Display = addMissionEventHandler ["Draw3D", {
 
-    if (!BZN_tacvis_userEnabled) exitWith {};
+    if (!BZN_visor_userEnabled) exitWith {};
 
-    // Live shared contacts (expiry-filtered). Player spots and radar contacts are
-    // both shared across clients; rendering is still range-limited by the alpha
-    // fade below, so teammates only see contacts within their own range.
-    private _spottedTuples = BZN_tacvis_spotted select { (time <= (_x select 1)) and { !isNull (_x select 0) } and { alive (_x select 0) } };
+    // Live Zeus-marked contacts (expiry-filtered). Marks are shared across
+    // clients (broadcast by fn_visorZeusMark via fn_visorAddSpot); rendering
+    // is still range-limited by the alpha fade below, so teammates only see
+    // marks within their own range.
+    private _spottedTuples = BZN_visor_spotted select { (time <= (_x select 1)) and { !isNull (_x select 0) } and { alive (_x select 0) } };
     private _spottedObjs   = _spottedTuples apply { _x select 0 };
-    private _radarObjs   = (BZN_tacvis_radar   select { (time <= (_x select 1)) and { !isNull (_x select 0) } }) apply { _x select 0 };
-    // Local hostile-civilian alarm markers (short range, not shared).
-    private _threatObjs  = (BZN_tacvis_threat  select { (time <= (_x select 1)) and { !isNull (_x select 0) } and { alive (_x select 0) } }) apply { _x select 0 };
     // Friendly drones' remote operators — self-announced (see the UAV-uplink
-    // loop in fn_TACVISpostInit.sqf); kept tuple-shaped [uav, name, expiry] so
+    // loop in fn_VISORpostInit.sqf); kept tuple-shaped [uav, name, expiry] so
     // a dropped connection ages out on its own within a couple seconds.
-    private _uavOperatorTuples = if (isNil "BZN_tacvis_uavOperators") then { [] } else {
-        BZN_tacvis_uavOperators select { (time <= (_x select 2)) and { !isNull (_x select 0) } }
+    private _uavOperatorTuples = if (isNil "BZN_visor_uavOperators") then { [] } else {
+        BZN_visor_uavOperators select { (time <= (_x select 2)) and { !isNull (_x select 0) } }
     };
 
-    // Combine all pools; pushBackUnique avoids double-rendering. Spotted enemies
-    // arrive via pool_friendly (always-on); radar contacts via _radarObjs.
+    // Combine all pools; pushBackUnique avoids double-rendering. Zeus-marked
+    // enemies arrive via pool_friendly (merged in by fn_visorAlwaysOn) and
+    // are also tracked directly via _spottedObjs below.
     private _pool = [];
-    { _pool pushBackUnique _x } forEach (BZN_tacvis_pool_friendly + BZN_tacvis_pool_CQC + _radarObjs + _threatObjs);
+    { _pool pushBackUnique _x } forEach BZN_visor_pool_friendly;
 
-    // Vehicles are only tagged if spotted, on radar, or a crewed allied vehicle.
+    // Vehicles are only tagged if marked or a crewed allied vehicle.
     // Empty/unmanned vehicles report side civilian (which reads as friendly), so
     // the friendly branch requires real crew and a non-civilian side. Infantry kept.
     _pool = _pool select {
@@ -35,7 +34,6 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         and (
             (_x isKindOf "CAManbase")
             or { _x in _spottedObjs }
-            or { _x in _radarObjs }
             or {
                 ((side _x) getFriend (side player) >= 0.8)
                 and { side _x != civilian }
@@ -45,27 +43,21 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         // Friendly-side and civilian AI are background noise — there's no
         // tactical reason to tag every bot teammate or bystander civilian.
         // Player-controlled units are always tagged (that's the whole IFF
-        // point of the display), spotted/radar/threat contacts are always
-        // tactically relevant regardless of side, and VIP-flagged units stay
-        // visible no matter their side or AI/player status — that's the
-        // entire point of flagging someone "don't take off the board."
+        // point of the display), Zeus-marked contacts are always tactically
+        // relevant regardless of side, and VIP-flagged units stay visible no
+        // matter their side or AI/player status — that's the entire point of
+        // flagging someone "don't take off the board."
         and {
             !(_x isKindOf "CAManbase")
             or { isPlayer _x }
-            or { _x getVariable ["BZN_tacvis_VIP", false] }
-            or { _x getVariable ["BZN_tacvis_HVT", false] }
+            or { _x getVariable ["BZN_visor_VIP", false] }
+            or { _x getVariable ["BZN_visor_HVT", false] }
             or { _x in _spottedObjs }
-            or { _x in _radarObjs }
-            or { _x in _threatObjs }
-            or {
-                ((side _x) getFriend (side player) < 0.8)
-                and { side _x != civilian }
-            }
         }
         // "Friendly markers" toggle hides only units that read as friendly to
-        // the player — spotted/radar/threat contacts (always hostile/neutral
-        // by definition) are unaffected.
-        and { !BZN_tacvis_hideFriendlyMarkers or { ((side _x) getFriend (side player) < 0.8) } }
+        // the player — Zeus-marked contacts (always hostile/neutral by
+        // definition) are unaffected.
+        and { !BZN_visor_hideFriendlyMarkers or { ((side _x) getFriend (side player) < 0.8) } }
     };
 
     // Throttled diagnostic — "not seeing HVT/VIP" can mean the unit never made
@@ -73,26 +65,26 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
     // _pool but something downstream (alpha fade, cluster/hidden state) is
     // suppressing the tag — this answers the first question so the second can
     // be checked separately via the per-unit HVT/VIP log further down.
-    if (!isNil "BZN_tacvis_debug" and { BZN_tacvis_debug }) then {
-        if (isNil "BZN_tacvis_hvtVipPoolDebug_next") then { BZN_tacvis_hvtVipPoolDebug_next = 0; };
-        if (diag_tickTime > BZN_tacvis_hvtVipPoolDebug_next) then {
-            BZN_tacvis_hvtVipPoolDebug_next = diag_tickTime + 1;
+    if (!isNil "BZN_visor_debug" and { BZN_visor_debug }) then {
+        if (isNil "BZN_visor_hvtVipPoolDebug_next") then { BZN_visor_hvtVipPoolDebug_next = 0; };
+        if (diag_tickTime > BZN_visor_hvtVipPoolDebug_next) then {
+            BZN_visor_hvtVipPoolDebug_next = diag_tickTime + 1;
             private _flagged = (allUnits + allDeadMen) select {
-                (_x getVariable ["BZN_tacvis_HVT", false]) or (_x getVariable ["BZN_tacvis_VIP", false])
+                (_x getVariable ["BZN_visor_HVT", false]) or (_x getVariable ["BZN_visor_VIP", false])
             };
             {
                 diag_log format [
-                    "[BZN TacVis DEBUG] HVT/VIP flagged unit: unit=%1 isHVT=%2 isVIP=%3 alive=%4 dist=%5 inPool=%6",
+                    "[BZN VISOR DEBUG] HVT/VIP flagged unit: unit=%1 isHVT=%2 isVIP=%3 alive=%4 dist=%5 inPool=%6",
                     _x,
-                    (_x getVariable ["BZN_tacvis_HVT", false]),
-                    (_x getVariable ["BZN_tacvis_VIP", false]),
+                    (_x getVariable ["BZN_visor_HVT", false]),
+                    (_x getVariable ["BZN_visor_VIP", false]),
                     alive _x,
                     round (player distance _x),
                     (_x in _pool)
                 ];
             } forEach _flagged;
             if (count _flagged == 0) then {
-                diag_log "[BZN TacVis DEBUG] HVT/VIP flagged unit: none found in mission (no unit has BZN_tacvis_HVT or BZN_tacvis_VIP set true)";
+                diag_log "[BZN VISOR DEBUG] HVT/VIP flagged unit: none found in mission (no unit has BZN_visor_HVT or BZN_visor_VIP set true)";
             };
         };
     };
@@ -105,22 +97,22 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
     // Aircrew and drone operators look down on contacts from far above —
     // everything reads "close together" on screen at ranges where a ground
     // observer would see plainly separated tags. Use the wider air/drone
-    // clustering range (BZN_tacvis_cluster_minDistance_air, default 2 km)
+    // clustering range (BZN_visor_cluster_minDistance_air, default 2 km)
     // whenever the observer is airborne or slaved to a UAV/UGV feed, so
     // clutter still collapses at the ranges that actually matter from above.
-    private _clusterMinDistance = [BZN_tacvis_cluster_minDistance, BZN_tacvis_cluster_minDistance_air] select (_inAir or { BZN_tacvis_uplink_active });
+    private _clusterMinDistance = [BZN_visor_cluster_minDistance, BZN_visor_cluster_minDistance_air] select (_inAir or { BZN_visor_uplink_active });
 
     // ---- Cluster nearby infantry contacts ----------------------------------
     // A tight squad standing together at engagement range would otherwise
     // stack N full 5-line tags on the same screen position — illegible.
     // Greedily group alive, same-side INFANTRY pool members within
-    // BZN_tacvis_cluster_radius of each other (order-dependent approximation —
+    // BZN_visor_cluster_radius of each other (order-dependent approximation —
     // fine for this purpose, far cheaper than true nearest-neighbour
     // clustering and the pool is small). Groups at/above
-    // BZN_tacvis_cluster_threshold collapse into ONE summary tag drawn at
+    // BZN_visor_cluster_threshold collapse into ONE summary tag drawn at
     // the group's centroid (by its first member only — see _isHidden below);
     // smaller groups still render individually but get a small vertical
-    // stagger (BZN_tacvis_stagger_offset) so 2-3 overlapping tags stay readable.
+    // stagger (BZN_visor_stagger_offset) so 2-3 overlapping tags stay readable.
     //
     // Vehicles/air/sea/drones are deliberately never grouped — there are
     // rarely enough of them in one spot to overlap, and operators/crew/status
@@ -143,8 +135,8 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
     private _clusterExempt = {
         params ["_u"];
         (secondaryWeapon _u != "")
-        or (_u getVariable ["BZN_tacvis_HVT", false])
-        or (_u getVariable ["BZN_tacvis_VIP", false])
+        or (_u getVariable ["BZN_visor_HVT", false])
+        or (_u getVariable ["BZN_visor_VIP", false])
     };
 
     private _assigned = [];
@@ -169,7 +161,7 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
                         ((side _x) isEqualTo (side _seed))
                         and { ([_x] call _typeBucket) == "INFANTRY" }
                         and { ! ([_x] call _clusterExempt) }
-                        and { _seed distance _x <= BZN_tacvis_cluster_radius }
+                        and { _seed distance _x <= BZN_visor_cluster_radius }
                     }) then {
                         _members pushBack _x;
                         _assigned pushBack _x;
@@ -191,13 +183,13 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
     // ---- "Looked at" detail gating -----------------------------------------
     // Clustering declutters at range, but close-quarters firefights still stack
     // full 5-line tags on every nearby rifleman. So: ordinary infantry render
-    // with just their hex + ARMED/UNARMED (plus the SPOTTED/RADAR/THREAT line,
-    // so timers stay visible) until you're directly looking at them — then,
+    // with just their hex + ARMED/UNARMED (plus the MARKED line, so timers
+    // stay visible) until you're directly looking at them — then,
     // and ONLY then, their tag expands to full detail. At most one tag is
     // "expanded" this way at a time (whichever sits nearest dead-centre of
-    // your sightline, within BZN_tacvis_lookAt_radius metres of the target).
+    // your sightline, within BZN_visor_lookAt_radius metres of the target).
     //
-    // HVT-flagged (`BZN_tacvis_HVT`), VIP-flagged (`BZN_tacvis_VIP` — see the
+    // HVT-flagged (`BZN_visor_HVT`), VIP-flagged (`BZN_visor_VIP` — see the
     // PROTECT/TAKE ALIVE override below), and launcher-carrying infantry are
     // exempt — they're priority individuals and always show in full. Vehicles,
     // aircraft, ships, and drones are unaffected too — they're rarely numerous
@@ -207,8 +199,8 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
     private _hideableInfantry = _pool select {
         _x isKindOf "CAManbase"
         and { alive _x }
-        and { !(_x getVariable ["BZN_tacvis_HVT", false]) }
-        and { !(_x getVariable ["BZN_tacvis_VIP", false]) }
+        and { !(_x getVariable ["BZN_visor_HVT", false]) }
+        and { !(_x getVariable ["BZN_visor_VIP", false]) }
         // Hostile/neutral launcher carriers stay exempt — they're the
         // priority-threat callout that should never collapse to a reduced
         // tag. Friendly launcher gunners aren't a threat though, so they're
@@ -222,9 +214,8 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
     };
 
     private _lookedAtUnit = objNull;
-    if (!BZN_tacvis_detailView_active) then {
-        // Same angular-cone technique Spot Target uses (see fn_tacvisSpot.sqf)
-        // — far more reliable than projecting to screen-space and comparing
+    if (!BZN_visor_detailView_active) then {
+        // Angular-cone technique — far more reliable than projecting to screen-space and comparing
         // against an assumed [0.5, 0.5] centre, which drifts off the true
         // sightline with FOV/aspect-ratio/optic zoom and was the reason this
         // gating wasn't reliably triggering. positionCameraToWorld gives the
@@ -239,7 +230,7 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
             // visual centre to register — players naturally settle their
             // crosshair on a person's torso/centre-mass when "looking at"
             // them, not their eyes specifically (that precision is what
-            // Spot Target's deliberate optic-aim is for). Splitting the
+            // precise aim is for). Splitting the
             // difference between eye and foot height approximates that
             // centre-mass point and tracks correctly across every stance.
             private _aimPoint    = ((eyePos _x) vectorAdd (getPosASLVisual _x)) vectorMultiply 0.5;
@@ -252,9 +243,9 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
             // but ~28m at 200m) — so at range you could trigger "looking at"
             // someone while your reticle sat metres off them in open air.
             // Deriving the required angle from a constant linear radius
-            // (BZN_tacvis_lookAt_radius, in metres) keeps the actual "you're
+            // (BZN_visor_lookAt_radius, in metres) keeps the actual "you're
             // on them" tolerance the same size at every distance instead.
-            private _neededDot = cos (atan (BZN_tacvis_lookAt_radius / _rangeToAim));
+            private _neededDot = cos (atan (BZN_visor_lookAt_radius / _rangeToAim));
             if (_dot > _neededDot and { _dot > _bestDot }) then {
                 _bestDot       = _dot;
                 _bestNeededDot = _neededDot;
@@ -263,16 +254,16 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         } forEach _hideableInfantry;
 
         // Throttled diagnostic — Draw3D fires every frame, so this would
-        // otherwise flood the RPT. Gate it to once a second behind the same
-        // BZN_tacvis_debug flag fn_tacvisSpot.sqf uses, so the look-at gate
-        // can be inspected in the field if it's still misbehaving.
-        if (!isNil "BZN_tacvis_debug" and { BZN_tacvis_debug }) then {
-            if (isNil "BZN_tacvis_lookAtDebug_next") then { BZN_tacvis_lookAtDebug_next = 0; };
-            if (diag_tickTime > BZN_tacvis_lookAtDebug_next) then {
-                BZN_tacvis_lookAtDebug_next = diag_tickTime + 1;
+        // otherwise flood the RPT. Gate it to once a second behind the
+        // BZN_visor_debug flag, so the look-at gate can be inspected in
+        // the field if it's still misbehaving.
+        if (!isNil "BZN_visor_debug" and { BZN_visor_debug }) then {
+            if (isNil "BZN_visor_lookAtDebug_next") then { BZN_visor_lookAtDebug_next = 0; };
+            if (diag_tickTime > BZN_visor_lookAtDebug_next) then {
+                BZN_visor_lookAtDebug_next = diag_tickTime + 1;
                 diag_log format [
-                    "[BZN TacVis DEBUG] lookAt: hideable=%1 lookedAt=%2 bestDot=%3 (need > %4, radius=%5m)",
-                    count _hideableInfantry, _lookedAtUnit, _bestDot, _bestNeededDot, BZN_tacvis_lookAt_radius
+                    "[BZN VISOR DEBUG] lookAt: hideable=%1 lookedAt=%2 bestDot=%3 (need > %4, radius=%5m)",
+                    count _hideableInfantry, _lookedAtUnit, _bestDot, _bestNeededDot, BZN_visor_lookAt_radius
                 ];
             };
         };
@@ -288,14 +279,14 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         private _bucket       = [_unit] call _typeBucket;
         // Only the first member of a large group draws — as one consolidated
         // tag covering the whole group. The rest are skipped outright.
-        private _isClusterTag = (_groupSize >= BZN_tacvis_cluster_threshold) and { _indexInGroup == 0 };
-        private _isHidden     = (_groupSize >= BZN_tacvis_cluster_threshold) and { _indexInGroup > 0 };
+        private _isClusterTag = (_groupSize >= BZN_visor_cluster_threshold) and { _indexInGroup == 0 };
+        private _isHidden     = (_groupSize >= BZN_visor_cluster_threshold) and { _indexInGroup > 0 };
 
         // Reduced tag (hex + ARMED/UNARMED + status/timer line only) for any
         // ordinary infantry that isn't the one tag you're directly looking at —
         // see the "Looked at" pre-pass above. Never applies to cluster tags
         // (already a declutter measure in their own right).
-        private _isDetailHidden = !BZN_tacvis_detailView_active and !_isClusterTag and { _unit in _hideableInfantry } and { _unit != _lookedAtUnit };
+        private _isDetailHidden = !BZN_visor_detailView_active and !_isClusterTag and { _unit in _hideableInfantry } and { _unit != _lookedAtUnit };
 
         if (!_isHidden) then {
 
@@ -314,8 +305,8 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
 
         // Sub-threshold overlapping groups (2 up to the cluster threshold):
         // stagger each member's text vertically so they don't fully overlap.
-        if (_groupSize > 1 and { _groupSize < BZN_tacvis_cluster_threshold }) then {
-            _textOffsetZ = _textOffsetZ + (_indexInGroup * BZN_tacvis_stagger_offset);
+        if (_groupSize > 1 and { _groupSize < BZN_visor_cluster_threshold }) then {
+            _textOffsetZ = _textOffsetZ + (_indexInGroup * BZN_visor_stagger_offset);
         };
 
         // ---- Text offset direction (avoid overlapping the model) -----------
@@ -406,22 +397,24 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         // ---- Colours ------------------------------------------------------
         // Flying targets fade over the air range; ground targets fade over 1 km
         // normally, or the longer ground-from-air range when the observer is airborne.
-        private _fadeRange      = [[1000, BZN_tacvis_ground_air_range] select _inAir, BZN_tacvis_air_range] select (_unit isKindOf "Air");
+        private _fadeRange      = [[1000, BZN_visor_ground_air_range] select _inAir, BZN_visor_air_range] select (_unit isKindOf "Air");
         private _alpha          = 0.95 - (player distance _unit) / _fadeRange;
-        private _colorGREEN     = [0, 0.75, 0, _alpha];
-        private _colorGREENdark = [0, 0.55, 0, _alpha];
+        // HALO/UNSC-style pale cyan for friendly IFF — tints the WHITE hex
+        // texture rather than using a dedicated green/blue .paa (there isn't
+        // one; tinting the green texture blue would muddy the hue, tinting
+        // white gives a clean arbitrary colour).
+        private _colorFRIENDLY  = [0.45, 0.82, 1, _alpha];
         private _colorRED       = [0.75, 0, 0, _alpha];
         private _colorORANGE    = [1, 0.8, 0, _alpha];
         private _colorORANGEdark= [0.8, 0.6, 0, _alpha];
         private _colorWHITEdark = [0.871, 0.871, 0.871, _alpha];
-        private _colorVIP       = [0.25, 0.65, 1, _alpha]; // distinct sky-blue — never confused with HOSTILE red or FRIENDLY green
+        private _colorVIP       = [0.1, 0.4, 1, _alpha]; // deep royal blue — distinct from both HOSTILE red and the new pale-cyan FRIENDLY, and from HVT violet
         private _colorHVT       = [0.65, 0.25, 1, _alpha]; // distinct violet — "priority kill target" callout, never confused with VIP's protect-blue or neutral orange
 
-        private _HexBase   = "z\bzn\addons\bzn_tacvis\TacVis_UI\";
-        private _HexWHITE  = _HexBase + "VTO_tacvis_hexWhite.paa";
-        private _HexRED    = _HexBase + "VTO_tacvis_hexRed.paa";
-        private _HexGREEN  = _HexBase + "VTO_tacvis_hexGreen.paa";
-        private _HexORANGE = _HexBase + "VTO_tacvis_hexOrange.paa";
+        private _HexBase   = "z\bzn\addons\bzn_visor\VISOR_UI\";
+        private _HexWHITE  = _HexBase + "VTO_visor_hexWhite.paa";
+        private _HexRED    = _HexBase + "VTO_visor_hexRed.paa";
+        private _HexORANGE = _HexBase + "VTO_visor_hexOrange.paa";
 
         private _Hex    = _HexWHITE;
         private _color1 = _colorORANGE;
@@ -431,7 +424,7 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
 
         switch (true) do {
             case ((side _unit) getFriend (side player) >= 0.8 or side player == side _unit) : {
-                _color2 = _colorGREEN; _Hex = _HexGREEN;
+                _color2 = _colorFRIENDLY; _Hex = _HexWHITE;
             };
             case ((side _unit) getFriend (side player) <= 0.3) : {
                 _color2 = _colorRED; _Hex = _HexRED;
@@ -515,43 +508,34 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         private _messageCENTER = format ["%1_", toUpper _nameUnit];
         private _messageUP     = format ["%1 m", round (player distance _unit)];
 
-        // Countdown to fade-out — refreshed by fn_tacvisAlwaysOn for as long as
-        // anyone on the team keeps LOS, so this ticks back up toward
-        // BZN_tacvis_spot_duration while the mark is being watched and only
-        // counts down to zero once everyone loses sight. Hoisted out of the
-        // switch below so the small standalone timer line (_messageDOWN3,
-        // drawn under the ARMED/HOSTILE/INJURED line) can reuse it without
-        // re-deriving it or drifting out of sync with the SPOTTED line.
+        // Countdown to fade-out — a Zeus mark's expiry is fixed at placement
+        // time (BZN_visor_zeusMark_duration) and never refreshed, so this
+        // simply counts down to zero. Hoisted out of the switch below so the
+        // small standalone timer line (_messageDOWN3, drawn under the
+        // ARMED/HOSTILE/INJURED line) can reuse it without re-deriving it or
+        // drifting out of sync with the MARKED line.
         private _spotRemain = -1;
 
         private _messageDOWN = mapGridPosition _unit;
         switch (true) do {
-            case (_unit in _threatObjs) : {
-                _messageCENTER = "!! THREAT !!_";
-                _color3 = _colorRED;
-                _messageDOWN = format [">> HOSTILE REVEAL | %1", _messageDOWN];
-            };
             case (_unit in _spottedObjs) : {
                 _color3 = _colorRED;
                 private _idx = _spottedTuples findIf { (_x select 0) == _unit };
                 _spotRemain = if (_idx >= 0) then { ceil ((_spottedTuples select _idx select 1) - time) } else { 0 };
-                _messageDOWN = format ["SPOTTED | %1 | %2s", _messageDOWN, _spotRemain];
-            };
-            case (_unit in _radarObjs) : {
-                _messageDOWN = format ["RADAR | %1", _messageDOWN];
+                _messageDOWN = format ["MARKED | %1 | %2s", _messageDOWN, _spotRemain];
             };
         };
 
         // HVT override — same idea as the VIP override directly below, but for
         // a "priority kill target" callout: a unit the mission has flagged as
         // worth singling out (mission-side: `_unit setVariable
-        // ["BZN_tacvis_HVT", true]`) gets a "HVT - ELIMINATE" label in a
+        // ["BZN_visor_HVT", true]`) gets a "HVT - ELIMINATE" label in a
         // distinct violet, replacing the usual type name — unlike VIP, the
         // call here never varies with side, since "priority kill target"
         // means the same thing whether they're hostile or (rarely) your own.
         // Deliberately a separate colour/word from VIP/PROTECT — that one
         // means "keep alive," this one doesn't carry that connotation either way.
-        private _isHVT = _unit getVariable ["BZN_tacvis_HVT", false];
+        private _isHVT = _unit getVariable ["BZN_visor_HVT", false];
         if (_isHVT) then {
             _messageCENTER = "HVT - ELIMINATE_";
             _color2 = _colorHVT;
@@ -559,12 +543,12 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
 
         // VIP override — takes final say over the centre line: this is a
         // "don't take this one off the board" callout, more important than
-        // the type label or even THREAT/SPOTTED (which still show below via
+        // the type label or even MARKED (which still shows below via
         // _messageDOWN, so the rest of the picture isn't lost). Friendly/
         // neutral VIPs read "PROTECT" (keep them alive); anyone on a side
         // hostile to the player reads "TAKE ALIVE" (capture, don't kill) —
         // same getFriend threshold the hex-colour switch above uses.
-        private _isVIP = _unit getVariable ["BZN_tacvis_VIP", false];
+        private _isVIP = _unit getVariable ["BZN_visor_VIP", false];
         if (_isVIP) then {
             private _vipLabel = ["PROTECT", "TAKE ALIVE"] select ((side _unit) getFriend (side player) <= 0.3);
             _messageCENTER = format ["VIP - %1_", _vipLabel];
@@ -572,17 +556,17 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         };
 
         // Throttled diagnostic — once a second per flagged unit (not every
-        // frame) behind BZN_tacvis_debug, so "flagged but not showing" can be
+        // frame) behind BZN_visor_debug, so "flagged but not showing" can be
         // told apart from "never made it into the render pool at all" (the
         // latter would mean this block never runs for that unit — check the
         // pool-filter log line instead, which fires regardless of flags).
-        if ((_isHVT or _isVIP) and { !isNil "BZN_tacvis_debug" and { BZN_tacvis_debug } }) then {
-            private _dbgKey = format ["BZN_tacvis_hvtVipDebug_next_%1", netId _unit];
+        if ((_isHVT or _isVIP) and { !isNil "BZN_visor_debug" and { BZN_visor_debug } }) then {
+            private _dbgKey = format ["BZN_visor_hvtVipDebug_next_%1", netId _unit];
             if (isNil _dbgKey) then { missionNamespace setVariable [_dbgKey, 0] };
             if (diag_tickTime > (missionNamespace getVariable [_dbgKey, 0])) then {
                 missionNamespace setVariable [_dbgKey, diag_tickTime + 1];
                 diag_log format [
-                    "[BZN TacVis DEBUG] HVT/VIP tag: unit=%1 isHVT=%2 isVIP=%3 hideable=%4 detailHidden=%5 cluster=%6 hidden=%7 messageCENTER='%8' color2=%9",
+                    "[BZN VISOR DEBUG] HVT/VIP tag: unit=%1 isHVT=%2 isVIP=%3 hideable=%4 detailHidden=%5 cluster=%6 hidden=%7 messageCENTER='%8' color2=%9",
                     _unit, _isHVT, _isVIP, (_unit in _hideableInfantry), _isDetailHidden, _isClusterTag, _isHidden, _messageCENTER, _color2
                 ];
             };
@@ -724,17 +708,15 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
 
         // ---- Cluster-tag override: replace the representative's per-unit
         // messages with one summary covering the whole squad — "INFANTRY xN",
-        // worst-case status (THREAT > SPOTTED > RADAR), and aggregated detail
-        // (ARMED/HOSTILE/INJURED). Mirrors the per-unit infantry logic above
-        // but reduced to "does ANY member meet this condition" across the
-        // group. Only infantry ever cluster (see pre-pass above), so this
-        // doesn't need to handle vehicle/air/sea/drone aggregation.
+        // worst-case status (MARKED), and aggregated detail (ARMED/HOSTILE/
+        // INJURED). Mirrors the per-unit infantry logic above but reduced to
+        // "does ANY member meet this condition" across the group. Only
+        // infantry ever cluster (see pre-pass above), so this doesn't need
+        // to handle vehicle/air/sea/drone aggregation.
         if (_isClusterTag) then {
             _messageCENTER = format ["%1 x%2_", toUpper _bucket, _groupSize];
 
-            private _anyThreat  = false;
             private _anySpotted = false;
-            private _anyRadar   = false;
             private _anyArmed   = false;
             private _anyHostile = false;
             private _anyInjured = false;
@@ -742,8 +724,6 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
 
             {
                 private _m = _x;
-                if (_m in _threatObjs)  then { _anyThreat  = true };
-                if (_m in _radarObjs)   then { _anyRadar   = true };
                 if (_m in _spottedObjs) then {
                     _anySpotted = true;
                     private _sIdx = _spottedTuples findIf { (_x select 0) == _m };
@@ -757,16 +737,9 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
             } forEach _group;
 
             _messageDOWN = mapGridPosition _unit;
-            if (_anyThreat) then {
-                _messageDOWN = format [">> HOSTILE REVEAL | %1", _messageDOWN];
+            if (_anySpotted) then {
+                _messageDOWN = format ["MARKED | %1 | %2s", _messageDOWN, _maxRemain];
                 _color3 = _colorRED;
-            } else {
-                if (_anySpotted) then {
-                    _messageDOWN = format ["SPOTTED | %1 | %2s", _messageDOWN, _maxRemain];
-                    _color3 = _colorRED;
-                } else {
-                    if (_anyRadar) then { _messageDOWN = format ["RADAR | %1", _messageDOWN] };
-                };
             };
 
             _messageDOWN2 = (["UNARMED", "ARMED"] select _anyArmed)
@@ -780,12 +753,12 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
         if (_isDetailHidden) then {
             // Reduced tag: hex, a single status word — ARMED/UNARMED/
             // LAUNCHER, or a friendly's name (see _minimalLabel above) —
-            // and, for spotted hostiles, the small drop-off countdown so
+            // and, for marked hostiles, the small drop-off countdown so
             // you can still tell a mark is about to fade without expanding
-            // the tag. Distance, grid reference, and the fuller SPOTTED/
-            // RADAR/THREAT line stay reserved for the full/"looked at" and
-            // Toggle Detail View renders — that's still clutter at this
-            // level; look directly at the contact to see it all.
+            // the tag. Distance, grid reference, and the fuller MARKED line
+            // stay reserved for the full/"looked at" and Toggle Detail View
+            // renders — that's still clutter at this level; look directly
+            // at the contact to see it all.
             drawIcon3D ["", _color2, _targetPosition, 0, 0, 0, _minimalLabel, 0, _size2, "PuristaSemiBold", "left", false];
             if (_messageDOWN3 != "") then {
                 drawIcon3D ["", _color3, _drawPosDown, 0, 0, 0, _messageDOWN3, 0, _size5, "PuristaSemiBold", "left", false];
@@ -796,11 +769,11 @@ BZN_tacvis_Display = addMissionEventHandler ["Draw3D", {
             drawIcon3D ["", _color3, _drawPosDown,    0, 0, 0, _messageDOWN,   0, _size3, "PuristaSemiBold", "left", false];
             drawIcon3D ["", _color4, _drawPosDown2,   0, 0, 0, _messageDOWN2,  0, _size4, "PuristaSemiBold", "left", false];
             // No standalone _messageDOWN3 countdown here — _messageDOWN
-            // already spells out "SPOTTED | grid | Xs" in full at this
+            // already spells out "MARKED | grid | Xs" in full at this
             // detail level, so a second "Xs" beneath ARMED would just be
             // the same number twice (see the minimal-view branch above for
             // where the standalone countdown actually earns its place — it
-            // has no SPOTTED line to ride along with there).
+            // has no MARKED line to ride along with there).
         };
 
         }; // !_isHidden
