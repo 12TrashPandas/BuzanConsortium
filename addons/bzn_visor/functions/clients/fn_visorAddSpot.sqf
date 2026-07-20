@@ -1,37 +1,33 @@
-params ["_target", "_expiry", ["_spotter", "?"]];
+params ["_target", "_expiry", ["_spotter", "?"], ["_lines", []]];
 
-// Runs on every client (remoteExec to 0) to register/refresh a Zeus-marked
-// enemy's 3D tag. BZN_visor_spotted holds [unit, expiry, spotter] entries.
-// The sole feed into this pool is the Zeus "Mark Enemy (VISOR)" module
-// (fn_visorZeusMark.sqf) — there is no player-driven spotting and no
-// LOS-based refresh; the expiry is computed once by fn_visorZeusMark
-// (`time + BZN_visor_zeusMark_duration`, a CBA-configurable setting) and
-// broadcast as-is, rather than each receiving client recomputing it locally:
-// `time` drifts slightly between clients under latency/packet loss, so a
-// per-receiver recompute was producing a visibly different countdown on
-// different machines for what should be the same mark ("desync in timer").
-// The tag shows (per client) while the unit is alive, within display range,
-// and unexpired; it simply fades once its fixed timer runs out — nothing
-// refreshes it early. There is no map marker for marks — the 3D tag is the
-// only indicator.
+// Runs on every client (remoteExec to 0) to register a Zeus-marked target's
+// 3D tag. BZN_visor_spotted holds [unit, expiry, spotter, lines] entries:
+//   expiry  — mission time the mark fades, or -1 for an untimed mark that
+//             holds until the target dies. Computed once by the marking
+//             curator's dialog (fn_visorZeusMark.sqf) and broadcast as-is —
+//             mission `time` is synced, and a per-receiver recompute would
+//             drift the countdown between clients.
+//   lines   — up to three [text, colourIndex] context rows (0 Red / 1 Blue /
+//             2 Yellow) typed into the module's dialog; empty texts are
+//             skipped at render time.
+// The broadcast is deliberately one-shot and untracked: no JIP queue, no
+// refresh — clients that join later simply won't have the mark.
 if (!hasInterface) exitWith {};                  // skip dedicated server / HC
-
-if (!isNil "BZN_visor_debug" and { BZN_visor_debug }) then {
-    diag_log format ["[BZN VISOR] AddSpot on %1: target=%2 expiry=%3 remain=%4s",
-        name player, _target, _expiry, round(_expiry - time)];
-};
 
 if (isNil "BZN_visor_spotted") then { BZN_visor_spotted = []; };
 
-// Drop expired/dead entries, then add or refresh this target. Idempotent —
-// remoteExec target 0 plus the caller's own local call means this can run
-// twice for the same mark; findIf below merges rather than duplicating.
-BZN_visor_spotted = BZN_visor_spotted select { (time <= (_x select 1)) and { !isNull (_x select 0) } and { alive (_x select 0) } };
+// Drop expired/dead entries (untimed -1 marks only prune on death), then add
+// or REPLACE this target's entry — replacing (rather than merging expiries)
+// makes re-placing the module on a unit the way a curator "edits" its mark.
+BZN_visor_spotted = BZN_visor_spotted select {
+    ((_x select 1) < 0 or { time <= (_x select 1) })
+    and { !isNull (_x select 0) }
+    and { alive (_x select 0) }
+};
 
 private _idx = BZN_visor_spotted findIf { (_x select 0) == _target };
 if (_idx >= 0) then {
-    private _existing = BZN_visor_spotted select _idx;
-    BZN_visor_spotted set [_idx, [_target, _expiry max (_existing select 1), _existing select 2]];
+    BZN_visor_spotted set [_idx, [_target, _expiry, _spotter, _lines]];
 } else {
-    BZN_visor_spotted pushBack [_target, _expiry, _spotter];
+    BZN_visor_spotted pushBack [_target, _expiry, _spotter, _lines];
 };

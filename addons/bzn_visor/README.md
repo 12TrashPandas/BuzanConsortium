@@ -15,9 +15,16 @@ no menu to turn it "on":
 
 - **Personal device**: wear one of the approved helmets, headsets, or goggles
   (see Addon Options → BZN VISOR → "Devices"). Grants the always-on friendly
-  display.
+  display. **By default, every Bzn wearable in this mod qualifies** — all
+  [Bzn] FASTMT helmet variants, all [Bzn] Recon Hood variants, and the Bzn
+  ESS goggle facewear.
 - **Approved vehicle**: certain vehicles (Addon Options → "Approved vehicles")
-  grant the always-on display to anyone mounted, regardless of headgear.
+  grant the always-on display to anyone mounted, regardless of headgear
+  (empty by default).
+
+> Note: CBA only applies a new default where the setting was never saved — if
+> you've previously touched "Devices" in Addon Options (even leaving it
+> empty), hit *Reset to Default* there to pick up the Bzn gear list.
 
 Equipment is re-checked automatically whenever you put on/take off gear, get in
 or out of a vehicle, or close your inventory — no need to reconnect or restart.
@@ -28,26 +35,36 @@ or out of a vehicle, or close your inventory — no need to reconnect or restart
 |---|---|---|
 | **Toggle VISOR Display** | `Alt+F8` | Turns the entire 3D overlay on/off. |
 | **Toggle Friendly Markers** | `Alt+F9` | Hides/shows tags for friendly-side units only (Zeus-marked tags stay visible). |
-| **Toggle Detail View** | *unbound — bind it yourself* | Overrides "looked at" tag gating (see below) — while active, every infantry tag always shows in full, not just whichever one's under your crosshair. |
+| **Toggle Detail Mode** | *unbound — bind it yourself* | ON (default): tags show their designator text — type line, names, and role suffixes. OFF: every tag strips down to just its colour-coded IFF hexagon, no text. |
 
 All toggles show a brief on-screen confirmation (e.g. "VISOR display: ON/OFF").
 
-## Zeus marking ("Mark Enemy (VISOR)")
+## Zeus marking ("Mark Target (VISOR)")
 
-Enemy marking is entirely Zeus (curator) driven — there is no player-facing
-spotting action. A Game Master places the **Mark Enemy (VISOR)** module
-(Zeus → Modules → BZN VISOR) directly onto a unit to mark it:
+Target marking is entirely Zeus (curator) driven — there is no player-facing
+spotting action. A Game Master places the **Mark Target (VISOR)** module
+(Zeus → Modules → BZN VISOR) directly onto a unit, and a **configuration
+popup** opens:
 
-- The target gets a **"MARKED | <grid> | Xs"** tag, visible to everyone with
-  VISOR active for the configured duration (Addon Options → "Zeus mark
-  duration (s)", default 60s), counting down the seconds remaining.
+- **Up to 3 lines of context text**, each with its own colour choice —
+  **Red**, **Blue**, or **Yellow** — rendered stacked under the target's red
+  hex. Empty lines are skipped. Marks are only visible to players
+  **personally wearing a VISOR device** (a whitelisted helmet or goggles) —
+  an approved vehicle alone shows the friendly IFF picture but *not* the
+  marked-target feed, so everyone needs the kit on their head to read marks.
+- **Optional timer** — tick "Timed mark" and set the seconds (default 60)
+  and the mark fades on its own, with a countdown on its **"MARKED | <grid>
+  | Xs"** line. Untick it and the mark is **permanent**: it stays until the
+  target dies (its bottom line then reads just "MARKED | <grid>").
+- **CANCEL** (or ESC) closes the popup and removes the module without
+  marking anything.
 - If the module isn't dropped directly on a unit, VISOR looks for the nearest
   living unit within 10 m and marks that instead; if nothing is found nearby,
-  the placing curator gets an on-screen feedback message and the module
-  removes itself without marking anything.
-- The mark **fades on its own** once its timer runs out — there is no
-  line-of-sight refresh mechanic; re-place the module on the same target to
-  refresh/extend the mark.
+  the placing curator gets an on-screen feedback message.
+- The mark is **broadcast once to every player connected at that moment**
+  and then forgotten — no tracking, no updates, and players who join later
+  won't see marks placed before they connected. Re-placing the module on the
+  same unit replaces its mark (that's also how you "edit" one).
 - There is no map marker for a Zeus mark — the 3D tag is the only indicator.
 
 ## Drone ("uplink") notice
@@ -74,28 +91,51 @@ them, clearing within a couple seconds of disconnecting.
 Whenever VISOR is active (device or approved vehicle), you automatically see
 3D tags over:
 
-- **Friendly-side units** — IFF identification in a pale HALO/UNSC-style
-  light blue, toggleable via the "Toggle Friendly Markers" keybind. Only
-  **player-controlled** friendlies (and any side's **VIP**-flagged units —
-  see below) get tagged this way; rank-and-file friendly-side and
-  civilian-side AI are background noise and stay untagged, so the display
-  reflects who actually matters tactically rather than every bot teammate or
-  bystander on the map. (Your own squad's health is reported separately by
-  the fixed on-screen panel — see "Squad health readout" below — so squad
-  members follow these same 3D-tag rules as everyone else.)
-- **Zeus-marked enemies** — see "Zeus marking" above; shown to everyone with
-  VISOR active regardless of who's actually looking at them.
+- **Friendly-side units** — IFF identification in a bright HALO/UNSC-style
+  cyan, toggleable via the "Toggle Friendly Markers" keybind. A friendly is
+  only tagged if **it is itself wearing VISOR** (a whitelisted helmet/goggles;
+  for vehicles, an approved type or an equipped crew member) — an unequipped
+  teammate doesn't transmit and stays invisible, the same "you need the kit"
+  rule that applies to viewers. Human players and allied AI/NPCs are treated
+  identically (we run PvE co-op; equipped allied NPCs are real teammates).
+  Civilians stay untagged. VIP/HVT-flagged units and Zeus-marked targets are
+  exempt from the equipment gate — they show regardless of gear. Tags render
+  drone-feed style: a small hex anchors at chest height with a compact centred
+  **"BZN INF"** type line above it and the unit's name beneath it. (Your own
+  squad's health is reported separately by the fixed on-screen panel — see
+  "Squad health readout" below.)
+- **Vehicles** — only vehicles on the **"Approved vehicles"** whitelist show
+  a full readout (type, crew/OP, engine/status). A vehicle that isn't
+  whitelisted shows **just its colour-coded IFF hexagon — no text at all**.
+  Whitelisted vehicles crewed by at least one human player also get the
+  equivalent designator type line by chassis: **BZN AIR**, **BZN SEA**, or
+  **BZN GRND** (AI-only crews keep the plain full tag). Zeus-marked, HVT-, and
+  VIP-flagged vehicles are exempt from the hex-only rule — a curator/mission
+  deliberately called them out, so their tag always shows in full.
+- **Zeus-marked targets** — see "Zeus marking" above; shown to everyone with
+  VISOR active regardless of who's actually looking at them, with the
+  curator's colour-coded context lines under the red hex.
 
 Tags show unit status where relevant (e.g. armed/unarmed, engine on/off,
 deceased/destroyed) alongside the grid reference, plus an **"OP: ..."** line
 naming who's running the platform:
 
-- **Launcher carriers** — infantry packing an AT/AA launcher always get a
-  distinct, individual tag instead of being folded into the rifleman crowd
-  (or a squad summary). Hostiles read **"ARMED | LAUNCHER"** highlighted red
-  like a HOSTILE tag — that's your priority-threat callout. Friendly launcher
-  gunners read a plain white **"LAUNCHER"** instead — no need for a threat
-  colour, just enough to tell who on your team is carrying the AT/AA.
+- **Launcher carriers** — hostile/neutral infantry packing an AT/AA launcher
+  always get a distinct, individual tag reading **"ARMED | LAUNCHER"**
+  highlighted red like a HOSTILE tag — that's your priority-threat callout.
+- **Friendly role suffixes** — friendlies keep their name on the tag, with
+  **exactly one** compact role suffix, picked by priority (a squad lead
+  who's also a medic just reads SQL): **SQL** > **FTL** > **Med** >
+  **Expl** > **Engi** > **AT**.
+  - **" - SQL"** — squad lead (Arma's own group-leader designation; lone
+    one-man groups don't count).
+  - **" - FTL"** — fire team lead, designated via **ACE Team Management**:
+    interact with a teammate (or self-interact) → Team Management →
+    **"Designate Fire Team Lead"** (toggle; visible to everyone).
+  - **" - Med"** — medic permissions (ACE medic class or vanilla medic trait).
+  - **" - Expl"** — explosive specialist (ACE EOD or vanilla trait).
+  - **" - Engi"** — engineer permissions (ACE engineer or vanilla trait).
+  - **" - AT"** — carrying a launcher.
 - **HVTs** — a unit the mission has flagged as a priority kill target
   (mission-side, e.g. in its init field: `this setVariable
   ["BZN_visor_HVT", true, true];` — the trailing `true` is the public-
@@ -110,57 +150,28 @@ naming who's running the platform:
   distinct royal-blue **"VIP - PROTECT"** tag (or **"VIP - TAKE ALIVE"** if
   they're on a side hostile to you — i.e. capture, don't kill) in place of
   the usual type label, so you always know at a glance who not to put down.
-  Like launcher carriers, HVTs and VIPs are never folded into a squad summary
-  tag and always render with full detail regardless of whether you're looking
-  at them.
+  Like launcher carriers, HVTs and VIPs always render with full detail
+  regardless of whether you're looking at them.
 
-When several same-side **infantry** are bunched close together *and* far
-enough away from you, their tags collapse into a single summary —
-**"INFANTRY x5 | MARKED | grid | Xs | ARMED | HOSTILE"** — instead of
-overlapping individually. (Vehicles, aircraft, ships, and drones are never
-grouped this way — there are rarely enough of them in one spot to overlap,
-and their per-unit operator/crew/status detail is exactly what you want to
-keep visible. Launcher carriers are excluded too — see above.) How far away
-"far enough" is is your call: see **"Tag clustering range"** in Addon Options
-below (set it low to declutter sooner, or max it out to always see every
-contact's full tag). Looking down from a plane/heli or a connected drone feed
-bunches infantry together on screen at much greater distances than on the
-ground, so a separate **"Tag clustering range, air/drone"** slider (default
-2 km) is used automatically whenever you're aircrew or slaved to a UAV/UGV.
-Smaller bunches that don't meet the grouping threshold, or anything closer
-than the active clustering range, still render individually — just nudged
-apart vertically so overlapping pairs/trios stay readable.
+Ordinary infantry always render as the **compact designator** — hex
+bracketed by the type line and **name** (with role suffixes), or a single
+**ARMED**/**UNARMED**/**LAUNCHER** word for hostiles and neutrals. Distance,
+grid reference, and the fuller status lines never show for rank-and-file
+infantry — that's deliberate: the designator is the whole picture, and the
+detailed stack is reserved for the categories below that actually warrant it.
 
-Clustering helps at range, but a close-quarters firefight can still stack
-full tags on every nearby rifleman. So up close, ordinary infantry render
-**reduced** — hex and a single status word (**ARMED**/**UNARMED**/
-**LAUNCHER** for hostiles and neutrals, or simply their **name** for
-friendlies — knowing whether a teammate is "armed" isn't useful, knowing who
-they are is), and, for marked hostiles, the same small drop-off countdown
-described above so a mark about to fade doesn't catch you off guard even at
-this reduced level. Distance, grid reference, and the fuller MARKED line are
-still dropped here — that's clutter you don't need until you're looking
-right at someone, where the full tactical/hover view brings it all back.
-Only the *one* tag you're directly looking at — within a few degrees of your
-sightline, working through ironsights, scopes, turrets, and UAV feeds alike —
-expands to show everything (type, grid/status line, HOSTILE/INJURED detail,
-and — for marked hostiles — a small standalone countdown under the
-ARMED/HOSTILE line so you can tell at a glance when a mark is about to fade).
-Look away and it collapses back down; look at someone else and that one
-expands instead — only one tag is ever expanded at a time.
-
-**Hostile/neutral launcher carriers, HVT-flagged units** (mission-side:
-`this setVariable ["BZN_visor_HVT", true, true];`), **VIPs** (see "HVT"/"VIP -
-PROTECT/TAKE ALIVE" above), **and all vehicles, aircraft, ships, and drones**
-are exempt from this — they always show in full, since hiding a priority
-individual or a platform's crew/operator detail would defeat the point.
-Friendly launcher carriers aren't a threat that needs constant tracking
-though, so they gate down like any other teammate — their reduced tag still
-reads **"LAUNCHER"** so you don't lose track of who's carrying the team's
-AT/AA. The exempt categories above are also never folded into a clustered
-squad summary, for the same reason. If you'd rather see everything in full
-all the time, bind and use **Toggle Detail View** (see Keybinds above) to
-permanently override the gating.
+**Zeus-marked targets, hostile/neutral launcher carriers, HVT-flagged units**
+(mission-side: `this setVariable ["BZN_visor_HVT", true, true];`), **VIPs**
+(see "HVT"/"VIP - PROTECT/TAKE ALIVE" above), **and all vehicles, aircraft,
+ships, and drones** are exempt from this — they always show in full, since
+hiding a mark's context, a priority individual, or a platform's crew/operator
+detail would defeat the point. Friendly launcher carriers aren't a threat
+that needs constant tracking though, so they gate down like any other
+teammate — their reduced tag keeps the **" - AT"** name suffix so you don't
+lose track of who's carrying the team's AT/AA. If you'd rather have a
+completely clean picture — nothing but the colour-coded hexagons — bind and
+use **Toggle Detail Mode** (see Keybinds above) to switch all tag text off;
+toggle it back on to return to the full designators.
 
 - **Friendly drones** show **"OP: <name>"** for whoever is remotely flying it
   through a terminal — the tag clears within a couple seconds of them
@@ -176,7 +187,7 @@ permanently override the gating.
 **Proof of concept** — while VISOR is active, a small **fixed on-screen
 panel** (default: bottom-right corner) lists you and every member of your
 current squad (your `group`) with a colour-coded health state, driven by ACE
-medical (bleeding, pain, unconsciousness, cardiac arrest — falls back to
+medical (cardiac arrest, active bleeding, and unconsciousness — falls back to
 vanilla damage/lifeState if ACE medical isn't running). It's completely
 separate from the 3D IFF overlay — nothing about your squadmates' world tags
 changes with their health.
@@ -184,44 +195,80 @@ changes with their health.
 Under a light-blue **SQUAD** header, one line per member:
 
 - **Green ■ Name** — healthy.
-- **Yellow ■ Name WOUNDED** — damaged (bleeding, in pain, or lightly hurt).
-- **Red ■ Name CRITICAL** — critical (unconscious or in cardiac arrest).
-- **Grey ■ Name KIA** — dead (grey rather than black so the line stays
+- **Yellow ■ Name - WND** — **actively bleeding or unconscious**. A downed
+  teammate reads WND even once they've been bandaged/stabilised, so a
+  still-unconscious body never shows OK. Pain, bruises, and already-bandaged
+  damage on an *awake* squadmate don't trigger it — a patched-up, conscious
+  teammate reads OK again.
+- **Red ■ Name - CRIT** — **cardiac arrest** — the "drop everything, CPR
+  now" signal. Takes precedence over WND: an arrested teammate is also
+  unconscious, but they show CRIT, not yellow.
+- **Grey ■ Name - KIA** — dead (grey rather than black so the line stays
   readable over a dark scene — the panel has no background).
 
 A squadmate who dies stays listed as KIA even after they leave your group
-(which happens automatically on death), for as long as their body exists —
-the roster doesn't silently shrink mid-firefight. The panel only shows while
+(which happens automatically on death), so the roster doesn't silently shrink
+mid-firefight — but only for about a minute, after which the KIA line ages
+out on its own rather than lingering forever. The panel only shows while
 VISOR itself is active (approved device/vehicle + the display toggle on) and
 hides entirely when you're dead.
 
-Two personal Addon Options control it (see table below): **"Squad health
-indicator (PoC)"** turns the panel on/off, and **"Squad health indicator
-position"** moves it between the four screen corners (bottom-left,
-bottom-right, top-left, top-right).
+Three personal Addon Options control it (see table below): **"Squad health
+panel (standalone)"** turns VISOR's own corner panel on/off, **"Squad health
+indicator position"** moves that panel between the four screen corners
+(bottom-left, bottom-right, top-left, top-right), and **"Squad health → DUI
+Squad Radar"** controls the DUI integration below. The panel and the DUI
+integration are fully independent — run either, both, or neither.
+
+### DUI (Squad Radar) integration
+
+If you run [diwako's DUI - Squad Radar](https://github.com/diwako/diwako_dui)
+alongside VISOR, an **alive** squadmate's entry in DUI's list (and their 3D
+nametag) gains a colour-coded status suffix — **"Name - OK"** (green),
+**"Name - WND"** (yellow), or **"Name - CRIT"** (red) — including downed and
+cardiac-arrest casualties, so the list stays informative when someone drops.
+The name itself keeps DUI's normal unit colour. Healthy members get an
+explicit green **OK** (unlike VISOR's own panel, DUI's list has no
+colour-coded square, so "no suffix" there would read as "no data").
+
+When a member **dies**, the suffix is stripped and DUI shows their plain name.
+That takes a little extra work: DUI's nametag cache loop skips dead units, so
+it would otherwise freeze the last status ("- OK"/"- WND") on the corpse's 3D
+nametag forever — VISOR repairs DUI's cache at the death instant so the body
+reads plainly. **KIA** is shown on VISOR's own standalone panel instead. This
+works through DUI's documented `diwako_dui_main_customName` hook, using the
+member's real name (ACE_Name/name) as the base; the override is also cleared
+when they leave the squad or the option is switched off. Does nothing when DUI
+isn't loaded. (Note: while
+a member is in your squad this overrides any custom DUI name a mission may
+have set for them — a deliberate trade for robustness.) If you prefer DUI's
+list as your only squad readout, turn VISOR's standalone panel off and leave
+this integration on.
 
 ## Addon Options ("BZN VISOR" category)
 
 | Setting | Who controls it | What it controls |
 |---|---|---|
-| Devices (always-on) | Mission/server (forced) | Which helmet/goggle classnames grant the personal VISOR device. |
+| Devices (always-on) | Mission/server (forced) | Which helmet/goggle classnames grant the personal VISOR device. Defaults to every Bzn wearable in this mod (FASTMT helmets, Recon Hoods, ESS goggle facewear). |
+| Infantry fade range (m) | **You** (personal, per-player) | How far out infantry tags stay visible — they fade with distance and disappear around this range (default 1000 m; 100–3000 m slider). |
+| Vehicle fade range (m) | **You** (personal, per-player) | Same for vehicle/aircraft/ship tags (default 5000 m; 100–10000 m slider) — higher than infantry so friendly air keeps its IFF at realistic contact ranges. |
+| Tag shrink range (m) | **You** (personal, per-player) | Tags shrink progressively with zoom-adjusted distance, bottoming out at this range (default 5000 m; 500–10000 m slider). Zooming an optic onto a contact counts as being closer, growing its tag back. |
+| Tag minimum scale | **You** (personal, per-player) | How small a tag gets at/beyond the shrink range (default 0.5 = half size; 0.1–1 slider). Set to 1 to disable distance shrinking entirely. |
 | Approved vehicles | Mission/server (forced) | Which vehicle classnames grant VISOR to anyone mounted, regardless of headgear. |
-| Zeus mark duration (s) | Mission/server (forced) | How long a unit marked via the Zeus "Mark Enemy (VISOR)" module stays tagged "MARKED" for everyone with VISOR, before the mark expires (default 60s; 10–600s slider). |
-| Squad health indicator (PoC) | **You** (personal, per-player) | Turns the fixed on-screen squad health panel (see "Squad health readout" above) on/off. On by default. |
-| Squad health indicator position | **You** (personal, per-player) | Which screen corner the squad health panel sits in (bottom-left, bottom-right, top-left, top-right; default bottom-right). Top-right can momentarily overlap VISOR hint notifications. |
-| Tag clustering range (m) | **You** (personal, per-player) | How far away a bunch of same-side infantry needs to be before *your* display collapses them into one summary tag while on foot/in ground vehicles (default 100m; 0–500m slider). Vehicles/air/sea/drones and launcher carriers are never collapsed this way. Purely a personal declutter preference — doesn't change what anyone else sees or any gameplay balance. |
-| Tag clustering range, air/drone (m) | **You** (personal, per-player) | Same idea, but used instead whenever you're aircrew or slaved to a UAV/UGV feed — looking down from altitude bunches infantry together at much greater distances, hence the much higher default (2 km; 0–5 km slider). |
-| Debug mode | **You** (personal, per-player) | Shows a live marked-list hint (expiry values per target) and logs each AddSpot call to RPT. |
+| Squad health panel (standalone) | **You** (personal, per-player) | Turns VISOR's own fixed on-screen squad health panel (see "Squad health readout" above) on/off. Independent of the DUI integration. On by default. |
+| Squad health indicator position | **You** (personal, per-player) | Which screen corner the standalone panel sits in (bottom-left, bottom-right, top-left, top-right; default bottom-right). Top-right can momentarily overlap VISOR hint notifications. |
+| Squad health → DUI Squad Radar | **You** (personal, per-player) | Appends a colour-coded status ("Name - OK/WND/CRIT/KIA") to squadmates' names in DUI's list when DUI is loaded (see "DUI integration" above). On by default; harmless without DUI. |
 
-The whitelist settings (devices/vehicles) and the Zeus mark duration are forced
-server-wide so everyone plays by the same rules — explains why VISOR may
-behave differently between servers. The clustering sliders and debug mode are
-purely personal UI preferences and stay local, per-player choices.
+The whitelist settings (devices/vehicles) are forced server-wide so everyone
+plays by the same rules — explains why VISOR may behave differently between
+servers. The squad health panel settings are purely personal UI preferences
+and stay local, per-player choices. (The Zeus mark timer is set per-mark in
+the module's popup, not in Addon Options.)
 
 ---
 
 ### Maintenance note for contributors
-When you add or change anything a player can see/hear/trigger — a keybind,
-scroll action, hint/notification, marker, sound cue, cooldown, or Addon Option —
-add or update the relevant section above so this stays a complete, accurate
+When you add or change anything a player can see or trigger — a keybind,
+hint/notification, tag/HUD element, Zeus module, or Addon Option — add or
+update the relevant section above so this stays a complete, accurate
 reference for end users.

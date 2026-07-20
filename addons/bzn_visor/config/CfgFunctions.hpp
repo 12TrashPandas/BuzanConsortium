@@ -13,5 +13,14 @@ class CfgFunctions {
 			class visorSquadHUD {};
 			class visorZeusMark {};
 		};
+
+		class BZN_visor_serverCategory {
+			file = "z\bzn\addons\bzn_visor\functions\server";
+
+			// Runs on all machines but no-ops off the server (isServer guard).
+			class visorServerHealth {
+				postInit = 1;
+			};
+		};
 	};
 };
