@@ -1,4 +1,4 @@
-name = "[Dev]Buzan Consortium Aux Mod";
+name = "Buzan Consortium Aux Mod";
 picture = "Buzan.paa";
 overview = "The aux mod for Buzan Consortium.<br/>You probably only need this if you are in our unit.";
 logo = "Buzan.paa";
