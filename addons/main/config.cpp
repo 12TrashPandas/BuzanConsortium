@@ -10,7 +10,6 @@ class CfgPatches
 		{
 			"bzn_armor",
 			"bzn_aax",
-			"bzn_visor",
 			"bzn_uav_terminal",
 		};
 		units[]={};
