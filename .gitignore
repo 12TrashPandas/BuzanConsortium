@@ -13,3 +13,4 @@ build/
 meta/tools/hemtt/
 *.log
 /.hemttout
+/.hemttout/*
