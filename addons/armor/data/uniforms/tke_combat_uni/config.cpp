@@ -66,7 +66,7 @@ class CfgWeapons
 			"BACKPACK_SLOT"
 		};
 		displayName="[BZN] UCCU-50";
-		picture="z\addons\armor\data\BuzanPatch.paa";
+		picture="z\bzn\addons\armor\data\BuzanPatch.paa";
 		model="\A3\Characters_F\Common\Suitpacks\suitpack_blufor_soldier";
 		class ItemInfo: ItemInfo
 		{
@@ -85,7 +85,7 @@ class CfgWeapons
 		scope = 2;
 		scopearsenal = 2;
 		displayName = "[BZN] Dress Uniform";
-		picture = "z\addons\armor\data\BuzanPatch.paa";
+		picture = "z\bzn\addons\armor\data\BuzanPatch.paa";
 		DLC = "BZN";
 		class ItemInfo: UniformItem
 		{
