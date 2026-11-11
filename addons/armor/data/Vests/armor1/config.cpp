@@ -22,7 +22,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Standard Issue (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelections[] = {"camo","camo1"};
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa"};
 	};
@@ -33,7 +33,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Heavy Vest (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelections[] = {"camo","camo1","camo2","camo3","camo4","camo5","camo6"};
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa"};
 	};
@@ -44,7 +44,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Vest (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelections[] = {"camo","camo1","camo2","camo3"};
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa",""};
 	};
@@ -55,7 +55,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Vest V2 (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelections[] = {"camo","camo1","camo2","camo3"};
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa",""};
 	};
@@ -66,7 +66,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Heavy Vest V2 (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelections[] = {"camo","camo1","camo2","camo3","camo4","camo5","camo6"};
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa"};
 	};
@@ -77,7 +77,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Heavy Vest V3 (Urban)";
-		picture = "z\addons\armor\data\BuzanPatch.paa";
+		picture = "z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelections[] = {"camo","camo1","camo2","camo3","camo4","camo5","camo6","camo7","camo8"};
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCNExtras_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_BinoUCN_co.paa"};
 	};
@@ -88,7 +88,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Vest V3 (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelections[] = {"camo","camo1","camo2","camo3","camo7","camo8"};
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa","","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCNExtras_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_BinoUCN_co.paa"};
 	};
@@ -99,7 +99,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Heavy Vest V4 (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelections[] = {"camo","camo1","camo2","camo3","camo4","camo5","camo6"};
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa"};
 	};
@@ -110,7 +110,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Vest V4 (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelections[] = {"camo","camo1","camo2","camo3"};
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa",""};
 	};
@@ -121,7 +121,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Medium Vest V1 (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa","","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa"};
 	};
 
@@ -131,7 +131,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Medium Vest V2 (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa","","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa"};
 	};
 
@@ -141,7 +141,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Medium Vest V3 (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa","","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCNExtras_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_BinoUCN_co.paa"};
 	};
 
@@ -151,7 +151,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] AIBA Medium Vest V4 (Urban)";
-		picture = "\z\addons\armor\data\BuzanPatch.paa";
+		picture = "\z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelectionsTextures[] = {"\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmor_Co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCArmourP_co.paa","\TKE_Kuiper_Engagements\TKE_UCN\data\TKE_UCMCPouches_co.paa","","\z\bzn\addons\armor\data\Vests\armor1\urban\BznArmorAddon_Co.paa"};
 	};
 };

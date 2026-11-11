@@ -21,7 +21,7 @@ class CfgWeapons
 		author = "Bzn Mod Dev Team";
 		scope = 2;
 		displayName = "[BZN] ACH-22/50";
-		picture="z\addons\armor\data\BuzanPatch.paa";
+		picture="z\bzn\addons\armor\data\BuzanPatch.paa";
 		hiddenSelectionsTextures[] = {"z\bzn\addons\armor\data\helmets\UCMC\urban\P3D__tke_ucmchelm_co.paa___tke_ucmchelm.rvmat_CO.paa"};
 	};
 };
