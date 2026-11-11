@@ -1,226 +1,256 @@
-2026-08-05T21:12:03.611411Z TRACE ThreadId(01) version: 1.20.1
-2026-08-05T21:12:03.611497Z TRACE ThreadId(01) platform: windows
-2026-08-05T21:12:03.611520Z TRACE ThreadId(01) args: [
-    "C:\\Users\\naomi\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BrettMayson.HEMTT_Microsoft.Winget.Source_8wekyb3d8bbwe\\hemtt.exe",
+2026-11-11T21:13:04.769101Z TRACE ThreadId(01) version: 1.23.1
+2026-11-11T21:13:04.769175Z TRACE ThreadId(01) platform: windows
+2026-11-11T21:13:04.769185Z TRACE ThreadId(01) args: [
+    "C:\\Users\\naomi\\AppData\\Local\\hemtt-versions\\1.23.1\\hemtt.exe",
     "build",
 ]
-2026-08-05T21:12:03.616075Z TRACE ThreadId(01) using temporary folder: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium"
-2026-08-05T21:12:03.616094Z TRACE ThreadId(01) using project folder: "D:\\Github\\BuzanConsortium"
-2026-08-05T21:12:03.616192Z TRACE ThreadId(01) using out folder: "D:\\Github\\BuzanConsortium\\.hemttout"
-2026-08-05T21:12:03.616809Z TRACE ThreadId(01) using build folder: "D:\\Github\\BuzanConsortium\\.hemttout\\build"
-2026-08-05T21:12:03.626266Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/bzn_uav_terminal/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.626513Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/bzn_uav_terminal/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.628008Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.628232Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/armor/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.631350Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/helmets/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.632380Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/helmets/FAST/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.637027Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.638860Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/rolled_sleaves_knight/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.644735Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/rolled_sleaves_queen/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.652142Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/rolled_sleaves/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.658476Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/aax/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.658826Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/aax/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.664511Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/main/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.664746Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/main/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.666148Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/scripts/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.666816Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/scripts/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.667066Z TRACE ThreadId(01) checking for version macro in VfsPath { path: "/addons/main/script_version.hpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
-2026-08-05T21:12:03.679009Z  INFO ThreadId(01) Config loaded for Buzan Consortium 0.0.4-e1435024
-2026-08-05T21:12:03.679180Z TRACE ThreadId(01) Scanning D:\Github\BuzanConsortium\addons for addons
-2026-08-05T21:12:03.683865Z DEBUG ThreadId(01) using global config directory: "C:\\Users\\naomi\\AppData\\Roaming\\hemtt"
-2026-08-05T21:12:03.684133Z  INFO ThreadId(01) Creating `build` version
-2026-08-05T21:12:03.684157Z TRACE ThreadId(01) phase: init (BOM Check) (start)
-2026-08-05T21:12:03.684172Z TRACE ThreadId(01) phase: init (BOM Check) (done)
-2026-08-05T21:12:03.684179Z TRACE ThreadId(01) phase: init (Final New Line Check) (start)
-2026-08-05T21:12:03.684184Z TRACE ThreadId(01) phase: init (Final New Line Check) (done)
-2026-08-05T21:12:03.684190Z TRACE ThreadId(01) phase: init (git) (start)
-2026-08-05T21:12:03.684196Z TRACE ThreadId(01) phase: init (git) (done)
-2026-08-05T21:12:03.684201Z TRACE ThreadId(01) phase: init (Hooks) (start)
-2026-08-05T21:12:03.684288Z TRACE ThreadId(01) no hooks folder
-2026-08-05T21:12:03.684303Z TRACE ThreadId(01) phase: init (Hooks) (done)
-2026-08-05T21:12:03.684311Z TRACE ThreadId(01) phase: init (pboprefix) (start)
-2026-08-05T21:12:03.684316Z TRACE ThreadId(01) phase: init (pboprefix) (done)
-2026-08-05T21:12:03.684322Z TRACE ThreadId(01) phase: init (Binarize) (start)
-2026-08-05T21:12:03.684336Z TRACE ThreadId(01) Using Binarize path from registry
-2026-08-05T21:12:03.685962Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\aax" => "D:\\Github\\BuzanConsortium\\addons\\aax"
-2026-08-05T21:12:03.767608Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\armor" => "D:\\Github\\BuzanConsortium\\addons\\armor"
-2026-08-05T21:12:03.843496Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\bzn_uav_terminal" => "D:\\Github\\BuzanConsortium\\addons\\bzn_uav_terminal"
-2026-08-05T21:12:04.325531Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\main" => "D:\\Github\\BuzanConsortium\\addons\\main"
-2026-08-05T21:12:04.605371Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\scripts" => "D:\\Github\\BuzanConsortium\\addons\\scripts"
-2026-08-05T21:12:04.676897Z TRACE ThreadId(01) phase: init (Binarize) (done)
-2026-08-05T21:12:04.676917Z TRACE ThreadId(01) phase: init (tex_headers) (start)
-2026-08-05T21:12:04.676923Z TRACE ThreadId(01) phase: init (tex_headers) (done)
-2026-08-05T21:12:04.676928Z TRACE ThreadId(01) phase: init (Files) (start)
-2026-08-05T21:12:04.676934Z TRACE ThreadId(01) phase: init (Files) (done)
-2026-08-05T21:12:04.676942Z TRACE ThreadId(01) phase: init (Meta) (start)
-2026-08-05T21:12:04.676951Z TRACE ThreadId(01) phase: init (Meta) (done)
-2026-08-05T21:12:04.676960Z TRACE ThreadId(01) phase: init (summary) (start)
-2026-08-05T21:12:04.676966Z TRACE ThreadId(01) phase: init (summary) (done)
-2026-08-05T21:12:04.676970Z TRACE ThreadId(01) phase: init (Rapifier) (start)
-2026-08-05T21:12:04.677008Z TRACE ThreadId(01) phase: init (Rapifier) (done)
-2026-08-05T21:12:04.677018Z TRACE ThreadId(01) phase: init (SQF) (start)
-2026-08-05T21:12:05.285182Z TRACE ThreadId(01) phase: init (SQF) (done)
-2026-08-05T21:12:05.285205Z TRACE ThreadId(01) phase: init (Stringtables) (start)
-2026-08-05T21:12:05.285212Z TRACE ThreadId(01) phase: init (Stringtables) (done)
-2026-08-05T21:12:05.285217Z TRACE ThreadId(01) phase: check (BOM Check) (start)
-2026-08-05T21:12:05.298556Z TRACE ThreadId(01) phase: check (BOM Check) (done)
-2026-08-05T21:12:05.298572Z TRACE ThreadId(01) phase: check (Final New Line Check) (start)
-2026-08-05T21:12:05.311731Z TRACE ThreadId(01) phase: check (Final New Line Check) (done)
-2026-08-05T21:12:05.311753Z TRACE ThreadId(01) phase: check (git) (start)
-2026-08-05T21:12:05.456601Z TRACE ThreadId(01) phase: check (git) (done)
-2026-08-05T21:12:05.456621Z TRACE ThreadId(01) phase: check (Hooks) (start)
-2026-08-05T21:12:05.456629Z TRACE ThreadId(01) phase: check (Hooks) (done)
-2026-08-05T21:12:05.456634Z TRACE ThreadId(01) phase: check (pboprefix) (start)
-2026-08-05T21:12:05.456643Z TRACE ThreadId(01) Checking prefixes against expected project path: z\bzn\
-2026-08-05T21:12:05.458037Z TRACE ThreadId(01) phase: check (pboprefix) (done)
-2026-08-05T21:12:05.458079Z TRACE ThreadId(01) phase: check (Binarize) (start)
-2026-08-05T21:12:05.513556Z  INFO ThreadId(01) Validated 0 files for binarization
-2026-08-05T21:12:05.513639Z TRACE ThreadId(01) phase: check (Binarize) (done)
-2026-08-05T21:12:05.513648Z TRACE ThreadId(01) phase: check (tex_headers) (start)
-2026-08-05T21:12:05.513654Z TRACE ThreadId(01) phase: check (tex_headers) (done)
-2026-08-05T21:12:05.513660Z TRACE ThreadId(01) phase: check (Files) (start)
-2026-08-05T21:12:05.513665Z TRACE ThreadId(01) phase: check (Files) (done)
-2026-08-05T21:12:05.513671Z TRACE ThreadId(01) phase: check (Meta) (start)
-2026-08-05T21:12:05.513676Z TRACE ThreadId(01) phase: check (Meta) (done)
-2026-08-05T21:12:05.513682Z TRACE ThreadId(01) phase: check (summary) (start)
-2026-08-05T21:12:05.513687Z TRACE ThreadId(01) phase: check (summary) (done)
-2026-08-05T21:12:05.513692Z TRACE ThreadId(01) phase: check (Rapifier) (start)
-2026-08-05T21:12:05.513779Z TRACE ThreadId(01) phase: check (Rapifier) (done)
-2026-08-05T21:12:05.513787Z TRACE ThreadId(01) phase: check (SQF) (start)
-2026-08-05T21:12:05.513861Z TRACE ThreadId(01) phase: check (SQF) (done)
-2026-08-05T21:12:05.513868Z TRACE ThreadId(01) phase: check (Stringtables) (start)
-2026-08-05T21:12:05.513901Z TRACE ThreadId(01) phase: check (Stringtables) (done)
-2026-08-05T21:12:05.513907Z TRACE ThreadId(01) phase: pre_build (BOM Check) (start)
-2026-08-05T21:12:05.513913Z TRACE ThreadId(01) phase: pre_build (BOM Check) (done)
-2026-08-05T21:12:05.513918Z TRACE ThreadId(01) phase: pre_build (Final New Line Check) (start)
-2026-08-05T21:12:05.513924Z TRACE ThreadId(01) phase: pre_build (Final New Line Check) (done)
-2026-08-05T21:12:05.513929Z TRACE ThreadId(01) phase: pre_build (git) (start)
-2026-08-05T21:12:05.513935Z TRACE ThreadId(01) phase: pre_build (git) (done)
-2026-08-05T21:12:05.513940Z TRACE ThreadId(01) phase: pre_build (Hooks) (start)
-2026-08-05T21:12:05.513949Z TRACE ThreadId(01) phase: pre_build (Hooks) (done)
-2026-08-05T21:12:05.513954Z TRACE ThreadId(01) phase: pre_build (pboprefix) (start)
-2026-08-05T21:12:05.513960Z TRACE ThreadId(01) phase: pre_build (pboprefix) (done)
-2026-08-05T21:12:05.513965Z TRACE ThreadId(01) phase: pre_build (Binarize) (start)
-2026-08-05T21:12:05.514533Z  INFO ThreadId(01) Binarized 0 files
-2026-08-05T21:12:05.514567Z TRACE ThreadId(01) phase: pre_build (Binarize) (done)
-2026-08-05T21:12:05.514577Z TRACE ThreadId(01) phase: pre_build (tex_headers) (start)
-2026-08-05T21:12:05.581399Z DEBUG ThreadId(05) Writing texture headers to "/addons/armor/texHeaders.bin"
-2026-08-05T21:12:05.582498Z  INFO ThreadId(01) Generated 1 texture headers
-2026-08-05T21:12:05.582528Z TRACE ThreadId(01) phase: pre_build (tex_headers) (done)
-2026-08-05T21:12:05.582542Z TRACE ThreadId(01) phase: pre_build (Files) (start)
-2026-08-05T21:12:05.582551Z TRACE ThreadId(01) phase: pre_build (Files) (done)
-2026-08-05T21:12:05.582558Z TRACE ThreadId(01) phase: pre_build (Meta) (start)
-2026-08-05T21:12:05.582564Z TRACE ThreadId(01) phase: pre_build (Meta) (done)
-2026-08-05T21:12:05.582569Z TRACE ThreadId(01) phase: pre_build (summary) (start)
-2026-08-05T21:12:05.582575Z TRACE ThreadId(01) phase: pre_build (summary) (done)
-2026-08-05T21:12:05.582580Z TRACE ThreadId(01) phase: pre_build (Rapifier) (start)
-2026-08-05T21:12:05.676760Z  INFO ThreadId(01) Rapified 11 addon configs
-2026-08-05T21:12:05.676811Z TRACE ThreadId(01) phase: pre_build (Rapifier) (done)
-2026-08-05T21:12:05.676822Z TRACE ThreadId(01) phase: pre_build (SQF) (start)
-2026-08-05T21:12:05.744403Z  INFO ThreadId(01) Compiled 0 sqf files
-2026-08-05T21:12:05.744481Z TRACE ThreadId(01) phase: pre_build (SQF) (done)
-2026-08-05T21:12:05.744494Z TRACE ThreadId(01) phase: pre_build (Stringtables) (start)
-2026-08-05T21:12:05.780132Z  INFO ThreadId(01) Checked 0 stringtables
-2026-08-05T21:12:05.780161Z TRACE ThreadId(01) phase: pre_build (Stringtables) (done)
-2026-08-05T21:12:05.780169Z TRACE ThreadId(01) phase: build (start)
-2026-08-05T21:12:05.783320Z DEBUG ThreadId(01) creating "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons"
-2026-08-05T21:12:05.783576Z DEBUG ThreadId(01) building "addons/aax" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_aax.pbo"
-2026-08-05T21:12:05.789580Z TRACE ThreadId(01) adding file "config.bin"
-2026-08-05T21:12:05.790250Z TRACE ThreadId(01) adding file "data\\aax_infos.hpp"
-2026-08-05T21:12:05.791025Z TRACE ThreadId(01) adding file "data\\aax_models.hpp"
-2026-08-05T21:12:05.791544Z TRACE ThreadId(01) adding file "data\\rolled_sleaves\\female_uniform_infos.hpp"
-2026-08-05T21:12:05.792350Z TRACE ThreadId(01) adding file "data\\rolled_sleaves\\female_uniform_models.hpp"
-2026-08-05T21:12:05.793007Z TRACE ThreadId(01) adding file "data\\images\\Queen.jpg"
-2026-08-05T21:12:05.793601Z TRACE ThreadId(01) adding file "data\\images\\King.jpg"
-2026-08-05T21:12:05.794129Z TRACE ThreadId(01) adding file "data\\images\\Knight.jpg"
-2026-08-05T21:12:05.797792Z DEBUG ThreadId(01) "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons" already exists
-2026-08-05T21:12:05.797807Z DEBUG ThreadId(01) building "addons/armor" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_armor.pbo"
-2026-08-05T21:12:05.826428Z TRACE ThreadId(01) adding file "config.bin"
-2026-08-05T21:12:05.826458Z TRACE ThreadId(01) adding file "texHeaders.bin"
-2026-08-05T21:12:05.827627Z TRACE ThreadId(01) adding file "data\\Lumberjack.paa"
-2026-08-05T21:12:05.828070Z TRACE ThreadId(01) adding file "data\\Witch.paa"
-2026-08-05T21:12:05.828539Z TRACE ThreadId(01) adding file "data\\IRSocialist.paa"
-2026-08-05T21:12:05.828980Z TRACE ThreadId(01) adding file "data\\BuzanPatch.paa"
-2026-08-05T21:12:05.829211Z TRACE ThreadId(01) adding file "data\\uniforms\\config.bin"
-2026-08-05T21:12:05.829896Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\config.bin"
-2026-08-05T21:12:05.831209Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\woodland\\uniform_woodland.paa"
-2026-08-05T21:12:05.831649Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\woodland\\uniform_flecktarn.paa"
-2026-08-05T21:12:05.832078Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\desert\\uniform_desert.paa"
-2026-08-05T21:12:05.832501Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\winter\\uniform_winter.paa"
-2026-08-05T21:12:05.832943Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\urban\\uniform_urban2.paa"
-2026-08-05T21:12:05.833387Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\urban\\uniform_urban.paa"
-2026-08-05T21:12:05.833847Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\jungle\\uniform_jungle.paa"
-2026-08-05T21:12:05.834304Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\maritime\\uniform_maritime.paa"
-2026-08-05T21:12:05.834563Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\config.bin"
-2026-08-05T21:12:05.836243Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\jungle\\uniform_jungle_q.paa"
-2026-08-05T21:12:05.836667Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\urban\\uniform_urban_q.paa"
-2026-08-05T21:12:05.837126Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\woodland\\uniform_woodland_q.paa"
-2026-08-05T21:12:05.837555Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\maritime\\uniform_maritime_q.paa"
-2026-08-05T21:12:05.837993Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\winter\\uniform_winter_q.paa"
-2026-08-05T21:12:05.838524Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\desert\\uniform_desert_q.paa"
-2026-08-05T21:12:05.840208Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\config.bin"
-2026-08-05T21:12:05.840450Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\woodland\\uniform_woodland_k.paa"
-2026-08-05T21:12:05.840889Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\jungle\\uniform_jungle_k.paa"
-2026-08-05T21:12:05.841349Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\urban\\uniform_urban_k.paa"
-2026-08-05T21:12:05.841770Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\desert\\uniform_desert_k.paa"
-2026-08-05T21:12:05.842204Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\winter\\uniform_winter_k.paa"
-2026-08-05T21:12:05.842640Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\maritime\\uniform_maritime_k.paa"
-2026-08-05T21:12:05.843085Z TRACE ThreadId(01) adding file "data\\helmets\\config.bin"
-2026-08-05T21:12:05.843308Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\config.bin"
-2026-08-05T21:12:05.843737Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_white_CO.paa"
-2026-08-05T21:12:05.844199Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_woodland_CO.paa"
-2026-08-05T21:12:05.844636Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_woodland_CO.paa"
-2026-08-05T21:12:05.845074Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_urban2_CO.paa"
-2026-08-05T21:12:05.845505Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_black_CO.paa"
-2026-08-05T21:12:05.845928Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_maritime_CO.paa"
-2026-08-05T21:12:05.846383Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_jungle_CO.paa"
-2026-08-05T21:12:05.846864Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_jungle_CO.paa"
-2026-08-05T21:12:05.847300Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HeadsetWest_wht_CO.paa"
-2026-08-05T21:12:05.847720Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_urban_CO.paa"
-2026-08-05T21:12:05.848148Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_arid_CO.paa"
-2026-08-05T21:12:05.848603Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_urban2_tan_CO.paa"
-2026-08-05T21:12:05.849029Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_winter_CO.paa"
-2026-08-05T21:12:05.902823Z DEBUG ThreadId(01) "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons" already exists
-2026-08-05T21:12:05.902848Z DEBUG ThreadId(01) building "addons/bzn_uav_terminal" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_bzn_uav_terminal.pbo"
-2026-08-05T21:12:05.904101Z TRACE ThreadId(01) adding file "config.bin"
-2026-08-05T21:12:05.906099Z DEBUG ThreadId(01) "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons" already exists
-2026-08-05T21:12:05.906113Z DEBUG ThreadId(01) building "addons/main" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_main.pbo"
-2026-08-05T21:12:05.907380Z TRACE ThreadId(01) adding file "config.bin"
-2026-08-05T21:12:05.907596Z TRACE ThreadId(01) adding file "script_version.hpp"
-2026-08-05T21:12:05.909943Z DEBUG ThreadId(01) "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons" already exists
-2026-08-05T21:12:05.909957Z DEBUG ThreadId(01) building "addons/scripts" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_scripts.pbo"
-2026-08-05T21:12:05.911646Z TRACE ThreadId(01) adding file "config.bin"
-2026-08-05T21:12:05.912441Z  INFO ThreadId(01) Built 5 PBOs
-2026-08-05T21:12:05.912468Z TRACE ThreadId(01) phase: build (done)
-2026-08-05T21:12:05.912478Z TRACE ThreadId(01) phase: post_build (BOM Check) (start)
-2026-08-05T21:12:05.912484Z TRACE ThreadId(01) phase: post_build (BOM Check) (done)
-2026-08-05T21:12:05.912488Z TRACE ThreadId(01) phase: post_build (Final New Line Check) (start)
-2026-08-05T21:12:05.912493Z TRACE ThreadId(01) phase: post_build (Final New Line Check) (done)
-2026-08-05T21:12:05.912497Z TRACE ThreadId(01) phase: post_build (git) (start)
-2026-08-05T21:12:05.912502Z TRACE ThreadId(01) phase: post_build (git) (done)
-2026-08-05T21:12:05.912506Z TRACE ThreadId(01) phase: post_build (Hooks) (start)
-2026-08-05T21:12:05.912511Z TRACE ThreadId(01) phase: post_build (Hooks) (done)
-2026-08-05T21:12:05.912516Z TRACE ThreadId(01) phase: post_build (pboprefix) (start)
-2026-08-05T21:12:05.912520Z TRACE ThreadId(01) phase: post_build (pboprefix) (done)
-2026-08-05T21:12:05.912525Z TRACE ThreadId(01) phase: post_build (Binarize) (start)
-2026-08-05T21:12:05.912529Z TRACE ThreadId(01) phase: post_build (Binarize) (done)
-2026-08-05T21:12:05.912534Z TRACE ThreadId(01) phase: post_build (tex_headers) (start)
-2026-08-05T21:12:05.912538Z TRACE ThreadId(01) phase: post_build (tex_headers) (done)
-2026-08-05T21:12:05.912542Z TRACE ThreadId(01) phase: post_build (Files) (start)
-2026-08-05T21:12:07.182562Z DEBUG ThreadId(01) copying "/changelog.md" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\changelog.md"
-2026-08-05T21:12:07.188525Z DEBUG ThreadId(01) copying "/mod.cpp" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\mod.cpp"
-2026-08-05T21:12:07.189722Z DEBUG ThreadId(01) copying "/Buzan.paa" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\Buzan.paa"
-2026-08-05T21:12:07.192652Z  INFO ThreadId(01) Copied 3 files
-2026-08-05T21:12:07.192679Z TRACE ThreadId(01) phase: post_build (Files) (done)
-2026-08-05T21:12:07.192688Z TRACE ThreadId(01) phase: post_build (Meta) (start)
-2026-08-05T21:12:07.192693Z TRACE ThreadId(01) phase: post_build (Meta) (done)
-2026-08-05T21:12:07.192698Z TRACE ThreadId(01) phase: post_build (summary) (start)
-2026-08-05T21:12:07.194739Z TRACE ThreadId(01) phase: post_build (summary) (done)
-2026-08-05T21:12:07.194751Z TRACE ThreadId(01) phase: post_build (Rapifier) (start)
-2026-08-05T21:12:07.194758Z TRACE ThreadId(01) phase: post_build (Rapifier) (done)
-2026-08-05T21:12:07.194763Z TRACE ThreadId(01) phase: post_build (SQF) (start)
-2026-08-05T21:12:07.194772Z TRACE ThreadId(01) phase: post_build (SQF) (done)
-2026-08-05T21:12:07.194777Z TRACE ThreadId(01) phase: post_build (Stringtables) (start)
-2026-08-05T21:12:07.194782Z TRACE ThreadId(01) phase: post_build (Stringtables) (done)
-2026-08-05T21:12:07.199811Z TRACE ThreadId(01) writing ci annotations to .hemttout/ci_annotations.txt
-2026-08-05T21:12:07.200125Z TRACE ThreadId(01) wrote 0 ci annotations to .hemttout/ci_annotations.txt
+2026-11-11T21:13:04.771587Z TRACE ThreadId(01) using temporary folder: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium"
+2026-11-11T21:13:04.771599Z TRACE ThreadId(01) using project folder: "D:\\Github\\BuzanConsortium"
+2026-11-11T21:13:04.771666Z TRACE ThreadId(01) using out folder: "D:\\Github\\BuzanConsortium\\.hemttout"
+2026-11-11T21:13:04.771878Z TRACE ThreadId(01) using build folder: "D:\\Github\\BuzanConsortium\\.hemttout\\build"
+2026-11-11T21:13:04.782261Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/armor/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.782938Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.785021Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.786524Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/rolled_sleaves_knight/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.790554Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/rolled_sleaves_queen/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.794646Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/rolled_sleaves/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.798980Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/uniforms/tke_combat_uni/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.799738Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/facewear/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.800394Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/facewear/urban/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.801515Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/helmets/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.802404Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/helmets/UCMC/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.803302Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/helmets/FAST/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.806259Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/Vests/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.806856Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/armor/data/Vests/armor1/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.807881Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/main/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.808358Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/main/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.808957Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/aax/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.809116Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/aax/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.812495Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/bzn_uav_terminal/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.812980Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/bzn_uav_terminal/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.813418Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/scripts/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.813580Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/scripts/$PREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.814096Z TRACE ThreadId(01) checking for version macro in VfsPath { path: "/addons/main/script_version.hpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\hemtt_binarize_output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "D:\\Github\\BuzanConsortium" } } } } } }] } } }
+2026-11-11T21:13:04.821934Z  INFO ThreadId(01) Config loaded for Buzan Consortium 0.0.5-6f12ca83
+2026-11-11T21:13:04.822028Z TRACE ThreadId(01) Scanning D:\Github\BuzanConsortium\addons for addons
+2026-11-11T21:13:04.825604Z DEBUG ThreadId(01) using global config directory: "C:\\Users\\naomi\\AppData\\Roaming\\hemtt"
+2026-11-11T21:13:04.825745Z  INFO ThreadId(01) Creating `build` version
+2026-11-11T21:13:04.825773Z TRACE ThreadId(01) phase: init (BOM Check) (start)
+2026-11-11T21:13:04.825781Z TRACE ThreadId(01) phase: init (BOM Check) (done)
+2026-11-11T21:13:04.825784Z TRACE ThreadId(01) phase: init (Final New Line Check) (start)
+2026-11-11T21:13:04.825787Z TRACE ThreadId(01) phase: init (Final New Line Check) (done)
+2026-11-11T21:13:04.825790Z TRACE ThreadId(01) phase: init (git) (start)
+2026-11-11T21:13:04.825793Z TRACE ThreadId(01) phase: init (git) (done)
+2026-11-11T21:13:04.825797Z TRACE ThreadId(01) phase: init (Hooks) (start)
+2026-11-11T21:13:04.825882Z TRACE ThreadId(01) no hooks folder
+2026-11-11T21:13:04.825890Z TRACE ThreadId(01) phase: init (Hooks) (done)
+2026-11-11T21:13:04.825893Z TRACE ThreadId(01) phase: init (pboprefix) (start)
+2026-11-11T21:13:04.825896Z TRACE ThreadId(01) phase: init (pboprefix) (done)
+2026-11-11T21:13:04.825901Z TRACE ThreadId(01) phase: init (Binarize) (start)
+2026-11-11T21:13:04.825911Z TRACE ThreadId(01) Using Binarize path from registry
+2026-11-11T21:13:04.827049Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\aax" => "D:\\Github\\BuzanConsortium\\addons\\aax"
+2026-11-11T21:13:04.846074Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\armor" => "D:\\Github\\BuzanConsortium\\addons\\armor"
+2026-11-11T21:13:04.863948Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\bzn_uav_terminal" => "D:\\Github\\BuzanConsortium\\addons\\bzn_uav_terminal"
+2026-11-11T21:13:04.881392Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\main" => "D:\\Github\\BuzanConsortium\\addons\\main"
+2026-11-11T21:13:04.897959Z TRACE ThreadId(01) junction link "C:\\Users\\naomi\\AppData\\Local\\Temp\\hemtt\\Github_BuzanConsortium\\z\\bzn\\addons\\scripts" => "D:\\Github\\BuzanConsortium\\addons\\scripts"
+2026-11-11T21:13:04.915844Z TRACE ThreadId(01) phase: init (Binarize) (done)
+2026-11-11T21:13:04.915859Z TRACE ThreadId(01) phase: init (tex_headers) (start)
+2026-11-11T21:13:04.915863Z TRACE ThreadId(01) phase: init (tex_headers) (done)
+2026-11-11T21:13:04.915865Z TRACE ThreadId(01) phase: init (Files) (start)
+2026-11-11T21:13:04.915868Z TRACE ThreadId(01) phase: init (Files) (done)
+2026-11-11T21:13:04.915870Z TRACE ThreadId(01) phase: init (Meta) (start)
+2026-11-11T21:13:04.915875Z TRACE ThreadId(01) phase: init (Meta) (done)
+2026-11-11T21:13:04.915879Z TRACE ThreadId(01) phase: init (summary) (start)
+2026-11-11T21:13:04.915881Z TRACE ThreadId(01) phase: init (summary) (done)
+2026-11-11T21:13:04.915883Z TRACE ThreadId(01) phase: init (paa) (start)
+2026-11-11T21:13:04.915885Z TRACE ThreadId(01) phase: init (paa) (done)
+2026-11-11T21:13:04.915887Z TRACE ThreadId(01) phase: init (Rapifier) (start)
+2026-11-11T21:13:04.915890Z TRACE ThreadId(01) phase: init (Rapifier) (done)
+2026-11-11T21:13:04.915892Z TRACE ThreadId(01) phase: init (SQF) (start)
+2026-11-11T21:13:05.385685Z TRACE ThreadId(01) phase: init (SQF) (done)
+2026-11-11T21:13:05.385702Z TRACE ThreadId(01) phase: init (Stringtables) (start)
+2026-11-11T21:13:05.385705Z TRACE ThreadId(01) phase: init (Stringtables) (done)
+2026-11-11T21:13:05.385709Z TRACE ThreadId(01) phase: check (BOM Check) (start)
+2026-11-11T21:13:05.390553Z TRACE ThreadId(01) phase: check (BOM Check) (done)
+2026-11-11T21:13:05.390563Z TRACE ThreadId(01) phase: check (Final New Line Check) (start)
+2026-11-11T21:13:05.394311Z TRACE ThreadId(01) phase: check (Final New Line Check) (done)
+2026-11-11T21:13:05.394319Z TRACE ThreadId(01) phase: check (git) (start)
+2026-11-11T21:13:05.429595Z TRACE ThreadId(01) phase: check (git) (done)
+2026-11-11T21:13:05.429605Z TRACE ThreadId(01) phase: check (Hooks) (start)
+2026-11-11T21:13:05.429608Z TRACE ThreadId(01) phase: check (Hooks) (done)
+2026-11-11T21:13:05.429611Z TRACE ThreadId(01) phase: check (pboprefix) (start)
+2026-11-11T21:13:05.429616Z TRACE ThreadId(01) Checking prefixes against expected project path: z\bzn\
+2026-11-11T21:13:05.430199Z TRACE ThreadId(01) phase: check (pboprefix) (done)
+2026-11-11T21:13:05.430213Z TRACE ThreadId(01) phase: check (Binarize) (start)
+2026-11-11T21:13:05.475483Z  INFO ThreadId(01) Validated 0 files for binarization
+2026-11-11T21:13:05.475501Z TRACE ThreadId(01) phase: check (Binarize) (done)
+2026-11-11T21:13:05.475506Z TRACE ThreadId(01) phase: check (tex_headers) (start)
+2026-11-11T21:13:05.475509Z TRACE ThreadId(01) phase: check (tex_headers) (done)
+2026-11-11T21:13:05.475512Z TRACE ThreadId(01) phase: check (Files) (start)
+2026-11-11T21:13:05.475515Z TRACE ThreadId(01) phase: check (Files) (done)
+2026-11-11T21:13:05.475518Z TRACE ThreadId(01) phase: check (Meta) (start)
+2026-11-11T21:13:05.475521Z TRACE ThreadId(01) phase: check (Meta) (done)
+2026-11-11T21:13:05.475523Z TRACE ThreadId(01) phase: check (summary) (start)
+2026-11-11T21:13:05.475526Z TRACE ThreadId(01) phase: check (summary) (done)
+2026-11-11T21:13:05.475529Z TRACE ThreadId(01) phase: check (paa) (start)
+2026-11-11T21:13:05.475538Z TRACE ThreadId(01) phase: check (paa) (done)
+2026-11-11T21:13:05.475541Z TRACE ThreadId(01) phase: check (Rapifier) (start)
+2026-11-11T21:13:05.475606Z TRACE ThreadId(01) phase: check (Rapifier) (done)
+2026-11-11T21:13:05.475611Z TRACE ThreadId(01) phase: check (SQF) (start)
+2026-11-11T21:13:05.475682Z TRACE ThreadId(01) phase: check (SQF) (done)
+2026-11-11T21:13:05.475686Z TRACE ThreadId(01) phase: check (Stringtables) (start)
+2026-11-11T21:13:05.475716Z TRACE ThreadId(01) phase: check (Stringtables) (done)
+2026-11-11T21:13:05.475719Z TRACE ThreadId(01) phase: pre_build (BOM Check) (start)
+2026-11-11T21:13:05.475722Z TRACE ThreadId(01) phase: pre_build (BOM Check) (done)
+2026-11-11T21:13:05.475725Z TRACE ThreadId(01) phase: pre_build (Final New Line Check) (start)
+2026-11-11T21:13:05.475728Z TRACE ThreadId(01) phase: pre_build (Final New Line Check) (done)
+2026-11-11T21:13:05.475731Z TRACE ThreadId(01) phase: pre_build (git) (start)
+2026-11-11T21:13:05.475733Z TRACE ThreadId(01) phase: pre_build (git) (done)
+2026-11-11T21:13:05.475736Z TRACE ThreadId(01) phase: pre_build (Hooks) (start)
+2026-11-11T21:13:05.475742Z TRACE ThreadId(01) phase: pre_build (Hooks) (done)
+2026-11-11T21:13:05.475745Z TRACE ThreadId(01) phase: pre_build (pboprefix) (start)
+2026-11-11T21:13:05.475748Z TRACE ThreadId(01) phase: pre_build (pboprefix) (done)
+2026-11-11T21:13:05.475754Z TRACE ThreadId(01) phase: pre_build (Binarize) (start)
+2026-11-11T21:13:05.475871Z TRACE ThreadId(01) phase: pre_build (Binarize) (done)
+2026-11-11T21:13:05.475877Z TRACE ThreadId(01) phase: pre_build (tex_headers) (start)
+2026-11-11T21:13:05.528778Z DEBUG ThreadId(05) Writing texture headers to "/addons/armor/texHeaders.bin"
+2026-11-11T21:13:05.529770Z  INFO ThreadId(01) Generated 1 texture headers
+2026-11-11T21:13:05.529792Z TRACE ThreadId(01) phase: pre_build (tex_headers) (done)
+2026-11-11T21:13:05.529797Z TRACE ThreadId(01) phase: pre_build (Files) (start)
+2026-11-11T21:13:05.529801Z TRACE ThreadId(01) phase: pre_build (Files) (done)
+2026-11-11T21:13:05.529804Z TRACE ThreadId(01) phase: pre_build (Meta) (start)
+2026-11-11T21:13:05.529807Z TRACE ThreadId(01) phase: pre_build (Meta) (done)
+2026-11-11T21:13:05.529810Z TRACE ThreadId(01) phase: pre_build (summary) (start)
+2026-11-11T21:13:05.529813Z TRACE ThreadId(01) phase: pre_build (summary) (done)
+2026-11-11T21:13:05.529816Z TRACE ThreadId(01) phase: pre_build (paa) (start)
+2026-11-11T21:13:05.529818Z TRACE ThreadId(01) phase: pre_build (paa) (done)
+2026-11-11T21:13:05.529821Z TRACE ThreadId(01) phase: pre_build (Rapifier) (start)
+2026-11-11T21:13:05.625702Z  INFO ThreadId(01) Rapified 17 addon configs
+2026-11-11T21:13:05.625749Z TRACE ThreadId(01) phase: pre_build (Rapifier) (done)
+2026-11-11T21:13:05.625754Z TRACE ThreadId(01) phase: pre_build (SQF) (start)
+2026-11-11T21:13:05.680524Z  INFO ThreadId(01) Compiled 0 sqf files
+2026-11-11T21:13:05.680608Z TRACE ThreadId(01) phase: pre_build (SQF) (done)
+2026-11-11T21:13:05.680614Z TRACE ThreadId(01) phase: pre_build (Stringtables) (start)
+2026-11-11T21:13:05.707155Z  INFO ThreadId(01) Checked 0 stringtables
+2026-11-11T21:13:05.707176Z TRACE ThreadId(01) phase: pre_build (Stringtables) (done)
+2026-11-11T21:13:05.707181Z TRACE ThreadId(01) phase: build (start)
+2026-11-11T21:13:05.709256Z DEBUG ThreadId(01) creating "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons"
+2026-11-11T21:13:05.709402Z DEBUG ThreadId(01) building "addons/aax" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_aax.pbo"
+2026-11-11T21:13:05.712910Z TRACE ThreadId(01) adding file "config.bin"
+2026-11-11T21:13:05.713067Z TRACE ThreadId(01) adding file "data\\aax_infos.hpp"
+2026-11-11T21:13:05.713501Z TRACE ThreadId(01) adding file "data\\aax_models.hpp"
+2026-11-11T21:13:05.713940Z TRACE ThreadId(01) adding file "data\\rolled_sleaves\\female_uniform_infos.hpp"
+2026-11-11T21:13:05.714234Z TRACE ThreadId(01) adding file "data\\rolled_sleaves\\female_uniform_models.hpp"
+2026-11-11T21:13:05.714516Z TRACE ThreadId(01) adding file "data\\images\\Knight.jpg"
+2026-11-11T21:13:05.714803Z TRACE ThreadId(01) adding file "data\\images\\Queen.jpg"
+2026-11-11T21:13:05.715083Z TRACE ThreadId(01) adding file "data\\images\\King.jpg"
+2026-11-11T21:13:05.717102Z DEBUG ThreadId(01) "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons" already exists
+2026-11-11T21:13:05.717118Z DEBUG ThreadId(01) building "addons/armor" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_armor.pbo"
+2026-11-11T21:13:05.738159Z TRACE ThreadId(01) adding file "config.bin"
+2026-11-11T21:13:05.738664Z TRACE ThreadId(01) adding file "texHeaders.bin"
+2026-11-11T21:13:05.738988Z TRACE ThreadId(01) adding file "data\\IRSocialist.paa"
+2026-11-11T21:13:05.739332Z TRACE ThreadId(01) adding file "data\\Witch.paa"
+2026-11-11T21:13:05.739635Z TRACE ThreadId(01) adding file "data\\BuzanPatch.paa"
+2026-11-11T21:13:05.739947Z TRACE ThreadId(01) adding file "data\\Lumberjack.paa"
+2026-11-11T21:13:05.740103Z TRACE ThreadId(01) adding file "data\\Vests\\config.bin"
+2026-11-11T21:13:05.740573Z TRACE ThreadId(01) adding file "data\\Vests\\armor1\\config.bin"
+2026-11-11T21:13:05.740757Z TRACE ThreadId(01) adding file "data\\Vests\\armor1\\urban\\BznArmorAddon_Co.paa"
+2026-11-11T21:13:05.741115Z TRACE ThreadId(01) adding file "data\\Vests\\armor1\\urban\\BznArmor_Co.paa"
+2026-11-11T21:13:05.741275Z TRACE ThreadId(01) adding file "data\\helmets\\config.bin"
+2026-11-11T21:13:05.741593Z TRACE ThreadId(01) adding file "data\\helmets\\g_balaclava_01_urban_CO.paa"
+2026-11-11T21:13:05.741903Z TRACE ThreadId(01) adding file "data\\helmets\\g_glasses_urban_blue_CA.paa"
+2026-11-11T21:13:05.742409Z TRACE ThreadId(01) adding file "data\\helmets\\UCMC\\config.bin"
+2026-11-11T21:13:05.742576Z TRACE ThreadId(01) adding file "data\\helmets\\UCMC\\urban\\P3D__tke_ucmchelm_co.paa___tke_ucmchelm.rvmat_CO.paa"
+2026-11-11T21:13:05.743059Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\config.bin"
+2026-11-11T21:13:05.743232Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_black_CO.paa"
+2026-11-11T21:13:05.743535Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HeadsetWest_wht_CO.paa"
+2026-11-11T21:13:05.743845Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_urban_CO.paa"
+2026-11-11T21:13:05.744145Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_urban2_CO.paa"
+2026-11-11T21:13:05.744533Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_maritime_CO.paa"
+2026-11-11T21:13:05.744847Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_arid_CO.paa"
+2026-11-11T21:13:05.745164Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_jungle_CO.paa"
+2026-11-11T21:13:05.745475Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_winter_CO.paa"
+2026-11-11T21:13:05.745786Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_urban2_tan_CO.paa"
+2026-11-11T21:13:05.746123Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_white_CO.paa"
+2026-11-11T21:13:05.746438Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_Cover_woodland_CO.paa"
+2026-11-11T21:13:05.746742Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_jungle_CO.paa"
+2026-11-11T21:13:05.747047Z TRACE ThreadId(01) adding file "data\\helmets\\FAST\\data\\H_HelmetFASTMT_woodland_CO.paa"
+2026-11-11T21:13:05.747517Z TRACE ThreadId(01) adding file "data\\facewear\\config.bin"
+2026-11-11T21:13:05.747722Z TRACE ThreadId(01) adding file "data\\facewear\\urban\\g_glasses_urban_blue_clear_CA.paa"
+2026-11-11T21:13:05.748084Z TRACE ThreadId(01) adding file "data\\facewear\\urban\\g_balaclava_01_urban_CO.paa"
+2026-11-11T21:13:05.748389Z TRACE ThreadId(01) adding file "data\\facewear\\urban\\g_glasses_urban_blue_CA.paa"
+2026-11-11T21:13:05.748698Z TRACE ThreadId(01) adding file "data\\facewear\\urban\\config.bin"
+2026-11-11T21:13:05.748709Z TRACE ThreadId(01) adding file "data\\uniforms\\config.bin"
+2026-11-11T21:13:05.749659Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\config.bin"
+2026-11-11T21:13:05.750123Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\winter\\uniform_winter_q.paa"
+2026-11-11T21:13:05.750487Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\urban\\uniform_urban_q.paa"
+2026-11-11T21:13:05.750804Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\woodland\\uniform_woodland_q.paa"
+2026-11-11T21:13:05.751152Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\desert\\uniform_desert_q.paa"
+2026-11-11T21:13:05.751483Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\jungle\\uniform_jungle_q.paa"
+2026-11-11T21:13:05.751796Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_queen\\maritime\\uniform_maritime_q.paa"
+2026-11-11T21:13:05.751955Z TRACE ThreadId(01) adding file "data\\uniforms\\tke_combat_uni\\config.bin"
+2026-11-11T21:13:05.752292Z TRACE ThreadId(01) adding file "data\\uniforms\\tke_combat_uni\\BznTKECombatUniTop_CO.paa"
+2026-11-11T21:13:05.752600Z TRACE ThreadId(01) adding file "data\\uniforms\\tke_combat_uni\\ParadeUniform_01_BZN_CO.paa"
+2026-11-11T21:13:05.752932Z TRACE ThreadId(01) adding file "data\\uniforms\\tke_combat_uni\\BznTKECombatUniBottom_CO.paa"
+2026-11-11T21:13:05.753568Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\config.bin"
+2026-11-11T21:13:05.754407Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\woodland\\uniform_woodland_k.paa"
+2026-11-11T21:13:05.754767Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\maritime\\uniform_maritime_k.paa"
+2026-11-11T21:13:05.755090Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\desert\\uniform_desert_k.paa"
+2026-11-11T21:13:05.755404Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\urban\\uniform_urban_k.paa"
+2026-11-11T21:13:05.755710Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\jungle\\uniform_jungle_k.paa"
+2026-11-11T21:13:05.756022Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves_knight\\winter\\uniform_winter_k.paa"
+2026-11-11T21:13:05.757205Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\config.bin"
+2026-11-11T21:13:05.757382Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\woodland\\uniform_flecktarn.paa"
+2026-11-11T21:13:05.757688Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\woodland\\uniform_woodland.paa"
+2026-11-11T21:13:05.758007Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\jungle\\uniform_jungle.paa"
+2026-11-11T21:13:05.758328Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\urban\\uniform_urban.paa"
+2026-11-11T21:13:05.758633Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\urban\\uniform_urban2.paa"
+2026-11-11T21:13:05.758937Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\maritime\\uniform_maritime.paa"
+2026-11-11T21:13:05.759256Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\desert\\uniform_desert.paa"
+2026-11-11T21:13:05.759570Z TRACE ThreadId(01) adding file "data\\uniforms\\rolled_sleaves\\winter\\uniform_winter.paa"
+2026-11-11T21:13:05.812737Z DEBUG ThreadId(01) "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons" already exists
+2026-11-11T21:13:05.812755Z DEBUG ThreadId(01) building "addons/bzn_uav_terminal" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_bzn_uav_terminal.pbo"
+2026-11-11T21:13:05.813962Z TRACE ThreadId(01) adding file "config.bin"
+2026-11-11T21:13:05.814403Z DEBUG ThreadId(01) "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons" already exists
+2026-11-11T21:13:05.814412Z DEBUG ThreadId(01) building "addons/main" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_main.pbo"
+2026-11-11T21:13:05.815099Z TRACE ThreadId(01) adding file "config.bin"
+2026-11-11T21:13:05.815921Z TRACE ThreadId(01) adding file "script_version.hpp"
+2026-11-11T21:13:05.816466Z DEBUG ThreadId(01) "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons" already exists
+2026-11-11T21:13:05.816474Z DEBUG ThreadId(01) building "addons/scripts" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\addons\\bzn_scripts.pbo"
+2026-11-11T21:13:05.817425Z TRACE ThreadId(01) adding file "config.bin"
+2026-11-11T21:13:05.818009Z  INFO ThreadId(01) Built 5 PBOs
+2026-11-11T21:13:05.818029Z TRACE ThreadId(01) phase: build (done)
+2026-11-11T21:13:05.818034Z TRACE ThreadId(01) phase: post_build (BOM Check) (start)
+2026-11-11T21:13:05.818037Z TRACE ThreadId(01) phase: post_build (BOM Check) (done)
+2026-11-11T21:13:05.818040Z TRACE ThreadId(01) phase: post_build (Final New Line Check) (start)
+2026-11-11T21:13:05.818042Z TRACE ThreadId(01) phase: post_build (Final New Line Check) (done)
+2026-11-11T21:13:05.818044Z TRACE ThreadId(01) phase: post_build (git) (start)
+2026-11-11T21:13:05.818047Z TRACE ThreadId(01) phase: post_build (git) (done)
+2026-11-11T21:13:05.818049Z TRACE ThreadId(01) phase: post_build (Hooks) (start)
+2026-11-11T21:13:05.818052Z TRACE ThreadId(01) phase: post_build (Hooks) (done)
+2026-11-11T21:13:05.818054Z TRACE ThreadId(01) phase: post_build (pboprefix) (start)
+2026-11-11T21:13:05.818057Z TRACE ThreadId(01) phase: post_build (pboprefix) (done)
+2026-11-11T21:13:05.818059Z TRACE ThreadId(01) phase: post_build (Binarize) (start)
+2026-11-11T21:13:05.818064Z TRACE ThreadId(01) phase: post_build (Binarize) (done)
+2026-11-11T21:13:05.818067Z TRACE ThreadId(01) phase: post_build (tex_headers) (start)
+2026-11-11T21:13:05.818070Z TRACE ThreadId(01) phase: post_build (tex_headers) (done)
+2026-11-11T21:13:05.818072Z TRACE ThreadId(01) phase: post_build (Files) (start)
+2026-11-11T21:13:06.671232Z DEBUG ThreadId(01) copying "/changelog.md" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\changelog.md"
+2026-11-11T21:13:06.672058Z DEBUG ThreadId(01) copying "/mod.cpp" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\mod.cpp"
+2026-11-11T21:13:06.672680Z DEBUG ThreadId(01) copying "/Buzan.paa" => "D:\\Github\\BuzanConsortium\\.hemttout\\build\\Buzan.paa"
+2026-11-11T21:13:06.674501Z  INFO ThreadId(01) Copied 3 files
+2026-11-11T21:13:06.674519Z TRACE ThreadId(01) phase: post_build (Files) (done)
+2026-11-11T21:13:06.674523Z TRACE ThreadId(01) phase: post_build (Meta) (start)
+2026-11-11T21:13:06.674526Z TRACE ThreadId(01) phase: post_build (Meta) (done)
+2026-11-11T21:13:06.674528Z TRACE ThreadId(01) phase: post_build (summary) (start)
+2026-11-11T21:13:06.675538Z TRACE ThreadId(01) phase: post_build (summary) (done)
+2026-11-11T21:13:06.675545Z TRACE ThreadId(01) phase: post_build (paa) (start)
+2026-11-11T21:13:06.675547Z TRACE ThreadId(01) phase: post_build (paa) (done)
+2026-11-11T21:13:06.675550Z TRACE ThreadId(01) phase: post_build (Rapifier) (start)
+2026-11-11T21:13:06.675553Z TRACE ThreadId(01) phase: post_build (Rapifier) (done)
+2026-11-11T21:13:06.675555Z TRACE ThreadId(01) phase: post_build (SQF) (start)
+2026-11-11T21:13:06.675560Z TRACE ThreadId(01) phase: post_build (SQF) (done)
+2026-11-11T21:13:06.675562Z TRACE ThreadId(01) phase: post_build (Stringtables) (start)
+2026-11-11T21:13:06.675565Z TRACE ThreadId(01) phase: post_build (Stringtables) (done)
+2026-11-11T21:13:06.682566Z TRACE ThreadId(01) writing ci annotations to .hemttout/ci_annotations.txt
+2026-11-11T21:13:06.682662Z TRACE ThreadId(01) wrote 0 ci annotations to .hemttout/ci_annotations.txt

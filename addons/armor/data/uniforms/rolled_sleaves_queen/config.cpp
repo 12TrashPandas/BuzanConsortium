@@ -72,7 +72,7 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform";
-		class eventhandlers
+		class EventHandlers
 		{
 			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
 		};
@@ -95,7 +95,7 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform";
-		class eventhandlers
+		class EventHandlers
 		{
 			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
 		};
@@ -118,7 +118,7 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Woodland";
-		class eventhandlers
+		class EventHandlers
 		{
 			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
 		};
@@ -141,7 +141,7 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Desert";
-		class eventhandlers
+		class EventHandlers
 		{
 			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
 		};
@@ -164,7 +164,7 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Jungle";
-		class eventhandlers
+		class EventHandlers
 		{
 			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
 		};
@@ -187,7 +187,7 @@ class CfgVehicles
 		uniformAccessories[]={};
 		nakedUniform="max_female_U";
 		uniformClass="Bzn_W_I_CombatUniform_Winter";
-		class eventhandlers
+		class EventHandlers
 		{
 			init="P = [_this select 0] execVM ""max_WS\scripts\Identity.sqf"";";
 		};
